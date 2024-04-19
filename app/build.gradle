@@ -1,0 +1,27 @@
+plugins {
+    id 'application'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation libs.h2
+    implementation libs.jakarta.validation
+    implementation libs.spring.actuator
+    implementation libs.spring.boot.web
+    implementation libs.spring.jpa
+
+    testImplementation libs.junit.jupiter
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+application {
+    mainClass = 'br.com.casasbahia.ApplicationMainManagementSeller'
+}

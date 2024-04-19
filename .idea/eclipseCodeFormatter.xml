@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="EclipseCodeFormatterProjectSettings">
+    <option name="projectSpecificProfile">
+      <ProjectSpecificProfile>
+        <option name="backupToProjectConfigFile" value="false" />
+        <option name="formatter" value="ECLIPSE" />
+        <option name="importOrder" value="" />
+        <option name="pathToConfigFileJava" value="$PROJECT_DIR$/../../code-formatter-eclipse/codeformatter/.settings/org.eclipse.jdt.ui.prefs" />
+      </ProjectSpecificProfile>
+    </option>
+    <option name="selectedGlobalProfileReference">
+      <GlobalProfileReference>
+        <option name="id" value="1713543898708" />
+        <option name="name" value="new" />
+      </GlobalProfileReference>
+    </option>
+  </component>
+</project>
