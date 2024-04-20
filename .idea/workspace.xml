@@ -5,19 +5,62 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4bde5a1e-6221-4759-91dc-0e43645edea1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/model/Document.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/configuration/MessageSourceConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/converter/impl/SellerConverterImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/util/UnmaskUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/resources/application-postgresql.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/resources/messages_en.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/resources/messages_pt_BR.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/test/java/br/com/casasbahia/converter/impl/SellerConverterImplTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/test/java/br/com/casasbahia/model/ContractTypeTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/test/java/br/com/casasbahia/model/DocumentTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/test/java/br/com/casasbahia/service/impl/SellerServiceImplTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/test/java/br/com/casasbahia/util/UnmaskUtilTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/test/resources/application-test.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/ApplicationMainManagementSeller.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/ApplicationMainManagementSeller.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/controller/SellerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/controller/SellerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/out/production/classes/br/com/casasbahia/converter/SellerConverter.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/out/production/classes/br/com/casasbahia/converter/SellerConverter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/out/production/classes/br/com/casasbahia/dto/SellerRequestDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/out/production/classes/br/com/casasbahia/dto/SellerRequestDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/out/production/classes/br/com/casasbahia/exception/SellerInvalidContractTypeValidationException.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/out/production/classes/br/com/casasbahia/exception/SellerInvalidContractTypeValidationException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/out/production/classes/br/com/casasbahia/exception/SellerInvalidDateFormatValidationException.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/out/production/classes/br/com/casasbahia/exception/SellerInvalidDateFormatValidationException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/out/production/classes/br/com/casasbahia/exception/SellerInvalidDocumentValidationException.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/out/production/classes/br/com/casasbahia/exception/SellerInvalidDocumentValidationException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/out/production/classes/br/com/casasbahia/exception/SellerValidationException.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/out/production/classes/br/com/casasbahia/exception/SellerValidationException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/out/production/classes/br/com/casasbahia/handler/SellerExceptionHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/out/production/classes/br/com/casasbahia/handler/SellerExceptionHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/out/production/classes/br/com/casasbahia/model/Document$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/out/production/classes/br/com/casasbahia/model/Document$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/out/production/classes/br/com/casasbahia/model/Document$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/out/production/classes/br/com/casasbahia/model/Document$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/out/production/classes/br/com/casasbahia/model/Document.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/out/production/classes/br/com/casasbahia/model/Document.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/out/production/classes/br/com/casasbahia/model/PersistentSeller.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/out/production/classes/br/com/casasbahia/model/PersistentSeller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/out/production/classes/br/com/casasbahia/repository/SellerRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/out/production/classes/br/com/casasbahia/repository/SellerRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/out/production/classes/br/com/casasbahia/service/SellerServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/out/production/classes/br/com/casasbahia/service/validator/SellerValidatorService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/out/production/classes/br/com/casasbahia/util/EnrollmentGenerator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/out/production/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/out/production/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/out/production/resources/db/tables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/app/out/production/resources/db/tables.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/out/test/classes/br/com/casasbahia/service/Constants.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/out/test/classes/br/com/casasbahia/service/Constants.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/out/test/classes/br/com/casasbahia/service/model/DocumentTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/out/test/classes/br/com/casasbahia/service/validator/SellerValidatorServiceTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/converter/SellerConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/converter/SellerConverter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/dto/SellerRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/dto/SellerRequestDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/handler/ExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/handler/SellerExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/model/ContractType.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/model/ContractType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/model/DocumentType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/exception/SellerInvalidContractTypeValidationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/exception/SellerInvalidContractTypeValidationException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/exception/SellerInvalidDateFormatValidationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/exception/SellerInvalidDateFormatValidationException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/exception/SellerInvalidDocumentValidationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/exception/SellerInvalidDocumentValidationException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/exception/SellerValidationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/exception/SellerValidationException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/handler/SellerExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/handler/SellerExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/model/Document.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/model/Document.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/model/PersistentSeller.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/model/PersistentSeller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/service/SellerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/service/SellerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/repository/SellerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/repository/SellerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/service/SellerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/service/impl/SellerServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/service/validator/SellerValidatorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/service/validator/SellerValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/util/EnrollmentGenerator.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/resources/db/tables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/db/tables.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/br/com/casasbahia/service/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/br/com/casasbahia/service/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/br/com/casasbahia/service/model/DocumentTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/br/com/casasbahia/service/validator/SellerValidatorServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/br/com/casasbahia/service/validator/SellerValidatorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +96,18 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="csb-management-seller" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="csb-management-seller" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="csb-management-seller" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="build" type="c8890929:TasksNode$1" />
               </path>
@@ -60,12 +115,36 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="csb-management-seller" type="f1a62948:ProjectNode" />
                 <item name="app" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="distribution" type="c8890929:TasksNode$1" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="csb-management-seller" type="f1a62948:ProjectNode" />
                 <item name="app" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="documentation" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="csb-management-seller" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="help" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="csb-management-seller" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="other" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="csb-management-seller" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="verification" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -79,8 +158,10 @@
       <list>
         <option value="Record" />
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="package-info" />
+        <option value="Python Script" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -100,17 +181,31 @@
   "keyToString": {
     "Application.ApplicationMainManagementSeller.executor": "Debug",
     "Application.EnrollmentGenerator.executor": "Debug",
+    "Application.SellerValidator.executor": "Debug",
     "Gradle.Build csb-management-seller.executor": "Run",
     "Gradle.Download Sources.executor": "Run",
     "Gradle.csb-management-seller [build].executor": "Run",
+    "Gradle.csb-management-seller [clean build].executor": "Run",
     "Gradle.csb-management-seller [clean].executor": "Run",
+    "Gradle.csb-management-seller [run].executor": "Debug",
+    "Gradle.csb-management-seller [test].executor": "Run",
     "Gradle.csb-management-seller:app [:app:ApplicationMainManagementSeller.main()].executor": "Debug",
     "Gradle.csb-management-seller:app [:app:ApplicationMainSeller.main()].executor": "Debug",
     "Gradle.csb-management-seller:app [:app:EnrollmentGenerator.main()].executor": "Debug",
+    "Gradle.csb-management-seller:app [test].executor": "Run",
+    "JUnit.ContractTypeTest.executor": "Coverage",
     "JUnit.DocumentTest.executor": "Debug",
     "JUnit.DocumentTest.shouldReturnFalseWhenDocumentHasInvalidSize.executor": "Debug",
     "JUnit.DocumentTest.shouldReturnFalseWhenDocumentNullOrEmptyOrBlank.executor": "Debug",
+    "JUnit.DocumentTest.shouldReturnFalseWhenDocumentValidButInvalidMask.executor": "Debug",
     "JUnit.DocumentTest.shouldReturnTrueWhenDocumentIsValid.executor": "Debug",
+    "JUnit.DocumentTest.shouldReturnTrueWhenDocumentValidAndUnMasked.executor": "Debug",
+    "JUnit.SellerConverterImplTest.executor": "Coverage",
+    "JUnit.SellerConverterImplTest.shouldReturnPersistOfDTO.executor": "Debug",
+    "JUnit.SellerServiceImplTest.executor": "Debug",
+    "JUnit.SellerServiceImplTest.shouldCreateSeller.executor": "Debug",
+    "JUnit.SellerServiceImplTest.shouldReturnErrorMessageWhenInvalidPayload.executor": "Debug",
+    "JUnit.SellerServiceImplTest.shouldReturnErrorMessageWhenInvalidPayload2.executor": "Debug",
     "JUnit.SellerValidatorServiceTest.executor": "Coverage",
     "JUnit.SellerValidatorServiceTest.shouldNotThrownExceptionWhenContractTypeIsPjAndDocumentIsCnpj.executor": "Debug",
     "JUnit.SellerValidatorServiceTest.shouldThrownExceptionWhenBirthdayDateInvalid.executor": "Debug",
@@ -118,13 +213,17 @@
     "JUnit.SellerValidatorServiceTest.shouldThrownExceptionWhenContractTypeIsOutAndDocumentIsCnpj.executor": "Debug",
     "JUnit.SellerValidatorServiceTest.shouldThrownExceptionWhenContractTypeIsOutOrCltAndDocumentIsCnpj.executor": "Debug",
     "JUnit.SellerValidatorServiceTest.shouldThrownExceptionWhenContractTypeIsPjAndDocumentIsCpf.executor": "Debug",
+    "JUnit.SellerValidatorTest.executor": "Debug",
+    "JUnit.SellerValidatorTest.shouldThrownExceptionWhenBirthdayDateInvalid.executor": "Debug",
+    "JUnit.br.com.casasbahia in csb-management-seller.app.test.executor": "Debug",
+    "JUnit.br.com.casasbahia.service in csb-management-seller.app.test.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/work/code-formatter-eclipse/codeformatter/.settings/org.eclipse.jdt.core.prefs",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
+    "settings.editor.selected.configurable": "File.Encoding"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -132,79 +231,99 @@
       <recent name="C:\work\idea-projects\csb-management-seller\app\src\main\resources\db" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.br.com.casasbahia.service in csb-management-seller.app.test">
-    <configuration name="SellerValidatorServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="csb-management-seller.app.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="br.com.casasbahia.service.validator.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="br.com.casasbahia.service.validator" />
-      <option name="MAIN_CLASS_NAME" value="br.com.casasbahia.service.validator.SellerValidatorServiceTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+  <component name="RunManager" selected="Gradle.csb-management-seller [test]">
+    <configuration name="csb-management-seller [clean build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
     </configuration>
-    <configuration name="SellerValidatorServiceTest.shouldNotThrownExceptionWhenContractTypeIsPjAndDocumentIsCnpj" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="csb-management-seller [test]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="csb-management-seller:app [test]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/app" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="DocumentTest.shouldReturnFalseWhenDocumentValidButInvalidMask" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="csb-management-seller.app.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="br.com.casasbahia.service.validator.*" />
+          <option name="PATTERN" value="br.com.casasbahia.model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="br.com.casasbahia.service.validator" />
-      <option name="MAIN_CLASS_NAME" value="br.com.casasbahia.service.validator.SellerValidatorServiceTest" />
-      <option name="METHOD_NAME" value="shouldNotThrownExceptionWhenContractTypeIsPjAndDocumentIsCnpj" />
+      <option name="PACKAGE_NAME" value="br.com.casasbahia.model" />
+      <option name="MAIN_CLASS_NAME" value="br.com.casasbahia.model.DocumentTest" />
+      <option name="METHOD_NAME" value="shouldReturnFalseWhenDocumentValidButInvalidMask" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SellerValidatorServiceTest.shouldThrownExceptionWhenBirthdayDateInvalid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="br.com.casasbahia in csb-management-seller.app.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="csb-management-seller.app.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="br.com.casasbahia.service.validator.*" />
+          <option name="PATTERN" value="br.com.casasbahia.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="br.com.casasbahia.service.validator" />
-      <option name="MAIN_CLASS_NAME" value="br.com.casasbahia.service.validator.SellerValidatorServiceTest" />
-      <option name="METHOD_NAME" value="shouldThrownExceptionWhenBirthdayDateInvalid(java.lang.String)" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SellerValidatorServiceTest.shouldThrownExceptionWhenContractTypeIsInvalid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="csb-management-seller.app.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="br.com.casasbahia.service.validator.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="br.com.casasbahia.service.validator" />
-      <option name="MAIN_CLASS_NAME" value="br.com.casasbahia.service.validator.SellerValidatorServiceTest" />
-      <option name="METHOD_NAME" value="shouldThrownExceptionWhenContractTypeIsInvalid" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="br.com.casasbahia.service in csb-management-seller.app.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="csb-management-seller.app.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="br.com.casasbahia.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="br.com.casasbahia.service" />
+      <option name="PACKAGE_NAME" value="br.com.casasbahia" />
       <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -212,19 +331,19 @@
     </configuration>
     <list>
       <item itemvalue="Application.ApplicationMainManagementSeller" />
-      <item itemvalue="JUnit.SellerValidatorServiceTest" />
-      <item itemvalue="JUnit.SellerValidatorServiceTest.shouldNotThrownExceptionWhenContractTypeIsPjAndDocumentIsCnpj" />
-      <item itemvalue="JUnit.SellerValidatorServiceTest.shouldThrownExceptionWhenBirthdayDateInvalid" />
-      <item itemvalue="JUnit.SellerValidatorServiceTest.shouldThrownExceptionWhenContractTypeIsInvalid" />
-      <item itemvalue="JUnit.br.com.casasbahia.service in csb-management-seller.app.test" />
+      <item itemvalue="Gradle.csb-management-seller [clean build]" />
+      <item itemvalue="Gradle.csb-management-seller [test]" />
+      <item itemvalue="Gradle.csb-management-seller:app [test]" />
+      <item itemvalue="JUnit.DocumentTest.shouldReturnFalseWhenDocumentValidButInvalidMask" />
+      <item itemvalue="JUnit.br.com.casasbahia in csb-management-seller.app.test" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.br.com.casasbahia.service in csb-management-seller.app.test" />
-        <item itemvalue="JUnit.SellerValidatorServiceTest.shouldThrownExceptionWhenContractTypeIsInvalid" />
-        <item itemvalue="JUnit.SellerValidatorServiceTest" />
-        <item itemvalue="JUnit.SellerValidatorServiceTest.shouldThrownExceptionWhenBirthdayDateInvalid" />
-        <item itemvalue="JUnit.SellerValidatorServiceTest.shouldNotThrownExceptionWhenContractTypeIsPjAndDocumentIsCnpj" />
+        <item itemvalue="Gradle.csb-management-seller:app [test]" />
+        <item itemvalue="Gradle.csb-management-seller [test]" />
+        <item itemvalue="Gradle.csb-management-seller [clean build]" />
+        <item itemvalue="JUnit.br.com.casasbahia in csb-management-seller.app.test" />
+        <item itemvalue="JUnit.DocumentTest.shouldReturnFalseWhenDocumentValidButInvalidMask" />
       </list>
     </recent_temporary>
   </component>
@@ -242,6 +361,15 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/csb_management_seller$SellerValidatorServiceTest.ic" NAME="SellerValidatorServiceTest Coverage Results" MODIFIED="1713570363943" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>br.com.casasbahia.service.validator.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/csb_management_seller$SellerConverterImplTest.ic" NAME="SellerConverterImplTest Coverage Results" MODIFIED="1713622358782" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>br.com.casasbahia.converter.impl.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/csb_management_seller$ContractTypeTest.ic" NAME="ContractTypeTest Coverage Results" MODIFIED="1713627158767" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>br.com.casasbahia.model.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/csb_management_seller$br_com_casasbahia_in_csb_management_seller_app_test.ic" NAME="br.com.casasbahia in csb-management-seller.app.test Coverage Results" MODIFIED="1713632833181" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>br.com.casasbahia.*</FILTER>
     </SUITE>
   </component>
 </project>

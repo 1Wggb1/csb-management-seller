@@ -5,6 +5,7 @@
     <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
     <option name="MAIN_CLASS_NAME" value="br.com.casasbahia.ApplicationMainManagementSeller" />
     <module name="csb-management-seller.app.main" />
+    <option name="VM_PARAMETERS" value="-Dspring.profiles.active=postgresql" />
     <extension name="coverage">
       <pattern>
         <option name="PATTERN" value="br.com.casasbahia.*" />

@@ -1,11 +1,23 @@
 package br.com.casasbahia.model;
 
 import java.util.InputMismatchException;
+import java.util.regex.Pattern;
+
+import br.com.casasbahia.util.UnmaskUtil;
 
 public enum Document
 {
     CPF
     {
+        private static final Pattern CPF_VALID_FORMAT = Pattern.compile( "([0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2})|([0-9]{11})" );
+
+        @Override
+        boolean isValidFormat(
+            final String document )
+        {
+            return CPF_VALID_FORMAT.matcher( document ).matches();
+        }
+
         @Override
         boolean doValidateDocument(
             final String document )
@@ -19,9 +31,6 @@ public enum Document
             try {
                 Long.parseLong( document );
             } catch( final NumberFormatException e ) {
-                return false;
-            }
-            if( document.length() != 11 ) {
                 return false;
             }
 
@@ -62,6 +71,15 @@ public enum Document
     },
     CNPJ
     {
+        private static final Pattern CNPJ_VALID_FORMAT = Pattern.compile( "([0-9]{2}.[0-9]{3}.[0-9]{3}/[0-9]{4}-[0-9]{2})|([0-9]{14})" );
+
+        @Override
+        boolean isValidFormat(
+            final String document )
+        {
+            return CNPJ_VALID_FORMAT.matcher( document ).matches();
+        }
+
         @Override
         boolean doValidateDocument(
             final String document )
@@ -78,11 +96,10 @@ public enum Document
                 return false;
             }
 
-            if( document.equals( "00000000000000" ) || document.equals( "11111111111111" )
-                || document.equals( "22222222222222" ) || document.equals( "33333333333333" )
-                || document.equals( "44444444444444" ) || document.equals( "55555555555555" )
-                || document.equals( "66666666666666" ) || document.equals( "77777777777777" )
-                || document.equals( "88888888888888" ) || document.equals( "99999999999999" ) || document.length() != 14 ) {
+            if( document.equals( "00000000000000" ) || document.equals( "11111111111111" ) || document.equals( "22222222222222" )
+                || document.equals( "33333333333333" ) || document.equals( "44444444444444" ) || document.equals( "55555555555555" )
+                || document.equals( "66666666666666" ) || document.equals( "77777777777777" ) || document.equals( "88888888888888" )
+                || document.equals( "99999999999999" ) ) {
                 return false;
             }
             final char dig13;
@@ -140,21 +157,18 @@ public enum Document
         return document == null || document.isBlank();
     }
 
-    public static String removeMask(
+    public boolean isValidDocument(
         final String document )
     {
-        return document.replaceAll( "[/.-]", "" );
-    }
-
-    public boolean validateDocument(
-        final String document )
-    {
-        if( isNullOrBlank( document ) ) {
+        if( isNullOrBlank( document ) || ! isValidFormat( document ) ) {
             return false;
         }
-        return doValidateDocument( removeMask( document ) );
+        return doValidateDocument( UnmaskUtil.unmaskDocumentNumber( document ) );
     }
 
+    abstract boolean isValidFormat(
+        String document );
+
     abstract boolean doValidateDocument(
-        final String document );
+        String document );
 }

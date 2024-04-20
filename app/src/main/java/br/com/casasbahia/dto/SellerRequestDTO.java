@@ -1,14 +1,14 @@
 package br.com.casasbahia.dto;
 
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotEmpty;
 
 public record SellerRequestDTO(
-    @NotNull String name,
-    @NotNull @Email String email,
+    @NotEmpty( message = "csb.field.cannot.be.null_or_empty" ) String name,
+    @NotEmpty( message = "csb.field.cannot.be.null_or_empty" ) @Email( message = "csb.email.invalid.format" ) String email,
     String birthDay,
-    @NotNull String documentNumber,
-    @NotNull String contractType,
-    @NotNull String branchOfficeDocumentNumber )
+    @NotEmpty( message = "csb.field.cannot.be.null_or_empty" ) String documentNumber,
+    @NotEmpty( message = "csb.field.cannot.be.null_or_empty" ) String contractType,
+    @NotEmpty( message = "csb.field.cannot.be.null_or_empty" ) String branchOfficeDocumentNumber )
 {
 }

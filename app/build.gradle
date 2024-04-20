@@ -1,5 +1,5 @@
 plugins {
-    id 'application'
+    id "application"
 }
 
 repositories {
@@ -7,14 +7,15 @@ repositories {
 }
 
 dependencies {
-    implementation libs.h2
-    implementation libs.jakarta.validation
+    implementation libs.postgresql
     implementation libs.spring.actuator
     implementation libs.spring.boot.web
     implementation libs.spring.jpa
-    implementation 'org.postgresql:postgresql:42.7.3'
-
+    implementation libs.spring.validation
+    
     testImplementation libs.junit.jupiter
+    testImplementation libs.h2
+    testImplementation libs.spring.test
 }
 
 java {
@@ -24,5 +25,10 @@ java {
 }
 
 application {
-    mainClass = 'br.com.casasbahia.ApplicationMainManagementSeller'
+    mainClass = "br.com.casasbahia.ApplicationMainManagementSeller"
+    applicationDefaultJvmArgs = ["-Dspring.profiles.active=postgresql"]
+}
+
+test {
+    useJUnitPlatform()
 }

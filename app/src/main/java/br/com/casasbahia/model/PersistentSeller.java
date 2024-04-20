@@ -1,5 +1,6 @@
 package br.com.casasbahia.model;
 
+import br.com.casasbahia.util.UnmaskUtil;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -8,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -19,30 +21,35 @@ public class PersistentSeller
     private Long id;
 
     @NotNull
-    @Column( nullable = false )
+    @Column( name = "name", nullable = false )
     private String name;
 
     @NotNull
-    @Column( nullable = false, unique = true )
+    @Column( name = "enrollment", nullable = false, unique = true )
     private String enrollment;
 
-    @Column
+    @Column( name = "birthday" )
     private String birthDay;
 
     @NotNull
-    @Column( nullable = false )
+    @Column( name = "document_number", nullable = false )
     private String documentNumber;
 
-    @Column( nullable = false )
+    @Email
+    @Column( name = "email", nullable = false )
     private String email;
 
-    @Column
+    @Column( name = "contract_type" )
     @Enumerated( EnumType.STRING )
     private ContractType contractType;
 
     @NotNull
-    @Column( nullable = false )
+    @Column( name = "branch_office_document_number", nullable = false )
     private String branchOfficeDocumentNumber;
+
+    protected PersistentSeller()
+    {
+    }
 
     public PersistentSeller(
         final String name,
@@ -83,12 +90,6 @@ public class PersistentSeller
         return enrollment;
     }
 
-    public void setEnrollment(
-        final String enrollment )
-    {
-        this.enrollment = enrollment;
-    }
-
     public String getBirthDay()
     {
         return birthDay;
@@ -98,7 +99,7 @@ public class PersistentSeller
         final String birthDay )
     {
         if( birthDay != null ) {
-            this.birthDay = birthDay.replaceAll( "/", "" );
+            this.birthDay = UnmaskUtil.unmaskDate( birthDay );
         }
     }
 
@@ -110,7 +111,7 @@ public class PersistentSeller
     public void setDocumentNumber(
         final String documentNumber )
     {
-        this.documentNumber = Document.removeMask( documentNumber );
+        this.documentNumber = UnmaskUtil.unmaskDocumentNumber( documentNumber );
     }
 
     public String getEmail()
@@ -143,6 +144,6 @@ public class PersistentSeller
     public void setBranchOfficeDocumentNumber(
         final String branchOfficeDocumentNumber )
     {
-        this.branchOfficeDocumentNumber = Document.removeMask( branchOfficeDocumentNumber );
+        this.branchOfficeDocumentNumber = UnmaskUtil.unmaskDocumentNumber( branchOfficeDocumentNumber );
     }
 }

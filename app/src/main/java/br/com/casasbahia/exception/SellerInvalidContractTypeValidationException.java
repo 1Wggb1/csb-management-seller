@@ -5,8 +5,9 @@ public class SellerInvalidContractTypeValidationException
         SellerValidationException
 {
     public SellerInvalidContractTypeValidationException(
-        final String message )
+        final String message,
+        final String... messageArgs )
     {
-        super( message );
+        super( message, messageArgs );
     }
 }

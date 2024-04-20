@@ -5,8 +5,9 @@ public class SellerInvalidDocumentValidationException
         SellerValidationException
 {
     public SellerInvalidDocumentValidationException(
-        final String message )
+        final String message,
+        final String... messageArgs )
     {
-        super( message );
+        super( message, messageArgs );
     }
 }

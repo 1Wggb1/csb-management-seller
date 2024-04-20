@@ -5,8 +5,9 @@ public class SellerInvalidDateFormatValidationException
         SellerValidationException
 {
     public SellerInvalidDateFormatValidationException(
-        final String message )
+        final String message,
+        final String... messageArgs )
     {
-        super( message );
+        super( message, messageArgs );
     }
 }

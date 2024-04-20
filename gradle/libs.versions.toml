@@ -1,14 +1,15 @@
 [versions]
-junit-jupiter = "5.10.1"
-spring-boot = "3.2.4"
 h2 = "2.2.224"
-jakarta-validation = "3.0.2"
-
+junit-jupiter = "5.10.1"
+postgresql = "42.7.3"
+spring-boot = "3.2.4"
 
 [libraries]
+h2 = { module = "com.h2database:h2", version.ref = "h2" }
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-jupiter" }
+postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
 spring-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator", version.ref = "spring-boot" }
 spring-boot-web = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "spring-boot" }
 spring-jpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa", version.ref = "spring-boot" }
-junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-jupiter" }
-h2 = { module = "com.h2database:h2", version.ref = "h2" }
-jakarta-validation = { module = "jakarta.validation:jakarta.validation-api", version.ref = "jakarta-validation" }
+spring-test = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "spring-boot" }
+spring-validation = { module = "org.springframework.boot:spring-boot-starter-validation", version.ref = "spring-boot" }

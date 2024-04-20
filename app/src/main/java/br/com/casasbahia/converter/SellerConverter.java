@@ -1,25 +1,14 @@
 package br.com.casasbahia.converter;
 
-import org.springframework.stereotype.Service;
 import br.com.casasbahia.dto.SellerRequestDTO;
-import br.com.casasbahia.model.ContractType;
+import br.com.casasbahia.dto.SellerResponseDTO;
 import br.com.casasbahia.model.PersistentSeller;
-import br.com.casasbahia.util.EnrollmentGenerator;
 
-@Service
-public class SellerConverter
+public interface SellerConverter
 {
-    public PersistentSeller toModel(
-        final SellerRequestDTO sellerRequestDTO )
-    {
-        final ContractType contractType = ContractType.valueOf( sellerRequestDTO.contractType() );
-        return new PersistentSeller(
-            sellerRequestDTO.name(),
-            EnrollmentGenerator.generateEnrollment( contractType ),
-            sellerRequestDTO.birthDay(),
-            sellerRequestDTO.documentNumber(),
-            sellerRequestDTO.email(),
-            contractType,
-            sellerRequestDTO.branchOfficeDocumentNumber() );
-    }
+    PersistentSeller toModel(
+        SellerRequestDTO sellerRequestDTO );
+
+    SellerResponseDTO toDTO(
+        PersistentSeller persistentSeller );
 }
