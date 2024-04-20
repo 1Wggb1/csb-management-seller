@@ -1,13 +1,14 @@
 package br.com.casasbahia.dto;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
 
 public record SellerRequestDTO(
     @NotNull String name,
-    String birthDate,
+    @NotNull @Email String email,
+    String birthDay,
     @NotNull String documentNumber,
-    @NotNull @Positive Long contractTypeId,
+    @NotNull String contractType,
     @NotNull String branchOfficeDocumentNumber )
 {
 }

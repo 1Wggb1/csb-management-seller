@@ -12,6 +12,7 @@ dependencies {
     implementation libs.spring.actuator
     implementation libs.spring.boot.web
     implementation libs.spring.jpa
+    implementation 'org.postgresql:postgresql:42.7.3'
 
     testImplementation libs.junit.jupiter
 }

@@ -5,7 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4bde5a1e-6221-4759-91dc-0e43645edea1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/model/Document.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/controller/SellerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/controller/SellerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/dto/SellerRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/dto/SellerRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/handler/ExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/handler/SellerExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/model/ContractType.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/model/ContractType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/model/DocumentType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/model/PersistentSeller.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/model/PersistentSeller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/service/SellerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/service/SellerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/db/tables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/db/tables.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,8 +79,8 @@
       <list>
         <option value="Record" />
         <option value="Enum" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -86,19 +98,33 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.ApplicationMainManagementSeller.executor": "Debug",
+    "Application.EnrollmentGenerator.executor": "Debug",
     "Gradle.Build csb-management-seller.executor": "Run",
     "Gradle.Download Sources.executor": "Run",
     "Gradle.csb-management-seller [build].executor": "Run",
     "Gradle.csb-management-seller [clean].executor": "Run",
     "Gradle.csb-management-seller:app [:app:ApplicationMainManagementSeller.main()].executor": "Debug",
     "Gradle.csb-management-seller:app [:app:ApplicationMainSeller.main()].executor": "Debug",
+    "Gradle.csb-management-seller:app [:app:EnrollmentGenerator.main()].executor": "Debug",
+    "JUnit.DocumentTest.executor": "Debug",
+    "JUnit.DocumentTest.shouldReturnFalseWhenDocumentHasInvalidSize.executor": "Debug",
+    "JUnit.DocumentTest.shouldReturnFalseWhenDocumentNullOrEmptyOrBlank.executor": "Debug",
+    "JUnit.DocumentTest.shouldReturnTrueWhenDocumentIsValid.executor": "Debug",
+    "JUnit.SellerValidatorServiceTest.executor": "Coverage",
+    "JUnit.SellerValidatorServiceTest.shouldNotThrownExceptionWhenContractTypeIsPjAndDocumentIsCnpj.executor": "Debug",
+    "JUnit.SellerValidatorServiceTest.shouldThrownExceptionWhenBirthdayDateInvalid.executor": "Debug",
+    "JUnit.SellerValidatorServiceTest.shouldThrownExceptionWhenContractTypeIsInvalid.executor": "Debug",
+    "JUnit.SellerValidatorServiceTest.shouldThrownExceptionWhenContractTypeIsOutAndDocumentIsCnpj.executor": "Debug",
+    "JUnit.SellerValidatorServiceTest.shouldThrownExceptionWhenContractTypeIsOutOrCltAndDocumentIsCnpj.executor": "Debug",
+    "JUnit.SellerValidatorServiceTest.shouldThrownExceptionWhenContractTypeIsPjAndDocumentIsCpf.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/work/code-formatter-eclipse/codeformatter/.settings/org.eclipse.jdt.core.prefs",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "EclipseFormatter"
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -106,61 +132,99 @@
       <recent name="C:\work\idea-projects\csb-management-seller\app\src\main\resources\db" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.csb-management-seller [build]">
-    <configuration name="csb-management-seller [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="build" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
-      <method v="2" />
+  <component name="RunManager" selected="JUnit.br.com.casasbahia.service in csb-management-seller.app.test">
+    <configuration name="SellerValidatorServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="csb-management-seller.app.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.com.casasbahia.service.validator.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="br.com.casasbahia.service.validator" />
+      <option name="MAIN_CLASS_NAME" value="br.com.casasbahia.service.validator.SellerValidatorServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
-    <configuration name="csb-management-seller [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="clean" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
-      <method v="2" />
+    <configuration name="SellerValidatorServiceTest.shouldNotThrownExceptionWhenContractTypeIsPjAndDocumentIsCnpj" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="csb-management-seller.app.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.com.casasbahia.service.validator.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="br.com.casasbahia.service.validator" />
+      <option name="MAIN_CLASS_NAME" value="br.com.casasbahia.service.validator.SellerValidatorServiceTest" />
+      <option name="METHOD_NAME" value="shouldNotThrownExceptionWhenContractTypeIsPjAndDocumentIsCnpj" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SellerValidatorServiceTest.shouldThrownExceptionWhenBirthdayDateInvalid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="csb-management-seller.app.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.com.casasbahia.service.validator.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="br.com.casasbahia.service.validator" />
+      <option name="MAIN_CLASS_NAME" value="br.com.casasbahia.service.validator.SellerValidatorServiceTest" />
+      <option name="METHOD_NAME" value="shouldThrownExceptionWhenBirthdayDateInvalid(java.lang.String)" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SellerValidatorServiceTest.shouldThrownExceptionWhenContractTypeIsInvalid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="csb-management-seller.app.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.com.casasbahia.service.validator.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="br.com.casasbahia.service.validator" />
+      <option name="MAIN_CLASS_NAME" value="br.com.casasbahia.service.validator.SellerValidatorServiceTest" />
+      <option name="METHOD_NAME" value="shouldThrownExceptionWhenContractTypeIsInvalid" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="br.com.casasbahia.service in csb-management-seller.app.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="csb-management-seller.app.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.com.casasbahia.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="br.com.casasbahia.service" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <list>
       <item itemvalue="Application.ApplicationMainManagementSeller" />
-      <item itemvalue="Gradle.csb-management-seller [build]" />
-      <item itemvalue="Gradle.csb-management-seller [clean]" />
+      <item itemvalue="JUnit.SellerValidatorServiceTest" />
+      <item itemvalue="JUnit.SellerValidatorServiceTest.shouldNotThrownExceptionWhenContractTypeIsPjAndDocumentIsCnpj" />
+      <item itemvalue="JUnit.SellerValidatorServiceTest.shouldThrownExceptionWhenBirthdayDateInvalid" />
+      <item itemvalue="JUnit.SellerValidatorServiceTest.shouldThrownExceptionWhenContractTypeIsInvalid" />
+      <item itemvalue="JUnit.br.com.casasbahia.service in csb-management-seller.app.test" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.csb-management-seller [build]" />
-        <item itemvalue="Gradle.csb-management-seller [clean]" />
-        <item itemvalue="Application.ApplicationMainManagementSeller" />
+        <item itemvalue="JUnit.br.com.casasbahia.service in csb-management-seller.app.test" />
+        <item itemvalue="JUnit.SellerValidatorServiceTest.shouldThrownExceptionWhenContractTypeIsInvalid" />
+        <item itemvalue="JUnit.SellerValidatorServiceTest" />
+        <item itemvalue="JUnit.SellerValidatorServiceTest.shouldThrownExceptionWhenBirthdayDateInvalid" />
+        <item itemvalue="JUnit.SellerValidatorServiceTest.shouldNotThrownExceptionWhenContractTypeIsPjAndDocumentIsCnpj" />
       </list>
     </recent_temporary>
   </component>
@@ -174,5 +238,10 @@
       <updated>1713541983846</updated>
     </task>
     <servers />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/csb_management_seller$SellerValidatorServiceTest.ic" NAME="SellerValidatorServiceTest Coverage Results" MODIFIED="1713570363943" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>br.com.casasbahia.service.validator.*</FILTER>
+    </SUITE>
   </component>
 </project>

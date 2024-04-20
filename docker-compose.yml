@@ -1,0 +1,12 @@
+version: '3.9'
+
+services:
+  
+  dbcsb:
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgresqcsb
+      - POSTGRES_PASSWORD=csb123
+      - POSTGRES_DB=dbcsb
+    ports:
+      - "5432:5432"

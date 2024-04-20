@@ -22,8 +22,12 @@ public class PersistentSeller
     @Column( nullable = false )
     private String name;
 
+    @NotNull
+    @Column( nullable = false, unique = true )
+    private String enrollment;
+
     @Column
-    private String birthDate;
+    private String birthDay;
 
     @NotNull
     @Column( nullable = false )
@@ -39,6 +43,24 @@ public class PersistentSeller
     @NotNull
     @Column( nullable = false )
     private String branchOfficeDocumentNumber;
+
+    public PersistentSeller(
+        final String name,
+        final String enrollment,
+        final String birthDay,
+        final String documentNumber,
+        final String email,
+        final ContractType contractType,
+        final String branchOfficeDocumentNumber )
+    {
+        this.name = name;
+        this.enrollment = enrollment;
+        setBirthDay( birthDay );
+        setDocumentNumber( documentNumber );
+        this.email = email;
+        this.contractType = contractType;
+        setBranchOfficeDocumentNumber( branchOfficeDocumentNumber );
+    }
 
     public Long getId()
     {
@@ -56,15 +78,28 @@ public class PersistentSeller
         this.name = name;
     }
 
-    public String getBirthDate()
+    public String getEnrollment()
     {
-        return birthDate;
+        return enrollment;
     }
 
-    public void setBirthDate(
-        final String birthDate )
+    public void setEnrollment(
+        final String enrollment )
     {
-        this.birthDate = birthDate;
+        this.enrollment = enrollment;
+    }
+
+    public String getBirthDay()
+    {
+        return birthDay;
+    }
+
+    public void setBirthDay(
+        final String birthDay )
+    {
+        if( birthDay != null ) {
+            this.birthDay = birthDay.replaceAll( "/", "" );
+        }
     }
 
     public String getDocumentNumber()
@@ -75,7 +110,7 @@ public class PersistentSeller
     public void setDocumentNumber(
         final String documentNumber )
     {
-        this.documentNumber = documentNumber;
+        this.documentNumber = Document.removeMask( documentNumber );
     }
 
     public String getEmail()
@@ -108,6 +143,6 @@ public class PersistentSeller
     public void setBranchOfficeDocumentNumber(
         final String branchOfficeDocumentNumber )
     {
-        this.branchOfficeDocumentNumber = branchOfficeDocumentNumber;
+        this.branchOfficeDocumentNumber = Document.removeMask( branchOfficeDocumentNumber );
     }
 }

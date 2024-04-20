@@ -1,5 +1,8 @@
 package br.com.casasbahia.controller;
 
+import java.net.URI;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,11 +15,15 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import br.com.casasbahia.dto.SellerPageableDTO;
 import br.com.casasbahia.dto.SellerRequestDTO;
 import br.com.casasbahia.dto.SellerResponseDTO;
+import br.com.casasbahia.service.SellerService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping( "/v1/sellers" )
 public class SellerController
 {
+    @Autowired
+    private SellerService service;
 
     @GetMapping
     public SellerPageableDTO find(
@@ -27,9 +34,13 @@ public class SellerController
 
     @PostMapping
     public ResponseEntity<SellerResponseDTO> createSeller(
-        @RequestBody final SellerRequestDTO sellerDTO )
+        @Valid @RequestBody final SellerRequestDTO sellerDTO )
     {
-        return ResponseEntity.created( ServletUriComponentsBuilder.fromCurrentRequest().buildAndExpand( "" ).toUri() ).body( null );
+        final SellerResponseDTO sellerResponseDTO = service.create( sellerDTO );
+        final URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+            .buildAndExpand( sellerResponseDTO.enrollment() )
+            .toUri();
+        return ResponseEntity.created( location ).body( sellerResponseDTO );
     }
 
     @PutMapping

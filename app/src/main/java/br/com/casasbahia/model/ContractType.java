@@ -1,20 +1,22 @@
 package br.com.casasbahia.model;
 
+import java.util.Arrays;
+
 public enum ContractType
 {
-    OUTSOURCING( "OUT", DocumentType.CPF ),
-    PJ( "PJ", DocumentType.CNPJ ),
-    CLT( "CLT", DocumentType.CPF );
+    OUTSOURCING( "OUT", Document.CPF ),
+    PJ( "PJ", Document.CNPJ ),
+    CLT( "CLT", Document.CPF );
 
     private final String acronym;
-    private final DocumentType documentType;
+    private final Document requiredDocument;
 
     ContractType(
         final String acronym,
-        final DocumentType documentType )
+        final Document requiredDocument )
     {
         this.acronym = acronym;
-        this.documentType = documentType;
+        this.requiredDocument = requiredDocument;
     }
 
     public String getAcronym()
@@ -22,13 +24,15 @@ public enum ContractType
         return acronym;
     }
 
-    public DocumentType getDocumentType()
+    public Document getRequiredDocument()
     {
-        return documentType;
+        return requiredDocument;
     }
 
-    public boolean validateDocumentType()
+    public static boolean exists(
+        final String contractType )
     {
-        return true;
+        return Arrays.stream( ContractType.values() )
+            .anyMatch( enumValue -> enumValue.name().equalsIgnoreCase( contractType ) );
     }
 }
