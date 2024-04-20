@@ -7,9 +7,9 @@ import java.util.Arrays;
 import java.util.regex.Pattern;
 
 import br.com.casasbahia.dto.SellerRequestDTO;
-import br.com.casasbahia.exception.SellerInvalidContractTypeValidationException;
-import br.com.casasbahia.exception.SellerInvalidDateFormatValidationException;
-import br.com.casasbahia.exception.SellerInvalidDocumentValidationException;
+import br.com.casasbahia.exception.validation.SellerInvalidContractTypeValidationException;
+import br.com.casasbahia.exception.validation.SellerInvalidDateFormatValidationException;
+import br.com.casasbahia.exception.validation.SellerInvalidDocumentValidationException;
 import br.com.casasbahia.model.ContractType;
 import br.com.casasbahia.model.Document;
 import br.com.casasbahia.util.UnmaskUtil;

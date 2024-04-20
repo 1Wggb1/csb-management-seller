@@ -1,5 +1,9 @@
 package br.com.casasbahia.dto;
 
-public class SellerPageableDTO
+import java.util.List;
+
+public record SellerPageableDTO(
+    PageableDTO pageable,
+    List<SellerDTO> elements )
 {
 }

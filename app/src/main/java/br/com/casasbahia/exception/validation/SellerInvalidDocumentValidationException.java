@@ -1,4 +1,6 @@
-package br.com.casasbahia.exception;
+package br.com.casasbahia.exception.validation;
+
+import br.com.casasbahia.exception.SellerValidationException;
 
 public class SellerInvalidDocumentValidationException
     extends

@@ -1,6 +1,9 @@
 package br.com.casasbahia.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import br.com.casasbahia.model.ContractType;
@@ -9,7 +12,8 @@ import br.com.casasbahia.model.PersistentSeller;
 @Repository
 public interface SellerRepository
     extends
-        JpaRepository<PersistentSeller,Long>
+        JpaRepository<PersistentSeller,Long>,
+        JpaSpecificationExecutor<PersistentSeller>
 {
     String ENROLLMENT_FORMAT = "%08d";
 
@@ -22,6 +26,6 @@ public interface SellerRepository
     @Query( value = "SELECT nextval('ENROLLMENT_SEQ')", nativeQuery = true )
     Long nextEnrollmentValue();
 
-    PersistentSeller findByEnrollment(
+    Optional<PersistentSeller> findByEnrollment(
         String enrollment );
 }

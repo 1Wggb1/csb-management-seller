@@ -3,15 +3,19 @@ package br.com.casasbahia.controller;
 import java.net.URI;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import br.com.casasbahia.dto.SellerDTO;
 import br.com.casasbahia.dto.SellerPageableDTO;
 import br.com.casasbahia.dto.SellerRequestDTO;
 import br.com.casasbahia.dto.SellerResponseDTO;
@@ -26,10 +30,20 @@ public class SellerController
     private SellerService service;
 
     @GetMapping
-    public SellerPageableDTO find(
-        final String filter )
+    public ResponseEntity<SellerPageableDTO> findAll(
+        @RequestParam( name = "filter", required = false ) final String filter,
+        @RequestParam( name = "page", defaultValue = "0" ) final Integer page,
+        @RequestParam( name = "size", defaultValue = "10" ) final Integer size )
     {
-        return null;
+        final PageRequest pageable = PageRequest.of( page, size );
+        return ResponseEntity.ok( service.findAll( filter, pageable ) );
+    }
+
+    @GetMapping( "/{enrollment}" )
+    public ResponseEntity<SellerDTO> findByEnrollment(
+        @PathVariable( "enrollment" ) final String enrollment )
+    {
+        return ResponseEntity.ok( service.findByEnrollment( enrollment ) );
     }
 
     @PostMapping

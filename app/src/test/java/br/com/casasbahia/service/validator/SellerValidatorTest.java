@@ -16,9 +16,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import br.com.casasbahia.dto.SellerRequestDTO;
-import br.com.casasbahia.exception.SellerInvalidContractTypeValidationException;
-import br.com.casasbahia.exception.SellerInvalidDateFormatValidationException;
-import br.com.casasbahia.exception.SellerInvalidDocumentValidationException;
+import br.com.casasbahia.exception.validation.SellerInvalidContractTypeValidationException;
+import br.com.casasbahia.exception.validation.SellerInvalidDateFormatValidationException;
+import br.com.casasbahia.exception.validation.SellerInvalidDocumentValidationException;
 import br.com.casasbahia.model.ContractType;
 
 class SellerValidatorTest

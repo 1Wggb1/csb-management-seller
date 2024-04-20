@@ -17,7 +17,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import br.com.casasbahia.dto.ErrorDTO;
-import br.com.casasbahia.exception.SellerValidationException;
+import br.com.casasbahia.exception.BaseSellerException;
 
 @ControllerAdvice
 public class SellerExceptionHandler
@@ -27,14 +27,14 @@ public class SellerExceptionHandler
     @Autowired
     private MessageSource messageSource;
 
-    @ExceptionHandler( SellerValidationException.class )
+    @ExceptionHandler( BaseSellerException.class )
     public ResponseEntity<ErrorDTO> handleSellerValidationException(
-        final SellerValidationException sellerValidationException )
+        final BaseSellerException baseSellerException )
     {
-        LOGGER.error( "Validation error", sellerValidationException );
-        final String message = messageSource.getMessage( sellerValidationException.getMessage(),
-            sellerValidationException.getMessageArgs(), Locale.getDefault() );
-        return createErrorResponse( sellerValidationException.getStatus(), List.of( message ) );
+        LOGGER.error( "Error", baseSellerException );
+        final String message = messageSource.getMessage( baseSellerException.getMessage(),
+            baseSellerException.getMessageArgs(), Locale.getDefault() );
+        return createErrorResponse( baseSellerException.getStatus(), List.of( message ) );
     }
 
     private static ResponseEntity<ErrorDTO> createErrorResponse(

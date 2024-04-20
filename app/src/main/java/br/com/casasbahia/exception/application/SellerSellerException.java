@@ -1,12 +1,13 @@
-package br.com.casasbahia.exception;
+package br.com.casasbahia.exception.application;
 
 import org.springframework.http.HttpStatus;
+import br.com.casasbahia.exception.BaseSellerException;
 
-public abstract class SellerValidationException
+public class SellerSellerException
     extends
         BaseSellerException
 {
-    public SellerValidationException(
+    public SellerSellerException(
         final String message,
         final String... messageArgs )
     {
@@ -16,6 +17,6 @@ public abstract class SellerValidationException
     @Override
     public HttpStatus getStatus()
     {
-        return HttpStatus.BAD_REQUEST;
+        return HttpStatus.UNPROCESSABLE_ENTITY;
     }
 }
