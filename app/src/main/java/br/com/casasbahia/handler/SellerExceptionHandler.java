@@ -12,10 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 import br.com.casasbahia.dto.ErrorDTO;
 import br.com.casasbahia.exception.BaseSellerException;
 
@@ -59,6 +61,24 @@ public class SellerExceptionHandler
             }, Locale.getDefault() ) );
         }
         return createErrorResponse( HttpStatus.BAD_REQUEST, errorMessages );
+    }
+
+    @ExceptionHandler( NoResourceFoundException.class )
+    public ResponseEntity<ErrorDTO> handleNoResourceException(
+        final NoResourceFoundException noResourceFoundException )
+    {
+        LOGGER.warn( "Not found path", noResourceFoundException );
+        final String message = messageSource.getMessage( "csb.no.resource.found", null, Locale.getDefault() );
+        return createErrorResponse( HttpStatus.NOT_FOUND, List.of( message ) );
+    }
+
+    @ExceptionHandler( HttpMessageNotReadableException.class )
+    public ResponseEntity<ErrorDTO> handleInternalErrorException(
+        final HttpMessageNotReadableException messageNotReadableException )
+    {
+        LOGGER.warn( "Not readable", messageNotReadableException );
+        final String message = messageSource.getMessage( "csb.no.readable.error", null, Locale.getDefault() );
+        return createErrorResponse( HttpStatus.BAD_REQUEST, List.of( message ) );
     }
 
     @ExceptionHandler( Exception.class )

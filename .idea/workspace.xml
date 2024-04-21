@@ -6,9 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="4bde5a1e-6221-4759-91dc-0e43645edea1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/converter/impl/SellerConverterImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/converter/impl/SellerConverterImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/dto/PageableDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/dto/PageableDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/br/com/casasbahia/service/impl/SellerServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/br/com/casasbahia/service/impl/SellerServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/handler/SellerExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/handler/SellerExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/service/SellerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/service/SellerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/service/impl/SellerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/service/impl/SellerServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/messages_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/messages_en.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/messages_pt_BR.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/messages_pt_BR.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,70 +37,7 @@
         </task>
         <projects_view>
           <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="csb-management-seller" type="f1a62948:ProjectNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="csb-management-seller" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="csb-management-seller" type="f1a62948:ProjectNode" />
-                <item name="app" type="2d1252cf:ModuleNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="csb-management-seller" type="f1a62948:ProjectNode" />
-                <item name="app" type="2d1252cf:ModuleNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="csb-management-seller" type="f1a62948:ProjectNode" />
-                <item name="app" type="2d1252cf:ModuleNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="build" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="csb-management-seller" type="f1a62948:ProjectNode" />
-                <item name="app" type="2d1252cf:ModuleNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="distribution" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="csb-management-seller" type="f1a62948:ProjectNode" />
-                <item name="app" type="2d1252cf:ModuleNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="documentation" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="csb-management-seller" type="f1a62948:ProjectNode" />
-                <item name="app" type="2d1252cf:ModuleNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="help" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="csb-management-seller" type="f1a62948:ProjectNode" />
-                <item name="app" type="2d1252cf:ModuleNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="other" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="csb-management-seller" type="f1a62948:ProjectNode" />
-                <item name="app" type="2d1252cf:ModuleNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="verification" type="c8890929:TasksNode$1" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </tree_state>
         </projects_view>
@@ -192,7 +135,7 @@
       <recent name="C:\work\idea-projects\csb-management-seller\app\src\main\resources\db" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.br.com.casasbahia in csb-management-seller.app.test">
+  <component name="RunManager" selected="Application.ApplicationMainManagementSeller">
     <configuration name="SellerServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="csb-management-seller.app.test" />
       <extension name="coverage">
@@ -309,7 +252,7 @@
     <SUITE FILE_PATH="coverage/csb_management_seller$SellerConverterImplTest.ic" NAME="SellerConverterImplTest Coverage Results" MODIFIED="1713654156418" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>br.com.casasbahia.converter.impl.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/csb_management_seller$br_com_casasbahia_in_csb_management_seller_app_test.ic" NAME="br.com.casasbahia in csb-management-seller.app.test Coverage Results" MODIFIED="1713656614333" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+    <SUITE FILE_PATH="coverage/csb_management_seller$br_com_casasbahia_in_csb_management_seller_app_test.ic" NAME="br.com.casasbahia in csb-management-seller.app.test Coverage Results" MODIFIED="1713667311436" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>br.com.casasbahia.*</FILTER>
     </SUITE>
   </component>

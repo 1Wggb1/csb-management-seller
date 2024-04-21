@@ -1,3 +1,8 @@
+#Actoator infos
+info.app:
+  name: csb-management-seller
+  description: Sellers CRUD project
+
 server.port: 8080
 
 spring:
@@ -11,3 +16,34 @@ spring:
       schema-locations: classpath:/db/tables.sql
   messages:
     basename: messages
+
+#actuator configs
+management:
+  health:
+    defaults:
+      enabled: false
+    db:
+      enabled: true
+    diskspace:
+      enabled: true
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+    metrics:
+      enabled: true
+    info:
+      enabled: true
+    prometheus:
+      enabled: true
+  endpoints:
+    #disabled not used endpoints from app context
+    enabled-by-default: false
+    web:
+      exposure:
+        include: "health,info,metrics,prometheus"
+  info:
+    env:
+      enabled: true
+    java:
+      enabled: true

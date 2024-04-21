@@ -17,4 +17,7 @@ public interface SellerService
 
     SellerDTO findByEnrollment(
         String enrollment );
+
+    void delete(
+        String enrollment );
 }

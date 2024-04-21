@@ -68,9 +68,26 @@ public class SellerServiceImpl
     {
         final UUID traceId = UUID.randomUUID();
         LOGGER.info( "TRACEID = {} : Finding... seller by enrollment = {} ", traceId, enrollment );
-        final PersistentSeller persistentSeller = repository.findByEnrollment( enrollment )
-            .orElseThrow( () -> new SellerNotFoundException( "csb.seller.not_found", enrollment ) );
+        final PersistentSeller persistentSeller = findOrThrowNotFoundException( enrollment );
         LOGGER.info( "TRACEID = {} : Seller found successfully!", traceId );
         return converter.toSellerDTO( persistentSeller );
+    }
+
+    private PersistentSeller findOrThrowNotFoundException(
+        final String enrollment )
+    {
+        return repository.findByEnrollment( enrollment )
+            .orElseThrow( () -> new SellerNotFoundException( "csb.seller.not_found", enrollment ) );
+    }
+
+    @Override
+    public void delete(
+        final String enrollment )
+    {
+        final UUID traceId = UUID.randomUUID();
+        LOGGER.info( "TRACEID = {} : Deleting... seller by enrollment = {} ", traceId, enrollment );
+        final PersistentSeller persistentSeller = findOrThrowNotFoundException( enrollment );
+        LOGGER.info( "TRACEID = {} : Seller deleted successfully!", traceId );
+        repository.delete( persistentSeller );
     }
 }

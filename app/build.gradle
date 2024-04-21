@@ -8,11 +8,13 @@ repositories {
 
 dependencies {
     implementation libs.postgresql
+    implementation libs.prometheus
     implementation libs.spring.actuator
     implementation libs.spring.boot.web
     implementation libs.spring.jpa
     implementation libs.spring.validation
-    
+
+
     testImplementation libs.junit.jupiter
     testImplementation libs.h2
     testImplementation libs.spring.test
