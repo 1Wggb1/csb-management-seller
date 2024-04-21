@@ -58,7 +58,7 @@ public class SellerConverterImpl
             sellerPage.getSize(),
             sellerPage.getNumberOfElements(),
             sellerPage.getTotalPages(),
-            sellerPage.getTotalElements() );
+            (int) sellerPage.getTotalElements() );
         return new SellerPageableDTO( pageableDTO, toSellerDTO( sellerPage.getContent() ) );
     }
 

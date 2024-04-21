@@ -6,24 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="4bde5a1e-6221-4759-91dc-0e43645edea1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/controller/SellerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/controller/SellerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/converter/SellerConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/converter/SellerConverter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/converter/impl/SellerConverterImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/converter/impl/SellerConverterImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/dto/SellerPageableDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/dto/SellerPageableDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/exception/SellerInvalidContractTypeValidationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/exception/validation/SellerInvalidContractTypeValidationException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/exception/SellerInvalidDateFormatValidationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/exception/validation/SellerInvalidDateFormatValidationException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/exception/SellerInvalidDocumentValidationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/exception/validation/SellerInvalidDocumentValidationException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/exception/SellerValidationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/exception/parent/SellerValidationException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/handler/SellerExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/handler/SellerExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/repository/SellerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/repository/SellerRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/service/SellerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/service/SellerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/service/impl/SellerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/service/impl/SellerServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/service/validator/SellerValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/service/validator/SellerValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/messages_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/messages_en.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/messages_pt_BR.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/messages_pt_BR.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/br/com/casasbahia/converter/impl/SellerConverterImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/br/com/casasbahia/converter/impl/SellerConverterImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/dto/PageableDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/dto/PageableDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/test/java/br/com/casasbahia/service/impl/SellerServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/br/com/casasbahia/service/impl/SellerServiceImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/br/com/casasbahia/service/validator/SellerValidatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/br/com/casasbahia/service/validator/SellerValidatorTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,6 +141,7 @@
     "Gradle.csb-management-seller:app [:app:ApplicationMainManagementSeller.main()].executor": "Debug",
     "Gradle.csb-management-seller:app [:app:ApplicationMainSeller.main()].executor": "Debug",
     "Gradle.csb-management-seller:app [:app:EnrollmentGenerator.main()].executor": "Debug",
+    "Gradle.csb-management-seller:app [clean].executor": "Run",
     "Gradle.csb-management-seller:app [test].executor": "Run",
     "JUnit.ContractTypeTest.executor": "Coverage",
     "JUnit.DocumentTest.executor": "Debug",
@@ -177,7 +163,10 @@
     "JUnit.SellerServiceImplTest.shouldReturnErrorMessageWhenSellerNotFound.executor": "Debug",
     "JUnit.SellerServiceImplTest.shouldReturnSellerWhenFoundByEnrollment.executor": "Debug",
     "JUnit.SellerServiceImplTest.shouldReturnSellersByPageable.executor": "Debug",
+    "JUnit.SellerServiceImplTest.shouldReturnSellersByPageableAndContractTypeFilter.executor": "Debug",
     "JUnit.SellerServiceImplTest.shouldReturnSellersByPageableAndFilter.executor": "Debug",
+    "JUnit.SellerServiceImplTest.shouldReturnSellersByPageableAndNameAndBranchDocumentNumberFilter.executor": "Debug",
+    "JUnit.SellerServiceImplTest.shouldReturnSellersByPageableAndNameAndContractTypeFilter.executor": "Debug",
     "JUnit.SellerValidatorServiceTest.executor": "Coverage",
     "JUnit.SellerValidatorServiceTest.shouldNotThrownExceptionWhenContractTypeIsPjAndDocumentIsCnpj.executor": "Debug",
     "JUnit.SellerValidatorServiceTest.shouldThrownExceptionWhenBirthdayDateInvalid.executor": "Debug",
@@ -204,7 +193,7 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.br.com.casasbahia in csb-management-seller.app.test">
-    <configuration name="SellerServiceImplTest.shouldReturnErrorMessageWhenSellerNotFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SellerServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="csb-management-seller.app.test" />
       <extension name="coverage">
         <pattern>
@@ -214,13 +203,28 @@
       </extension>
       <option name="PACKAGE_NAME" value="br.com.casasbahia.service.impl" />
       <option name="MAIN_CLASS_NAME" value="br.com.casasbahia.service.impl.SellerServiceImplTest" />
-      <option name="METHOD_NAME" value="shouldReturnErrorMessageWhenSellerNotFound" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SellerServiceImplTest.shouldReturnSellersByPageableAndContractTypeFilter" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="csb-management-seller.app.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.com.casasbahia.service.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="br.com.casasbahia.service.impl" />
+      <option name="MAIN_CLASS_NAME" value="br.com.casasbahia.service.impl.SellerServiceImplTest" />
+      <option name="METHOD_NAME" value="shouldReturnSellersByPageableAndContractTypeFilter" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SellerServiceImplTest.shouldReturnSellerWhenFoundByEnrollment" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SellerServiceImplTest.shouldReturnSellersByPageableAndNameAndBranchDocumentNumberFilter" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="csb-management-seller.app.test" />
       <extension name="coverage">
         <pattern>
@@ -230,13 +234,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="br.com.casasbahia.service.impl" />
       <option name="MAIN_CLASS_NAME" value="br.com.casasbahia.service.impl.SellerServiceImplTest" />
-      <option name="METHOD_NAME" value="shouldReturnSellerWhenFoundByEnrollment" />
+      <option name="METHOD_NAME" value="shouldReturnSellersByPageableAndNameAndBranchDocumentNumberFilter" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SellerServiceImplTest.shouldReturnSellersByPageable" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SellerServiceImplTest.shouldReturnSellersByPageableAndNameAndContractTypeFilter" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="csb-management-seller.app.test" />
       <extension name="coverage">
         <pattern>
@@ -246,23 +250,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="br.com.casasbahia.service.impl" />
       <option name="MAIN_CLASS_NAME" value="br.com.casasbahia.service.impl.SellerServiceImplTest" />
-      <option name="METHOD_NAME" value="shouldReturnSellersByPageable" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SellerServiceImplTest.shouldReturnSellersByPageableAndFilter" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="csb-management-seller.app.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="br.com.casasbahia.service.impl.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="br.com.casasbahia.service.impl" />
-      <option name="MAIN_CLASS_NAME" value="br.com.casasbahia.service.impl.SellerServiceImplTest" />
-      <option name="METHOD_NAME" value="shouldReturnSellersByPageableAndFilter" />
+      <option name="METHOD_NAME" value="shouldReturnSellersByPageableAndNameAndContractTypeFilter" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -284,19 +272,19 @@
     </configuration>
     <list>
       <item itemvalue="Application.ApplicationMainManagementSeller" />
-      <item itemvalue="JUnit.SellerServiceImplTest.shouldReturnErrorMessageWhenSellerNotFound" />
-      <item itemvalue="JUnit.SellerServiceImplTest.shouldReturnSellerWhenFoundByEnrollment" />
-      <item itemvalue="JUnit.SellerServiceImplTest.shouldReturnSellersByPageable" />
-      <item itemvalue="JUnit.SellerServiceImplTest.shouldReturnSellersByPageableAndFilter" />
+      <item itemvalue="JUnit.SellerServiceImplTest" />
+      <item itemvalue="JUnit.SellerServiceImplTest.shouldReturnSellersByPageableAndContractTypeFilter" />
+      <item itemvalue="JUnit.SellerServiceImplTest.shouldReturnSellersByPageableAndNameAndBranchDocumentNumberFilter" />
+      <item itemvalue="JUnit.SellerServiceImplTest.shouldReturnSellersByPageableAndNameAndContractTypeFilter" />
       <item itemvalue="JUnit.br.com.casasbahia in csb-management-seller.app.test" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.br.com.casasbahia in csb-management-seller.app.test" />
-        <item itemvalue="JUnit.SellerServiceImplTest.shouldReturnSellersByPageableAndFilter" />
-        <item itemvalue="JUnit.SellerServiceImplTest.shouldReturnSellersByPageable" />
-        <item itemvalue="JUnit.SellerServiceImplTest.shouldReturnSellerWhenFoundByEnrollment" />
-        <item itemvalue="JUnit.SellerServiceImplTest.shouldReturnErrorMessageWhenSellerNotFound" />
+        <item itemvalue="JUnit.SellerServiceImplTest" />
+        <item itemvalue="JUnit.SellerServiceImplTest.shouldReturnSellersByPageableAndNameAndBranchDocumentNumberFilter" />
+        <item itemvalue="JUnit.SellerServiceImplTest.shouldReturnSellersByPageableAndNameAndContractTypeFilter" />
+        <item itemvalue="JUnit.SellerServiceImplTest.shouldReturnSellersByPageableAndContractTypeFilter" />
       </list>
     </recent_temporary>
   </component>
@@ -321,7 +309,7 @@
     <SUITE FILE_PATH="coverage/csb_management_seller$SellerConverterImplTest.ic" NAME="SellerConverterImplTest Coverage Results" MODIFIED="1713654156418" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>br.com.casasbahia.converter.impl.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/csb_management_seller$br_com_casasbahia_in_csb_management_seller_app_test.ic" NAME="br.com.casasbahia in csb-management-seller.app.test Coverage Results" MODIFIED="1713656504552" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+    <SUITE FILE_PATH="coverage/csb_management_seller$br_com_casasbahia_in_csb_management_seller_app_test.ic" NAME="br.com.casasbahia in csb-management-seller.app.test Coverage Results" MODIFIED="1713656614333" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>br.com.casasbahia.*</FILTER>
     </SUITE>
   </component>

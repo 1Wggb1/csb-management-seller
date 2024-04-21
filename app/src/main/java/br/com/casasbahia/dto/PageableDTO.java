@@ -1,10 +1,10 @@
 package br.com.casasbahia.dto;
 
 public record PageableDTO(
-    long page,
-    long size,
-    long numberOfElements,
-    long totalPages,
-    long totalElements )
+    int page,
+    int size,
+    int numberOfElements,
+    int totalPages,
+    int totalElements )
 {
 }

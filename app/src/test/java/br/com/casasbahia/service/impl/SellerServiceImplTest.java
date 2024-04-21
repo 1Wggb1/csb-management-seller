@@ -9,7 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.hamcrest.Matcher;
 import org.hamcrest.core.Is;
+import org.hamcrest.core.IsEqual;
 import org.hamcrest.core.IsNull;
 import org.hamcrest.core.StringContains;
 import org.junit.jupiter.api.AfterEach;
@@ -24,17 +26,20 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import br.com.casasbahia.dto.PageableDTO;
 import br.com.casasbahia.dto.SellerFilterDTO;
 import br.com.casasbahia.dto.SellerRequestDTO;
 import br.com.casasbahia.dto.SellerResponseDTO;
 import br.com.casasbahia.model.ContractType;
 import br.com.casasbahia.model.PersistentSeller;
 import br.com.casasbahia.repository.SellerRepository;
+import br.com.casasbahia.util.UnmaskUtil;
 
 @ExtendWith( SpringExtension.class )
 @SpringBootTest
@@ -70,7 +75,6 @@ class SellerServiceImplTest
         final MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post( "/v1/sellers" )
             .contentType( MediaType.APPLICATION_JSON )
             .content( writeAsJson( sellerRequestDTO ) );
-
         final ResultActions result = mvc.perform( request );
         result
             .andExpect( MockMvcResultMatchers.status().isCreated() )
@@ -123,12 +127,11 @@ class SellerServiceImplTest
         final MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post( "/v1/sellers" )
             .contentType( MediaType.APPLICATION_JSON )
             .content( writeAsJson( sellerRequestDTO ) );
-
         final ResultActions result = mvc.perform( request );
 
         result
             .andExpect( MockMvcResultMatchers.status().isBadRequest() )
-            .andExpect( MockMvcResultMatchers.jsonPath( "$.errorMessages.length()", Is.is( 5 ) ) );
+            .andExpect( MockMvcResultMatchers.jsonPath( "$.errorMessages.length()", IsEqual.equalTo( 5 ) ) );
         assertTrue( sellerRepository.findAll().isEmpty() );
     }
 
@@ -140,7 +143,6 @@ class SellerServiceImplTest
         final MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post( "/v1/sellers" )
             .contentType( MediaType.APPLICATION_JSON )
             .content( "{sasp: }" );
-
         final ResultActions result = mvc.perform( request );
 
         result
@@ -166,35 +168,22 @@ class SellerServiceImplTest
     void shouldReturnSellerWhenFoundByEnrollment()
         throws Exception
     {
-        final PersistentSeller seller = new PersistentSeller(
-            "Will",
-            "00000099-CLT",
-            "19990417",
-            VALID_CPF,
-            VALID_EMAIL,
-            ContractType.OUTSOURCING,
-            VALID_CNPJ_UNMASKED );
-        final PersistentSeller saved = createSeller( seller );
+        final PersistentSeller saved = createSeller( "Will",
+            "00000099-OUT", ContractType.OUTSOURCING, VALID_CNPJ_UNMASKED );
 
-        final MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get( "/v1/sellers/" + seller.getEnrollment() );
-
+        final MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get( "/v1/sellers/" + saved.getEnrollment() );
         final ResultActions result = mvc.perform( request );
 
         result
             .andExpect( MockMvcResultMatchers.status().isOk() )
-            .andExpect( MockMvcResultMatchers.jsonPath( "$.name", Is.is( saved.getName() ) ) )
-            .andExpect( MockMvcResultMatchers.jsonPath( "$.email", Is.is( saved.getEmail() ) ) )
-            .andExpect( MockMvcResultMatchers.jsonPath( "$.documentNumber", Is.is( saved.getDocumentNumber() ) ) )
-            .andExpect( MockMvcResultMatchers.jsonPath( "$.birthDay", Is.is( saved.getBirthDay() ) ) )
-            .andExpect( MockMvcResultMatchers.jsonPath( "$.enrollment", Is.is( saved.getEnrollment() ) ) )
-            .andExpect( MockMvcResultMatchers.jsonPath( "$.branchOfficeDocumentNumber", Is.is( saved.getBranchOfficeDocumentNumber() ) ) )
-            .andExpect( MockMvcResultMatchers.jsonPath( "$.contractType", Is.is( saved.getContractType().name() ) ) );
-    }
-
-    private PersistentSeller createSeller(
-        final PersistentSeller persistentSeller )
-    {
-        return sellerRepository.save( persistentSeller );
+            .andExpect( MockMvcResultMatchers.jsonPath( "$.name", IsEqual.equalTo( saved.getName() ) ) )
+            .andExpect( MockMvcResultMatchers.jsonPath( "$.email", IsEqual.equalTo( saved.getEmail() ) ) )
+            .andExpect( MockMvcResultMatchers.jsonPath( "$.documentNumber", IsEqual.equalTo( saved.getDocumentNumber() ) ) )
+            .andExpect( MockMvcResultMatchers.jsonPath( "$.birthDay", IsEqual.equalTo( saved.getBirthDay() ) ) )
+            .andExpect( MockMvcResultMatchers.jsonPath( "$.enrollment", IsEqual.equalTo( saved.getEnrollment() ) ) )
+            .andExpect( MockMvcResultMatchers.jsonPath( "$.branchOfficeDocumentNumber", IsEqual.equalTo( saved
+                .getBranchOfficeDocumentNumber() ) ) )
+            .andExpect( MockMvcResultMatchers.jsonPath( "$.contractType", IsEqual.equalTo( saved.getContractType().name() ) ) );
     }
 
     @Test
@@ -202,58 +191,75 @@ class SellerServiceImplTest
     void shouldReturnSellersByPageable()
         throws Exception
     {
-        final PersistentSeller seller = new PersistentSeller(
-            "Will",
-            "00000091-CLT",
-            "19990417",
-            VALID_CPF,
-            VALID_EMAIL,
-            ContractType.OUTSOURCING,
-            VALID_CNPJ_UNMASKED );
-        createSeller( seller );
+        create3DefaultsSellers();
 
         final int page = 0;
         final int size = 2;
         final MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get( "/v1/sellers" )
             .queryParam( "page", "" + page )
             .queryParam( "size", "" + size );
-
         final ResultActions result = mvc.perform( request );
 
-        result
-            .andExpect( MockMvcResultMatchers.status().isOk() )
-            .andExpect( MockMvcResultMatchers.jsonPath( "$.pageable.page", Is.is( page ) ) )
-            .andExpect( MockMvcResultMatchers.jsonPath( "$.pageable.size", Is.is( size ) ) )
-            .andExpect( MockMvcResultMatchers.jsonPath( "$.pageable.totalPages", Is.is( 1 ) ) )
-            .andExpect( MockMvcResultMatchers.jsonPath( "$.pageable.totalElements", Is.is( 1 ) ) )
-            .andExpect( MockMvcResultMatchers.jsonPath( "$.pageable.numberOfElements", Is.is( 1 ) ) )
-            .andExpect( MockMvcResultMatchers.jsonPath( "$.elements.length()", Is.is( 1 ) ) );
+        final PageableDTO expectedPageable = new PageableDTO( page, size, 2, 2, 3 );
+        validatePageableResult( result, expectedPageable );
     }
 
-    @Test
-    @DisplayName( "Deve retornar 200 e retornar pageable com vendedores por filtro." )
-    void shouldReturnSellersByPageableAndContractTypeFilter()
-        throws Exception
+    private void create3DefaultsSellers()
+    {
+        createSeller( "Joan", "00000097-OUT",
+            ContractType.OUTSOURCING, VALID_CNPJ_UNMASKED );
+        createSeller( "Mari", "00000898-OUT",
+            ContractType.OUTSOURCING, VALID_CNPJ );
+        createSeller( "Garbo", "00000191-CLT",
+            ContractType.CLT, VALID_CNPJ );
+    }
+
+    private PersistentSeller createSeller(
+        final String name,
+        final String enrollment,
+        final ContractType contractType,
+        final String branchOfficeDocumentNumber )
     {
         final PersistentSeller seller = new PersistentSeller(
-            "Will",
-            "00000091-CLT",
-            "19990417",
-            VALID_CPF,
-            VALID_EMAIL,
-            ContractType.OUTSOURCING,
-            VALID_CNPJ_UNMASKED );
-        createSeller( seller );
-        final PersistentSeller seller2 = new PersistentSeller(
-            "Garbo",
-            "00000191-CLT",
+            name,
+            enrollment,
             "20050417",
             VALID_CPF,
             VALID_EMAIL,
-            ContractType.OUTSOURCING,
-            VALID_CNPJ_UNMASKED );
-        createSeller( seller2 );
+            contractType,
+            branchOfficeDocumentNumber );
+        return sellerRepository.save( seller );
+    }
 
+    private static void validatePageableResult(
+        final ResultActions result,
+        final PageableDTO expectedResult )
+        throws Exception
+    {
+        final String pageableFields = "$.pageable.";
+        final int numberOfElements = expectedResult.numberOfElements();
+        result.andExpect( MockMvcResultMatchers.status().isOk() )
+            .andExpect( MockMvcResultMatchers.jsonPath( pageableFields + "page", isEqual( expectedResult.page() ) ) )
+            .andExpect( MockMvcResultMatchers.jsonPath( pageableFields + "size", isEqual( expectedResult.size() ) ) )
+            .andExpect( MockMvcResultMatchers.jsonPath( pageableFields + "numberOfElements", Is.is( numberOfElements ) ) )
+            .andExpect( MockMvcResultMatchers.jsonPath( pageableFields + "totalPages", isEqual( expectedResult.totalPages() ) ) )
+            .andExpect( MockMvcResultMatchers.jsonPath( pageableFields + "totalElements",
+                isEqual( expectedResult.totalElements() ) ) )
+            .andExpect( MockMvcResultMatchers.jsonPath( "$.elements.length()", isEqual( numberOfElements ) ) );
+    }
+
+    private static Matcher<Integer> isEqual(
+        final int value )
+    {
+        return IsEqual.equalTo( value );
+    }
+
+    @Test
+    @DisplayName( "Deve retornar 200 e retornar pageable com vendedores por filtro (contractType)." )
+    void shouldReturnSellersByPageableAndContractTypeFilter()
+        throws Exception
+    {
+        create3DefaultsSellers();
         final SellerFilterDTO filterDTO = new SellerFilterDTO( null,
             ContractType.OUTSOURCING.name(), null );
 
@@ -263,16 +269,70 @@ class SellerServiceImplTest
             .queryParam( "page", "" + page )
             .queryParam( "size", "" + size )
             .queryParam( "filter", writeAsJson( filterDTO ) );
-
         final ResultActions result = mvc.perform( request );
 
-        result
-            .andExpect( MockMvcResultMatchers.status().isOk() )
-            .andExpect( MockMvcResultMatchers.jsonPath( "$.pageable.page", Is.is( page ) ) )
-            .andExpect( MockMvcResultMatchers.jsonPath( "$.pageable.size", Is.is( size ) ) )
-            .andExpect( MockMvcResultMatchers.jsonPath( "$.pageable.totalPages", Is.is( 1 ) ) )
-            .andExpect( MockMvcResultMatchers.jsonPath( "$.pageable.totalElements", Is.is( 2 ) ) )
-            .andExpect( MockMvcResultMatchers.jsonPath( "$.pageable.numberOfElements", Is.is( 2 ) ) )
-            .andExpect( MockMvcResultMatchers.jsonPath( "$.elements.length()", Is.is( 2 ) ) );
+        final PageableDTO expectedPageable = new PageableDTO( page, size, 2, 1, 2 );
+        validatePageableResult( result, expectedPageable );
+        validateResultFilter( expectedPageable.numberOfElements(), "contractType",
+            result, IsEqual.equalTo( filterDTO.contractType() ) );
+    }
+
+    private static void validateResultFilter(
+        final int numberOfElements,
+        final String fieldName,
+        final ResultActions result,
+        final Matcher<String> fieldMatcher )
+        throws Exception
+    {
+        final String elementPrefix = "$.elements";
+        for( int i = 0; i < numberOfElements; i++ ) {
+            final ResultMatcher resultMatcher = MockMvcResultMatchers.jsonPath(
+                elementPrefix + "[" + i + "]." + fieldName, fieldMatcher );
+            result.andExpect( resultMatcher );
+        }
+    }
+
+    @Test
+    @DisplayName( "Deve retornar 200 e retornar pageable com vendedores por filtro (name e contractType)." )
+    void shouldReturnSellersByPageableAndNameAndContractTypeFilter()
+        throws Exception
+    {
+        create3DefaultsSellers();
+        final SellerFilterDTO filterDTO = new SellerFilterDTO( "J",
+            ContractType.OUTSOURCING.name(), null );
+
+        final MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get( "/v1/sellers" )
+            .queryParam( "filter", writeAsJson( filterDTO ) );
+        final ResultActions result = mvc.perform( request );
+
+        final PageableDTO expectedPageable = new PageableDTO( 0, 10, 1, 1, 1 );
+        validatePageableResult( result, expectedPageable );
+        validateResultFilter( expectedPageable.numberOfElements(), "contractType",
+            result, IsEqual.equalTo( filterDTO.contractType() ) );
+        validateResultFilter( expectedPageable.numberOfElements(), "name", result,
+            StringContains.containsStringIgnoringCase( filterDTO.name() ) );
+    }
+
+    @Test
+    @DisplayName( "Deve retornar 200 e retornar pageable com vendedores por filtro (name e branchOfficeDocumentNumber)." )
+    void shouldReturnSellersByPageableAndNameAndBranchDocumentNumberFilter()
+        throws Exception
+    {
+        create3DefaultsSellers();
+        final SellerFilterDTO filterDTO = new SellerFilterDTO( "A",
+            null, VALID_CNPJ );
+
+        final MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get( "/v1/sellers" )
+            .queryParam( "filter", writeAsJson( filterDTO ) )
+            .queryParam( "page", "" + 0 )
+            .queryParam( "size", "" + 1 );
+        final ResultActions result = mvc.perform( request );
+
+        final PageableDTO expectedPageable = new PageableDTO( 0, 1, 1, 3, 3 );
+        validatePageableResult( result, expectedPageable );
+        validateResultFilter( expectedPageable.numberOfElements(), "branchOfficeDocumentNumber",
+            result, IsEqual.equalTo( UnmaskUtil.unmaskDocumentNumber( filterDTO.branchOfficeDocumentNumber() ) ) );
+        validateResultFilter( expectedPageable.numberOfElements(), "name", result,
+            StringContains.containsStringIgnoringCase( filterDTO.name() ) );
     }
 }
