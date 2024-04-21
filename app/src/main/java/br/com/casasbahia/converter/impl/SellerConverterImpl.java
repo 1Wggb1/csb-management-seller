@@ -28,7 +28,7 @@ public class SellerConverterImpl
     private ObjectMapper objectMapper;
 
     @Override
-    public PersistentSeller toModel(
+    public PersistentSeller toModelCreation(
         final SellerRequestDTO sellerRequestDTO )
     {
         final ContractType contractType = ContractType.valueOf( sellerRequestDTO.contractType() );
@@ -40,6 +40,21 @@ public class SellerConverterImpl
             sellerRequestDTO.email(),
             contractType,
             sellerRequestDTO.branchOfficeDocumentNumber() );
+    }
+
+    @Override
+    public PersistentSeller toModelUpdate(
+        final PersistentSeller persistentSeller,
+        final SellerRequestDTO sellerRequestDTO )
+    {
+        persistentSeller.setName( sellerRequestDTO.name() );
+        persistentSeller.setEmail( sellerRequestDTO.email() );
+        persistentSeller.setBirthDay( sellerRequestDTO.birthDay() );
+        persistentSeller.setDocumentNumber( sellerRequestDTO.documentNumber() );
+        final ContractType contractType = ContractType.valueOf( sellerRequestDTO.contractType() );
+        persistentSeller.setContractType( contractType );
+        persistentSeller.setBranchOfficeDocumentNumber( sellerRequestDTO.branchOfficeDocumentNumber() );
+        return persistentSeller;
     }
 
     @Override

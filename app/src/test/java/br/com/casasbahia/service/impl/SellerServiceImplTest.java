@@ -48,6 +48,11 @@ import br.com.casasbahia.util.UnmaskUtil;
 class SellerServiceImplTest
 {
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+    private static final SellerRequestDTO SELLER_REQUEST_DTO = new SellerRequestDTO( "Will", VALID_EMAIL,
+        VALID_BIRTHDATE,
+        VALID_CPF,
+        ContractType.CLT.name(),
+        VALID_CNPJ );
 
     @Autowired
     private MockMvc mvc;
@@ -65,37 +70,31 @@ class SellerServiceImplTest
     void shouldReturn201WhenCreateSellerSuccessfully()
         throws Exception
     {
-        final ContractType contractType = ContractType.CLT;
-        final SellerRequestDTO sellerRequestDTO = new SellerRequestDTO( "Will", VALID_EMAIL,
-            VALID_BIRTHDATE,
-            VALID_CPF,
-            contractType.name(),
-            VALID_CNPJ );
-
+        final ContractType contractType = ContractType.valueOf( SELLER_REQUEST_DTO.contractType() );
         final MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post( "/v1/sellers" )
             .contentType( MediaType.APPLICATION_JSON )
-            .content( writeAsJson( sellerRequestDTO ) );
+            .content( writeAsJson( SELLER_REQUEST_DTO ) );
         final ResultActions result = mvc.perform( request );
+
         result
             .andExpect( MockMvcResultMatchers.status().isCreated() )
             .andExpect( MockMvcResultMatchers.jsonPath( "$.enrollment", IsNull.notNullValue() ) )
             .andExpect( MockMvcResultMatchers.jsonPath( "$.enrollment",
                 StringContains.containsString( "-" + contractType.getAcronym() ) ) );
-
         final String response = result.andReturn().getResponse().getContentAsString();
         final SellerResponseDTO responseDTO = readAsObject( response, SellerResponseDTO.class );
         final PersistentSeller createdSeller = sellerRepository.findByEnrollment( responseDTO.enrollment() )
             .orElseThrow();
         assertNotNull( createdSeller.getId() );
-        assertEquals( sellerRequestDTO.name(), createdSeller.getName() );
-        assertEquals( sellerRequestDTO.email(), createdSeller.getEmail() );
-        assertEquals( sellerRequestDTO.documentNumber().replaceAll( "[.-]", "" ),
+        assertEquals( SELLER_REQUEST_DTO.name(), createdSeller.getName() );
+        assertEquals( SELLER_REQUEST_DTO.email(), createdSeller.getEmail() );
+        assertEquals( SELLER_REQUEST_DTO.documentNumber().replaceAll( "[.-]", "" ),
             createdSeller.getDocumentNumber() );
-        assertEquals( sellerRequestDTO.branchOfficeDocumentNumber().replaceAll( "[./-]", "" ),
+        assertEquals( SELLER_REQUEST_DTO.branchOfficeDocumentNumber().replaceAll( "[./-]", "" ),
             createdSeller.getBranchOfficeDocumentNumber() );
-        assertEquals( sellerRequestDTO.birthDay().replaceAll( "-", "" ),
+        assertEquals( SELLER_REQUEST_DTO.birthDay().replaceAll( "-", "" ),
             createdSeller.getBirthDay() );
-        assertEquals( sellerRequestDTO.contractType(), createdSeller.getContractType().name() );
+        assertEquals( SELLER_REQUEST_DTO.contractType(), createdSeller.getContractType().name() );
     }
 
     private static String writeAsJson(
@@ -359,7 +358,7 @@ class SellerServiceImplTest
 
     @Test
     @DisplayName( "Deve retornar 404 quando vendedor não encontrado para deleção." )
-    void shouldReturn404WhenSellerDeletedSuccessfully()
+    void shouldReturn404WhenSellerNotFoundOnDelete()
         throws Exception
     {
         final String enrollment = "00000005-CLT";
@@ -369,5 +368,80 @@ class SellerServiceImplTest
 
         assertTrue( sellerRepository.findByEnrollment( enrollment ).isEmpty() );
         validateNotFoundSellerResponse( result );
+    }
+
+    @Test
+    @DisplayName( "Deve retornar 404 quando vendedor não encontrado na atualização." )
+    void shouldReturn404WhenSellerNotFoundOUpdate()
+        throws Exception
+    {
+        final String enrollment = "00000005-CLT";
+        final MockHttpServletRequestBuilder request = MockMvcRequestBuilders.put( "/v1/sellers/{enrollment}", enrollment )
+            .contentType( MediaType.APPLICATION_JSON )
+            .content( writeAsJson( SELLER_REQUEST_DTO ) );
+
+        final ResultActions result = mvc.perform( request );
+
+        assertTrue( sellerRepository.findByEnrollment( enrollment ).isEmpty() );
+        validateNotFoundSellerResponse( result );
+    }
+
+    @Test
+    @DisplayName( "Deve retornar 204 quando vendedor atualizado com sucesso." )
+    void shouldReturn204WhenSellerUpdatedSuccessfully()
+        throws Exception
+    {
+        final String enrollment = "10000001-OUT";
+        createSeller( "Will",
+            enrollment,
+            ContractType.OUTSOURCING,
+            VALID_CNPJ );
+        final SellerRequestDTO sellerRequestDTO = new SellerRequestDTO( "Will Garbo",
+            "ru@ru.gov",
+            "2000-08-12",
+            VALID_CNPJ_UNMASKED,
+            ContractType.PJ.name(),
+            VALID_CNPJ );
+
+        final MockHttpServletRequestBuilder request = MockMvcRequestBuilders.put( "/v1/sellers/{enrollment}", enrollment )
+            .contentType( MediaType.APPLICATION_JSON )
+            .content( writeAsJson( sellerRequestDTO ) );
+        final ResultActions result = mvc.perform( request );
+
+        result
+            .andExpect( MockMvcResultMatchers.status().isNoContent() );
+        final PersistentSeller createdSeller = sellerRepository.findByEnrollment( enrollment )
+            .orElseThrow();
+        assertNotNull( createdSeller.getId() );
+        assertEquals( sellerRequestDTO.name(), createdSeller.getName() );
+        assertEquals( sellerRequestDTO.email(), createdSeller.getEmail() );
+        assertEquals( sellerRequestDTO.documentNumber().replaceAll( "[.-]", "" ),
+            createdSeller.getDocumentNumber() );
+        assertEquals( sellerRequestDTO.branchOfficeDocumentNumber().replaceAll( "[./-]", "" ),
+            createdSeller.getBranchOfficeDocumentNumber() );
+        assertEquals( sellerRequestDTO.birthDay().replaceAll( "-", "" ),
+            createdSeller.getBirthDay() );
+        assertEquals( sellerRequestDTO.contractType(), createdSeller.getContractType().name() );
+    }
+
+    @Test
+    @DisplayName( "Deve retornar 400 e mensagem de erro quando campos do payload estão inválidos na atualização." )
+    void shouldReturn400ErrorMessageWhenInvalidPayloadOnUpdate()
+        throws Exception
+    {
+        final SellerRequestDTO sellerRequestDTO = new SellerRequestDTO( "", null,
+            null,
+            "",
+            "",
+            null );
+
+        final MockHttpServletRequestBuilder request = MockMvcRequestBuilders.put( "/v1/sellers/{enrollment}", "10000001-OUT" )
+            .contentType( MediaType.APPLICATION_JSON )
+            .content( writeAsJson( sellerRequestDTO ) );
+        final ResultActions result = mvc.perform( request );
+
+        result
+            .andExpect( MockMvcResultMatchers.status().isBadRequest() )
+            .andExpect( MockMvcResultMatchers.jsonPath( "$.errorMessages.length()", IsEqual.equalTo( 5 ) ) );
     }
 }

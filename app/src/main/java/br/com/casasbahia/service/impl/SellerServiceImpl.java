@@ -40,37 +40,37 @@ public class SellerServiceImpl
         final SellerRequestDTO sellerRequestDTO )
     {
         final UUID traceId = UUID.randomUUID();
-        LOGGER.info( "TRACEID = {} : Validating seller payload...", traceId );
+        logInfo( traceId, "Validating seller payload..." );
         SellerValidator.validate( sellerRequestDTO );
-        LOGGER.info( "TRACEID = {} : Creating seller...", traceId );
-        final PersistentSeller createdSeller = repository.save( converter.toModel( sellerRequestDTO ) );
-        LOGGER.info( "TRACEID = {} : Seller with id = {} and enrollment = {} created successfully!", traceId, createdSeller.getId(),
-            createdSeller.getEnrollment() );
+        logInfo( traceId, "Creating seller..." );
+        final PersistentSeller createdSeller = repository.save( converter.toModelCreation( sellerRequestDTO ) );
+        logInfo( traceId, String.format( "Seller with id = %d and enrollment = %s created successfully!",
+            createdSeller.getId(), createdSeller.getEnrollment() ) );
         return converter.toDTO( createdSeller );
     }
 
-    @Override
-    public SellerPageableDTO findAll(
-        final String filter,
-        final Pageable pageable )
+    private static void logInfo(
+        final UUID traceId,
+        final String message )
     {
-        final UUID traceId = UUID.randomUUID();
-        LOGGER.info( "TRACEID = {} : Finding... seller by {} and {}", traceId, filter, pageable );
-        final Page<PersistentSeller> sellerPage = repository.findAll(
-            SellerSpecification.filter( converter.toFilterDTO( filter ) ), pageable );
-        LOGGER.info( "TRACEID = {} : Sellers found successfully!", traceId );
-        return converter.toPageableDTO( sellerPage );
+        LOGGER.info( "TRACEID = {} : " + message, traceId );
     }
 
     @Override
-    public SellerDTO findByEnrollment(
-        final String enrollment )
+    @Transactional
+    public void update(
+        final String enrollment,
+        final SellerRequestDTO sellerRequestDTO )
     {
         final UUID traceId = UUID.randomUUID();
-        LOGGER.info( "TRACEID = {} : Finding... seller by enrollment = {} ", traceId, enrollment );
+        logInfo( traceId, "Validating seller update payload..." );
         final PersistentSeller persistentSeller = findOrThrowNotFoundException( enrollment );
-        LOGGER.info( "TRACEID = {} : Seller found successfully!", traceId );
-        return converter.toSellerDTO( persistentSeller );
+        SellerValidator.validate( sellerRequestDTO );
+        logInfo( traceId, "Updating seller..." );
+        final PersistentSeller updatedSeller = repository.save( converter.toModelUpdate( persistentSeller, sellerRequestDTO ) );
+        logInfo( traceId, String.format( "Seller with id = %d and enrollment = %s updated successfully!",
+            updatedSeller.getId(),
+            updatedSeller.getEnrollment() ) );
     }
 
     private PersistentSeller findOrThrowNotFoundException(
@@ -81,14 +81,38 @@ public class SellerServiceImpl
     }
 
     @Override
+    public SellerPageableDTO findAll(
+        final String filter,
+        final Pageable pageable )
+    {
+        final UUID traceId = UUID.randomUUID();
+        logInfo( traceId, String.format( "Finding... seller by %s and %s", filter, pageable ) );
+        final Page<PersistentSeller> sellerPage = repository.findAll(
+            SellerSpecification.filter( converter.toFilterDTO( filter ) ), pageable );
+        logInfo( traceId, "Sellers found successfully!" );
+        return converter.toPageableDTO( sellerPage );
+    }
+
+    @Override
+    public SellerDTO findByEnrollment(
+        final String enrollment )
+    {
+        final UUID traceId = UUID.randomUUID();
+        logInfo( traceId, String.format( "Finding... seller by enrollment = %s", enrollment ) );
+        final PersistentSeller persistentSeller = findOrThrowNotFoundException( enrollment );
+        logInfo( traceId, "Seller found successfully!" );
+        return converter.toSellerDTO( persistentSeller );
+    }
+
+    @Override
     @Transactional
     public void delete(
         final String enrollment )
     {
         final UUID traceId = UUID.randomUUID();
-        LOGGER.info( "TRACEID = {} : Deleting... seller by enrollment = {} ", traceId, enrollment );
+        logInfo( traceId, String.format( "Deleting... seller by enrollment = %s", enrollment ) );
         final PersistentSeller persistentSeller = findOrThrowNotFoundException( enrollment );
-        LOGGER.info( "TRACEID = {} : Seller deleted successfully!", traceId );
+        logInfo( traceId, "Seller deleted successfully!" );
         repository.delete( persistentSeller );
     }
 }

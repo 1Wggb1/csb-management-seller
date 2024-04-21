@@ -67,7 +67,7 @@ public class SellerExceptionHandler
     public ResponseEntity<ErrorDTO> handleNoResourceException(
         final NoResourceFoundException noResourceFoundException )
     {
-        LOGGER.warn( "Not found path", noResourceFoundException );
+        LOGGER.error( "Not found path", noResourceFoundException );
         final String message = messageSource.getMessage( "csb.no.resource.found", null, Locale.getDefault() );
         return createErrorResponse( HttpStatus.NOT_FOUND, List.of( message ) );
     }
@@ -76,7 +76,7 @@ public class SellerExceptionHandler
     public ResponseEntity<ErrorDTO> handleInternalErrorException(
         final HttpMessageNotReadableException messageNotReadableException )
     {
-        LOGGER.warn( "Not readable", messageNotReadableException );
+        LOGGER.error( "Not readable", messageNotReadableException );
         final String message = messageSource.getMessage( "csb.no.readable.error", null, Locale.getDefault() );
         return createErrorResponse( HttpStatus.BAD_REQUEST, List.of( message ) );
     }

@@ -72,7 +72,7 @@ class SellerConverterImplTest
         doCallRealMethod().when( sellerRepository ).generateEnrollment( contractType );
         when( sellerRepository.nextEnrollmentValue() ).thenReturn( 107L );
 
-        final PersistentSeller persistentSeller = subject.toModel( sellerRequestDTO );
+        final PersistentSeller persistentSeller = subject.toModelCreation( sellerRequestDTO );
         assertEquals( sellerRequestDTO.name(), persistentSeller.getName() );
         assertEquals( sellerRequestDTO.birthDay().replaceAll( "-", "" ),
             persistentSeller.getBirthDay() );
@@ -155,5 +155,40 @@ class SellerConverterImplTest
         assertEquals( 2, pageable.totalPages() );
         assertEquals( totalElements, pageable.totalElements() );
         assertEquals( 2, sellerPageableDTO.elements().size() );
+    }
+
+    @Test
+    @DisplayName( "Deve converter atualizar modelo com DTO." )
+    void shouldConvertToSellerOnUpdate()
+    {
+        final PersistentSeller seller = new PersistentSeller(
+            "Will",
+            "00000001-CLT",
+            "19990417",
+            "78596589657",
+            VALID_EMAIL,
+            ContractType.CLT,
+            "14555896574563" );
+        final ContractType contractType = ContractType.OUTSOURCING;
+        final SellerRequestDTO sellerRequestDTO = new SellerRequestDTO( "Will Garbo",
+            "email@email.org",
+            "1999-04-18",
+            VALID_CPF,
+            contractType.name(),
+            VALID_CNPJ );
+
+        final PersistentSeller updated = subject.toModelUpdate( seller, sellerRequestDTO );
+
+        assertEquals( seller.getId(), updated.getId() );
+        assertEquals( seller.getEnrollment(), updated.getEnrollment() );
+        assertEquals( sellerRequestDTO.name(), updated.getName() );
+        assertEquals( sellerRequestDTO.birthDay().replaceAll( "-", "" ),
+            updated.getBirthDay() );
+        assertEquals( sellerRequestDTO.email(), updated.getEmail() );
+        assertEquals( sellerRequestDTO.documentNumber().replaceAll( "[.-]", "" ),
+            updated.getDocumentNumber() );
+        assertEquals( sellerRequestDTO.contractType(), updated.getContractType().name() );
+        assertEquals( sellerRequestDTO.branchOfficeDocumentNumber().replaceAll( "[./-]",
+            "" ), updated.getBranchOfficeDocumentNumber() );
     }
 }

@@ -57,10 +57,12 @@ public class SellerController
         return ResponseEntity.created( location ).body( sellerResponseDTO );
     }
 
-    @PutMapping
+    @PutMapping( "/{enrollment}" )
     public ResponseEntity<SellerResponseDTO> update(
-        @RequestBody final SellerRequestDTO sellerDTO )
+        @PathVariable( "enrollment" ) final String enrollment,
+        @Valid @RequestBody final SellerRequestDTO sellerRequestDTO )
     {
+        service.update( enrollment, sellerRequestDTO );
         return ResponseEntity.noContent().build();
     }
 

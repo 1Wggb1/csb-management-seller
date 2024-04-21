@@ -11,6 +11,10 @@ public interface SellerService
     SellerResponseDTO create(
         SellerRequestDTO sellerRequestDTO );
 
+    void update(
+        String enrollment,
+        SellerRequestDTO sellerRequestDTO );
+
     SellerPageableDTO findAll(
         String filter,
         Pageable pageable );

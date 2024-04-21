@@ -12,7 +12,11 @@ import br.com.casasbahia.model.PersistentSeller;
 
 public interface SellerConverter
 {
-    PersistentSeller toModel(
+    PersistentSeller toModelCreation(
+        SellerRequestDTO sellerRequestDTO );
+
+    PersistentSeller toModelUpdate(
+        PersistentSeller persistentSeller,
         SellerRequestDTO sellerRequestDTO );
 
     SellerResponseDTO toDTO(
