@@ -61,8 +61,8 @@ class SellerServiceImplTest
     }
 
     @Test
-    @DisplayName( "Deve criar vendedor com sucesso." )
-    void shouldCreateSellerSuccessfully()
+    @DisplayName( "Deve retornar 201 quando criar vendedor com sucesso." )
+    void shouldReturn201WhenCreateSellerSuccessfully()
         throws Exception
     {
         final ContractType contractType = ContractType.CLT;
@@ -114,8 +114,8 @@ class SellerServiceImplTest
     }
 
     @Test
-    @DisplayName( "Deve retornar mensagem de erro quando campos do payload estão inválidos." )
-    void shouldReturnErrorMessageWhenInvalidPayload()
+    @DisplayName( "Deve retornar 400 e mensagem de erro quando campos do payload estão inválidos." )
+    void shouldReturn400ErrorMessageWhenInvalidPayload()
         throws Exception
     {
         final SellerRequestDTO sellerRequestDTO = new SellerRequestDTO( "", null,
@@ -136,7 +136,7 @@ class SellerServiceImplTest
     }
 
     @Test
-    @DisplayName( "Deve retornar mensagem de erro quando payload não está no formato correto." )
+    @DisplayName( "Deve retornar 400 e mensagem de erro quando payload não está no formato correto." )
     void shouldReturnErrorMessageWhenInvalidPayloadFormat()
         throws Exception
     {
@@ -146,7 +146,7 @@ class SellerServiceImplTest
         final ResultActions result = mvc.perform( request );
 
         result
-            .andExpect( MockMvcResultMatchers.status().isInternalServerError() );
+            .andExpect( MockMvcResultMatchers.status().isBadRequest() );
     }
 
     @Test
@@ -158,8 +158,14 @@ class SellerServiceImplTest
 
         final ResultActions result = mvc.perform( request );
 
-        result
-            .andExpect( MockMvcResultMatchers.status().isNotFound() )
+        validateNotFoundSellerResponse( result );
+    }
+
+    private static void validateNotFoundSellerResponse(
+        final ResultActions result )
+        throws Exception
+    {
+        result.andExpect( MockMvcResultMatchers.status().isNotFound() )
             .andExpect( MockMvcResultMatchers.jsonPath( "$.errorMessages", IsNull.notNullValue() ) );
     }
 
@@ -334,5 +340,34 @@ class SellerServiceImplTest
             result, IsEqual.equalTo( UnmaskUtil.unmaskDocumentNumber( filterDTO.branchOfficeDocumentNumber() ) ) );
         validateResultFilter( expectedPageable.numberOfElements(), "name", result,
             StringContains.containsStringIgnoringCase( filterDTO.name() ) );
+    }
+
+    @Test
+    @DisplayName( "Deve retornar 204 quando vendedor deletado com sucesso." )
+    void shouldReturn204WhenSellerDeletedSuccessfully()
+        throws Exception
+    {
+        final String enrollment = "00000005-CLT";
+        createSeller( "Mariana", enrollment, ContractType.CLT, VALID_CNPJ );
+
+        final MockHttpServletRequestBuilder request = MockMvcRequestBuilders.delete( "/v1/sellers/{enrollment}", enrollment );
+        final ResultActions result = mvc.perform( request );
+
+        result.andExpect( MockMvcResultMatchers.status().isNoContent() );
+        assertTrue( sellerRepository.findByEnrollment( enrollment ).isEmpty() );
+    }
+
+    @Test
+    @DisplayName( "Deve retornar 404 quando vendedor não encontrado para deleção." )
+    void shouldReturn404WhenSellerDeletedSuccessfully()
+        throws Exception
+    {
+        final String enrollment = "00000005-CLT";
+
+        final MockHttpServletRequestBuilder request = MockMvcRequestBuilders.delete( "/v1/sellers/{enrollment}", enrollment );
+        final ResultActions result = mvc.perform( request );
+
+        assertTrue( sellerRepository.findByEnrollment( enrollment ).isEmpty() );
+        validateNotFoundSellerResponse( result );
     }
 }

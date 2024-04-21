@@ -64,10 +64,11 @@ public class SellerController
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping
+    @DeleteMapping( "/{enrollment}" )
     public ResponseEntity<Void> delete(
-        final String enrollment )
+        @PathVariable( "enrollment" ) final String enrollment )
     {
+        service.delete( enrollment );
         return ResponseEntity.noContent().build();
     }
 }

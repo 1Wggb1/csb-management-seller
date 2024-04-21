@@ -81,6 +81,7 @@ public class SellerServiceImpl
     }
 
     @Override
+    @Transactional
     public void delete(
         final String enrollment )
     {
