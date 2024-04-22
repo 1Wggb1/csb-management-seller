@@ -1,0 +1,11 @@
+#Actuator infos
+info.app:
+  name: mock-branch-office-api
+  description: Mock branch office api
+
+server.port: 8081
+
+#Add traceId micrometer brave
+logging:
+  pattern:
+    level: "%5p [${info.app.name:} - %X{traceId:-}]"

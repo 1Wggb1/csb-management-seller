@@ -5,3 +5,4 @@ plugins {
 
 rootProject.name = 'csb-management-seller'
 include('app')
+include('mock-branchoffice-api')

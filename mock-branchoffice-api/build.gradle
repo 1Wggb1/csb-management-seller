@@ -8,14 +8,9 @@ repositories {
 
 dependencies {
     implementation libs.micrometer.brave
-    implementation libs.postgresql
-    implementation libs.prometheus
     implementation libs.spring.actuator
     implementation libs.spring.boot.web
-    implementation libs.spring.jpa
-    implementation libs.spring.validation
 
-    testImplementation libs.h2
     testImplementation libs.spring.test
 }
 
@@ -26,8 +21,7 @@ java {
 }
 
 application {
-    mainClass = "br.com.casasbahia.ApplicationMainManagementSeller"
-    applicationDefaultJvmArgs = ["-Dspring.profiles.active=postgresql"]
+    mainClass = "br.csb.mock.branchoffice.ApplicationMainMockBranchOffice"
 }
 
 test {

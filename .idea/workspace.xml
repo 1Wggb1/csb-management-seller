@@ -5,16 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4bde5a1e-6221-4759-91dc-0e43645edea1" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/handler/SellerExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/handler/SellerExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/service/SellerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/service/SellerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/service/impl/SellerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/service/impl/SellerServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/messages_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/messages_en.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/messages_pt_BR.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/messages_pt_BR.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,9 +31,35 @@
         <task path="$PROJECT_DIR$/app">
           <activation />
         </task>
+        <task path="$PROJECT_DIR$/mock-branchoffice-api">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
-            <expand />
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="csb-management-seller" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="csb-management-seller" type="f1a62948:ProjectNode" />
+                <item name="mock-branchoffice-api" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="csb-management-seller" type="f1a62948:ProjectNode" />
+                <item name="mock-branchoffice-api" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="csb-management-seller" type="f1a62948:ProjectNode" />
+                <item name="mock-branchoffice-api" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
             <select />
           </tree_state>
         </projects_view>
@@ -49,9 +71,9 @@
       <list>
         <option value="Record" />
         <option value="Enum" />
-        <option value="Interface" />
         <option value="package-info" />
         <option value="Python Script" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -71,11 +93,13 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.ApplicationMainManagementSeller.executor": "Debug",
+    "Application.ApplicationMainMockBranchOffice.executor": "Debug",
     "Application.EnrollmentGenerator.executor": "Debug",
     "Application.SellerController.executor": "Debug",
     "Application.SellerValidator.executor": "Debug",
     "Gradle.Build csb-management-seller.executor": "Run",
     "Gradle.Download Sources.executor": "Run",
+    "Gradle.csb-management-seller [:mock-branchoffice-api:run].executor": "Run",
     "Gradle.csb-management-seller [build].executor": "Run",
     "Gradle.csb-management-seller [clean build].executor": "Run",
     "Gradle.csb-management-seller [clean].executor": "Run",
@@ -84,8 +108,11 @@
     "Gradle.csb-management-seller:app [:app:ApplicationMainManagementSeller.main()].executor": "Debug",
     "Gradle.csb-management-seller:app [:app:ApplicationMainSeller.main()].executor": "Debug",
     "Gradle.csb-management-seller:app [:app:EnrollmentGenerator.main()].executor": "Debug",
+    "Gradle.csb-management-seller:app [build].executor": "Run",
     "Gradle.csb-management-seller:app [clean].executor": "Run",
     "Gradle.csb-management-seller:app [test].executor": "Run",
+    "Gradle.csb-management-seller:mock-branchoffice-api [build].executor": "Run",
+    "Gradle.csb-management-seller:mock-branchoffice-api [clean].executor": "Run",
     "JUnit.ContractTypeTest.executor": "Coverage",
     "JUnit.DocumentTest.executor": "Debug",
     "JUnit.DocumentTest.shouldReturnFalseWhenDocumentHasInvalidSize.executor": "Debug",
@@ -93,14 +120,27 @@
     "JUnit.DocumentTest.shouldReturnFalseWhenDocumentValidButInvalidMask.executor": "Debug",
     "JUnit.DocumentTest.shouldReturnTrueWhenDocumentIsValid.executor": "Debug",
     "JUnit.DocumentTest.shouldReturnTrueWhenDocumentValidAndUnMasked.executor": "Debug",
+    "JUnit.MockBranchOfficeControllerTest.executor": "Debug",
     "JUnit.SellerConverterImplTest.executor": "Coverage",
     "JUnit.SellerConverterImplTest.shouldConvertToSellerDTO.executor": "Debug",
+    "JUnit.SellerConverterImplTest.shouldConvertToSellerOnUpdate.executor": "Debug",
     "JUnit.SellerConverterImplTest.shouldConvertToSellerPageableDTO.executor": "Debug",
     "JUnit.SellerConverterImplTest.shouldReturnPersistFromDTO.executor": "Debug",
     "JUnit.SellerConverterImplTest.shouldReturnPersistOfDTO.executor": "Debug",
     "JUnit.SellerConverterImplTest.shouldThrownExceptionWhenFilterHasInvalidJsonFormat.executor": "Debug",
-    "JUnit.SellerServiceImplTest.executor": "Debug",
+    "JUnit.SellerRepositoryTest.executor": "Debug",
+    "JUnit.SellerRepositoryTest.shouldReturnEnrollmentOnValidFormat.executor": "Debug",
+    "JUnit.SellerRepositoryTest.shouldReturnIdentifierWithSuffixOfContractType.executor": "Debug",
+    "JUnit.SellerRepositoryTest.shouldReturnSequentialEnrollmentValue.executor": "Debug",
+    "JUnit.SellerRepositoryTest.shouldReturnSequentialEnrollmentValue2.executor": "Debug",
+    "JUnit.SellerRepositoryTest.shouldThrownExceptionWhenSequenceOutRange (1).executor": "Debug",
+    "JUnit.SellerRepositoryTest.shouldThrownExceptionWhenSequenceOutRange.executor": "Debug",
+    "JUnit.SellerServiceImplTest.executor": "Coverage",
     "JUnit.SellerServiceImplTest.shouldCreateSeller.executor": "Debug",
+    "JUnit.SellerServiceImplTest.shouldReturn204WhenSellerDeletedSuccessfully.executor": "Debug",
+    "JUnit.SellerServiceImplTest.shouldReturn204WhenSellerUpdatedSuccessfully.executor": "Debug",
+    "JUnit.SellerServiceImplTest.shouldReturn400ErrorMessageWhenInvalidPayloadOnUpdate.executor": "Debug",
+    "JUnit.SellerServiceImplTest.shouldReturn404WhenSellerNotFoundOUpdate.executor": "Debug",
     "JUnit.SellerServiceImplTest.shouldReturnErrorMessageWhenInvalidPayload.executor": "Debug",
     "JUnit.SellerServiceImplTest.shouldReturnErrorMessageWhenInvalidPayload2.executor": "Debug",
     "JUnit.SellerServiceImplTest.shouldReturnErrorMessageWhenSellerNotFound.executor": "Debug",
@@ -122,8 +162,9 @@
     "JUnit.br.com.casasbahia in csb-management-seller.app.test.executor": "Coverage",
     "JUnit.br.com.casasbahia.service in csb-management-seller.app.test.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "jdk.selected.JAVA_MODULE": "17",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/work/code-formatter-eclipse/codeformatter/.settings/org.eclipse.jdt.core.prefs",
+    "last_opened_file_path": "C:/work/idea-projects/csb-management-seller/csb-mock-branchoffice/src/main/java/br/csb/mock/branchoffice",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
@@ -131,103 +172,142 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\work\idea-projects\csb-management-seller\csb-mock-branchoffice\src\main\java\br\csb\mock\branchoffice" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\work\idea-projects\csb-management-seller\app\src\main\resources\db" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="br.csb.mock.branchoffice.dto" />
+    </key>
   </component>
-  <component name="RunManager" selected="Application.ApplicationMainManagementSeller">
-    <configuration name="SellerServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="csb-management-seller.app.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="br.com.casasbahia.service.impl.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="br.com.casasbahia.service.impl" />
-      <option name="MAIN_CLASS_NAME" value="br.com.casasbahia.service.impl.SellerServiceImplTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+  <component name="RunManager" selected="Gradle.csb-management-seller [build]">
+    <configuration name="csb-management-seller [:mock-branchoffice-api:run]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":mock-branchoffice-api:run" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
     </configuration>
-    <configuration name="SellerServiceImplTest.shouldReturnSellersByPageableAndContractTypeFilter" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="csb-management-seller.app.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="br.com.casasbahia.service.impl.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="br.com.casasbahia.service.impl" />
-      <option name="MAIN_CLASS_NAME" value="br.com.casasbahia.service.impl.SellerServiceImplTest" />
-      <option name="METHOD_NAME" value="shouldReturnSellersByPageableAndContractTypeFilter" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="csb-management-seller [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
     </configuration>
-    <configuration name="SellerServiceImplTest.shouldReturnSellersByPageableAndNameAndBranchDocumentNumberFilter" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="csb-management-seller.app.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="br.com.casasbahia.service.impl.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="br.com.casasbahia.service.impl" />
-      <option name="MAIN_CLASS_NAME" value="br.com.casasbahia.service.impl.SellerServiceImplTest" />
-      <option name="METHOD_NAME" value="shouldReturnSellersByPageableAndNameAndBranchDocumentNumberFilter" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="csb-management-seller [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
     </configuration>
-    <configuration name="SellerServiceImplTest.shouldReturnSellersByPageableAndNameAndContractTypeFilter" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="csb-management-seller.app.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="br.com.casasbahia.service.impl.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="br.com.casasbahia.service.impl" />
-      <option name="MAIN_CLASS_NAME" value="br.com.casasbahia.service.impl.SellerServiceImplTest" />
-      <option name="METHOD_NAME" value="shouldReturnSellersByPageableAndNameAndContractTypeFilter" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="csb-management-seller:mock-branchoffice-api [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/mock-branchoffice-api" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
     </configuration>
-    <configuration name="br.com.casasbahia in csb-management-seller.app.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="csb-management-seller.app.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="br.com.casasbahia.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="br.com.casasbahia" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="csb-management-seller:mock-branchoffice-api [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/mock-branchoffice-api" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
     </configuration>
     <list>
       <item itemvalue="Application.ApplicationMainManagementSeller" />
-      <item itemvalue="JUnit.SellerServiceImplTest" />
-      <item itemvalue="JUnit.SellerServiceImplTest.shouldReturnSellersByPageableAndContractTypeFilter" />
-      <item itemvalue="JUnit.SellerServiceImplTest.shouldReturnSellersByPageableAndNameAndBranchDocumentNumberFilter" />
-      <item itemvalue="JUnit.SellerServiceImplTest.shouldReturnSellersByPageableAndNameAndContractTypeFilter" />
-      <item itemvalue="JUnit.br.com.casasbahia in csb-management-seller.app.test" />
+      <item itemvalue="Gradle.csb-management-seller [:mock-branchoffice-api:run]" />
+      <item itemvalue="Gradle.csb-management-seller [build]" />
+      <item itemvalue="Gradle.csb-management-seller [clean]" />
+      <item itemvalue="Gradle.csb-management-seller:mock-branchoffice-api [build]" />
+      <item itemvalue="Gradle.csb-management-seller:mock-branchoffice-api [clean]" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.br.com.casasbahia in csb-management-seller.app.test" />
-        <item itemvalue="JUnit.SellerServiceImplTest" />
-        <item itemvalue="JUnit.SellerServiceImplTest.shouldReturnSellersByPageableAndNameAndBranchDocumentNumberFilter" />
-        <item itemvalue="JUnit.SellerServiceImplTest.shouldReturnSellersByPageableAndNameAndContractTypeFilter" />
-        <item itemvalue="JUnit.SellerServiceImplTest.shouldReturnSellersByPageableAndContractTypeFilter" />
+        <item itemvalue="Gradle.csb-management-seller [build]" />
+        <item itemvalue="Gradle.csb-management-seller [clean]" />
+        <item itemvalue="Gradle.csb-management-seller [:mock-branchoffice-api:run]" />
+        <item itemvalue="Gradle.csb-management-seller:mock-branchoffice-api [build]" />
+        <item itemvalue="Gradle.csb-management-seller:mock-branchoffice-api [clean]" />
       </list>
     </recent_temporary>
   </component>
@@ -252,7 +332,10 @@
     <SUITE FILE_PATH="coverage/csb_management_seller$SellerConverterImplTest.ic" NAME="SellerConverterImplTest Coverage Results" MODIFIED="1713654156418" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>br.com.casasbahia.converter.impl.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/csb_management_seller$br_com_casasbahia_in_csb_management_seller_app_test.ic" NAME="br.com.casasbahia in csb-management-seller.app.test Coverage Results" MODIFIED="1713667311436" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+    <SUITE FILE_PATH="coverage/csb_management_seller$SellerServiceImplTest.ic" NAME="SellerServiceImplTest Coverage Results" MODIFIED="1713732073364" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>br.com.casasbahia.service.impl.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/csb_management_seller$br_com_casasbahia_in_csb_management_seller_app_test.ic" NAME="br.com.casasbahia in csb-management-seller.app.test Coverage Results" MODIFIED="1713796212622" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>br.com.casasbahia.*</FILTER>
     </SUITE>
   </component>

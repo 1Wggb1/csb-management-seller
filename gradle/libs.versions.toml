@@ -1,6 +1,5 @@
 [versions]
 h2 = "2.2.224"
-junit-jupiter = "5.10.1"
 micrometer-brave = "1.2.5"
 postgresql = "42.7.3"
 prometheus = "1.12.5"
@@ -8,7 +7,6 @@ spring-boot = "3.2.4"
 
 [libraries]
 h2 = { module = "com.h2database:h2", version.ref = "h2" }
-junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-jupiter" }
 micrometer-brave = { module = "io.micrometer:micrometer-tracing-bridge-brave", version.ref = "micrometer-brave" }
 postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
 prometheus = { module = "io.micrometer:micrometer-registry-prometheus", version.ref = "prometheus" }
