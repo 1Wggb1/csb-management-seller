@@ -20,6 +20,7 @@ import br.com.casasbahia.dto.SellerPageableDTO;
 import br.com.casasbahia.dto.SellerRequestDTO;
 import br.com.casasbahia.dto.SellerResponseDTO;
 import br.com.casasbahia.service.SellerService;
+import io.micrometer.observation.annotation.Observed;
 import jakarta.validation.Valid;
 
 @RestController
@@ -29,6 +30,7 @@ public class SellerController
     @Autowired
     private SellerService service;
 
+    @Observed( name = "seller.findAll" )
     @GetMapping
     public ResponseEntity<SellerPageableDTO> findAll(
         @RequestParam( name = "filter", required = false ) final String filter,
@@ -39,6 +41,7 @@ public class SellerController
         return ResponseEntity.ok( service.findAll( filter, pageable ) );
     }
 
+    @Observed( name = "seller.findByEnrollment" )
     @GetMapping( "/{enrollment}" )
     public ResponseEntity<SellerDTO> findByEnrollment(
         @PathVariable( "enrollment" ) final String enrollment )
@@ -46,6 +49,7 @@ public class SellerController
         return ResponseEntity.ok( service.findByEnrollment( enrollment ) );
     }
 
+    @Observed( name = "seller.create" )
     @PostMapping
     public ResponseEntity<SellerResponseDTO> createSeller(
         @Valid @RequestBody final SellerRequestDTO sellerDTO )
@@ -57,6 +61,7 @@ public class SellerController
         return ResponseEntity.created( location ).body( sellerResponseDTO );
     }
 
+    @Observed( name = "seller.update" )
     @PutMapping( "/{enrollment}" )
     public ResponseEntity<SellerResponseDTO> update(
         @PathVariable( "enrollment" ) final String enrollment,
@@ -66,6 +71,7 @@ public class SellerController
         return ResponseEntity.noContent().build();
     }
 
+    @Observed( name = "seller.delete" )
     @DeleteMapping( "/{enrollment}" )
     public ResponseEntity<Void> delete(
         @PathVariable( "enrollment" ) final String enrollment )

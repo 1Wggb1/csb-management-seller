@@ -1,4 +1,4 @@
-#Actoator infos
+#Actuator infos
 info.app:
   name: csb-management-seller
   description: Sellers CRUD project
@@ -16,6 +16,11 @@ spring:
       schema-locations: classpath:/db/tables.sql
   messages:
     basename: messages
+
+#Add traceId micrometer brave
+logging:
+  pattern:
+    level: "%5p [${info.app.name:} - %X{traceId:-}]"
 
 #actuator configs
 management:
