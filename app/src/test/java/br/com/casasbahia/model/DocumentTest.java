@@ -1,9 +1,9 @@
 package br.com.casasbahia.model;
 
-import static br.com.casasbahia.service.Constants.VALID_CNPJ;
-import static br.com.casasbahia.service.Constants.VALID_CNPJ_UNMASKED;
-import static br.com.casasbahia.service.Constants.VALID_CPF;
-import static br.com.casasbahia.service.Constants.VALID_CPF_UNMASKED;
+import static br.com.casasbahia.CommonTestData.VALID_CNPJ;
+import static br.com.casasbahia.CommonTestData.VALID_CNPJ_UNMASKED;
+import static br.com.casasbahia.CommonTestData.VALID_CPF;
+import static br.com.casasbahia.CommonTestData.VALID_CPF_UNMASKED;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

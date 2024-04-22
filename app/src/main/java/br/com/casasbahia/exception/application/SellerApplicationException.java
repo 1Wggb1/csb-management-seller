@@ -3,21 +3,20 @@ package br.com.casasbahia.exception.application;
 import org.springframework.http.HttpStatus;
 import br.com.casasbahia.exception.BaseSellerException;
 
-public class SellerNotFoundException
+public class SellerApplicationException
     extends
         BaseSellerException
 {
-    private static final String MESSAGE = "csb.seller.not_found";
-
-    public SellerNotFoundException(
+    public SellerApplicationException(
+        final String message,
         final String... messageArgs )
     {
-        super( MESSAGE, messageArgs );
+        super( message, messageArgs );
     }
 
     @Override
     public HttpStatus getStatus()
     {
-        return HttpStatus.NOT_FOUND;
+        return HttpStatus.UNPROCESSABLE_ENTITY;
     }
 }

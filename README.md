@@ -1,6 +1,7 @@
 # Componente csb-management-seller
 
 Componente responsável pelo CRUD de vendedores.
+Internamente possui um servidor mock para simular serviço de filiais onde os vendedores são.
 
 ## Informações da aplicação
 

@@ -1,13 +1,16 @@
 package br.com.casasbahia.service.impl;
 
-import static br.com.casasbahia.service.Constants.VALID_BIRTHDATE;
-import static br.com.casasbahia.service.Constants.VALID_CNPJ;
-import static br.com.casasbahia.service.Constants.VALID_CNPJ_UNMASKED;
-import static br.com.casasbahia.service.Constants.VALID_CPF;
-import static br.com.casasbahia.service.Constants.VALID_EMAIL;
+import static br.com.casasbahia.CommonTestData.BRANCH_OFFICE_DTO;
+import static br.com.casasbahia.CommonTestData.VALID_BIRTHDATE;
+import static br.com.casasbahia.CommonTestData.VALID_CNPJ;
+import static br.com.casasbahia.CommonTestData.VALID_CNPJ_UNMASKED;
+import static br.com.casasbahia.CommonTestData.VALID_CPF;
+import static br.com.casasbahia.CommonTestData.VALID_EMAIL;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.when;
 
 import org.hamcrest.Matcher;
 import org.hamcrest.core.Is;
@@ -15,12 +18,14 @@ import org.hamcrest.core.IsEqual;
 import org.hamcrest.core.IsNull;
 import org.hamcrest.core.StringContains;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -32,6 +37,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import br.com.casasbahia.client.BranchOfficeClient;
 import br.com.casasbahia.dto.PageableDTO;
 import br.com.casasbahia.dto.SellerFilterDTO;
 import br.com.casasbahia.dto.SellerRequestDTO;
@@ -45,7 +51,7 @@ import br.com.casasbahia.util.UnmaskUtil;
 @SpringBootTest
 @ActiveProfiles( "test" )
 @AutoConfigureMockMvc
-class SellerServiceImplTest
+class SellerServiceImplIntegrationTest
 {
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
     private static final SellerRequestDTO SELLER_REQUEST_DTO = new SellerRequestDTO( "Will", VALID_EMAIL,
@@ -58,6 +64,15 @@ class SellerServiceImplTest
     private MockMvc mvc;
     @Autowired
     private SellerRepository sellerRepository;
+    @MockBean
+    private BranchOfficeClient branchOfficeClient;
+
+    @BeforeEach
+    void setUp()
+    {
+        when( branchOfficeClient.findByDocumentNumber( anyString() ) )
+            .thenReturn( BRANCH_OFFICE_DTO );
+    }
 
     @AfterEach
     void tearDown()

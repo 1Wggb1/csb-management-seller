@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import br.com.casasbahia.client.BranchOfficeClient;
 import br.com.casasbahia.converter.SellerConverter;
 import br.com.casasbahia.dto.SellerDTO;
 import br.com.casasbahia.dto.SellerPageableDTO;
@@ -31,6 +32,8 @@ public class SellerServiceImpl
     private SellerRepository repository;
     @Autowired
     private SellerConverter converter;
+    @Autowired
+    private BranchOfficeClient branchOfficeClient;
 
     @Override
     @Transactional
@@ -38,7 +41,7 @@ public class SellerServiceImpl
         final SellerRequestDTO sellerRequestDTO )
     {
         LOGGER.info( "Validating seller payload..." );
-        SellerValidator.validate( sellerRequestDTO );
+        SellerValidator.validate( branchOfficeClient, sellerRequestDTO );
         LOGGER.info( "Creating seller..." );
         final PersistentSeller createdSeller = repository.save( converter.toModelCreation( sellerRequestDTO ) );
         LOGGER.info( String.format( "Seller with id = %d and enrollment = %s created successfully!",
@@ -54,7 +57,7 @@ public class SellerServiceImpl
     {
         LOGGER.info( "Validating seller update payload..." );
         final PersistentSeller persistentSeller = findOrThrowNotFoundException( enrollment );
-        SellerValidator.validate( sellerRequestDTO );
+        SellerValidator.validate( branchOfficeClient, sellerRequestDTO );
         LOGGER.info( "Updating seller..." );
         final PersistentSeller updatedSeller = repository.save( converter.toModelUpdate( persistentSeller, sellerRequestDTO ) );
         LOGGER.info( String.format( "Seller with id = %d and enrollment = %s updated successfully!",
@@ -66,7 +69,7 @@ public class SellerServiceImpl
         final String enrollment )
     {
         return repository.findByEnrollment( enrollment )
-            .orElseThrow( () -> new SellerNotFoundException( "csb.seller.not_found", enrollment ) );
+            .orElseThrow( () -> new SellerNotFoundException( enrollment ) );
     }
 
     @Override

@@ -1,5 +1,6 @@
 package br.csb.mock.branchoffice.controller;
 
+import java.util.Collection;
 import java.util.Objects;
 
 import org.slf4j.Logger;
@@ -27,5 +28,12 @@ public class MockBranchOfficeController
         LOGGER.info( "Returning... result of documentNumber = {}", documentNumber );
         return Objects.isNull( branchOfficeDTO ) ? ResponseEntity.notFound().build() : ResponseEntity.ok(
             branchOfficeDTO );
+    }
+
+    @GetMapping
+    public ResponseEntity<Collection<BranchOfficeDTO>> findAll()
+    {
+        LOGGER.info( "Finding all... " );
+        return ResponseEntity.ok( MockedBranchOffices.BRANCHOFFICE_BY_DOCUMENTNUMBER.values() );
     }
 }

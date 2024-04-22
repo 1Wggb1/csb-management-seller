@@ -2,13 +2,13 @@ package br.com.casasbahia.exception.validation;
 
 import br.com.casasbahia.exception.SellerValidationException;
 
-public class SellerInvalidDocumentValidationException
+public class SellerBranchOfficeNotActiveValidationException
     extends
         SellerValidationException
 {
-    private static final String MESSAGE = "csb.documentnumber.invalid";
+    private static final String MESSAGE = "cbs.branchoffice.inactive";
 
-    public SellerInvalidDocumentValidationException(
+    public SellerBranchOfficeNotActiveValidationException(
         final String... messageArgs )
     {
         super( MESSAGE, messageArgs );

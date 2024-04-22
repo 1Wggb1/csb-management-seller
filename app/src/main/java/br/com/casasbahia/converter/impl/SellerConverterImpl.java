@@ -12,7 +12,7 @@ import br.com.casasbahia.dto.SellerFilterDTO;
 import br.com.casasbahia.dto.SellerPageableDTO;
 import br.com.casasbahia.dto.SellerRequestDTO;
 import br.com.casasbahia.dto.SellerResponseDTO;
-import br.com.casasbahia.exception.application.SellerSellerException;
+import br.com.casasbahia.exception.application.SellerApplicationException;
 import br.com.casasbahia.model.ContractType;
 import br.com.casasbahia.model.PersistentSeller;
 import br.com.casasbahia.repository.SellerRepository;
@@ -100,7 +100,7 @@ public class SellerConverterImpl
         try {
             return objectMapper.readValue( filter, SellerFilterDTO.class );
         } catch( final JsonProcessingException e ) {
-            throw new SellerSellerException( "csb.filter.conversion.error" );
+            throw new SellerApplicationException( "csb.filter.conversion.error" );
         }
     }
 }

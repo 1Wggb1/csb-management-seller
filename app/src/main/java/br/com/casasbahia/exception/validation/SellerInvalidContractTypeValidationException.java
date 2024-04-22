@@ -6,10 +6,11 @@ public class SellerInvalidContractTypeValidationException
     extends
         SellerValidationException
 {
+    private static final String MESSAGE = "csb.contacttype.invalid";
+
     public SellerInvalidContractTypeValidationException(
-        final String message,
         final String... messageArgs )
     {
-        super( message, messageArgs );
+        super( MESSAGE, messageArgs );
     }
 }

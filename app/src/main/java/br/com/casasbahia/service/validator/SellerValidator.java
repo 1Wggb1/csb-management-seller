@@ -6,7 +6,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.regex.Pattern;
 
+import br.com.casasbahia.client.BranchOfficeClient;
+import br.com.casasbahia.dto.BranchOfficeDTO;
 import br.com.casasbahia.dto.SellerRequestDTO;
+import br.com.casasbahia.exception.validation.SellerBranchOfficeNotActiveValidationException;
+import br.com.casasbahia.exception.validation.SellerDateValidationException;
 import br.com.casasbahia.exception.validation.SellerInvalidContractTypeValidationException;
 import br.com.casasbahia.exception.validation.SellerInvalidDateFormatValidationException;
 import br.com.casasbahia.exception.validation.SellerInvalidDocumentValidationException;
@@ -19,10 +23,12 @@ public final class SellerValidator
     private static final Pattern DATE_FORMAT_PATTERN = Pattern.compile( "[0-9]{4}-[0-9]{2}-[0-9]{2}" );
 
     public static void validate(
+        final BranchOfficeClient branchOfficeClient,
         final SellerRequestDTO sellerRequestDTO )
     {
         validateContractType( sellerRequestDTO );
         validateDate( sellerRequestDTO.birthDay() );
+        validateBranchOffice( branchOfficeClient, sellerRequestDTO.branchOfficeDocumentNumber() );
     }
 
     private static void validateContractType(
@@ -30,8 +36,7 @@ public final class SellerValidator
     {
         final String possibleContractType = sellerRequestDTO.contractType();
         if( ! ContractType.exists( possibleContractType ) ) {
-            throw new SellerInvalidContractTypeValidationException( "csb.contacttype.invalid",
-                Arrays.toString( ContractType.values() ) );
+            throw new SellerInvalidContractTypeValidationException( Arrays.toString( ContractType.values() ) );
         }
         final ContractType contractType = ContractType.valueOf( possibleContractType.toUpperCase() );
         final Document document = contractType.getRequiredDocument();
@@ -44,7 +49,7 @@ public final class SellerValidator
     {
         final boolean isValidDocument = document.isValidDocument( sellerRequestDTO.documentNumber() );
         if( ! isValidDocument ) {
-            throw new SellerInvalidDocumentValidationException( "csb.documentnumber.invalid" );
+            throw new SellerInvalidDocumentValidationException();
         }
     }
 
@@ -55,19 +60,33 @@ public final class SellerValidator
             return;
         }
         if( date.length() > 10 || ! DATE_FORMAT_PATTERN.matcher( date ).matches() ) {
-            throw new SellerInvalidDateFormatValidationException( "csb.date.invalid.format" );
+            throw new SellerInvalidDateFormatValidationException();
         }
-        tryParseDate( date );
+        final LocalDate parsedDate = tryParseDate( date );
+        if( parsedDate.isAfter( LocalDate.now() ) || parsedDate.isEqual( LocalDate.now() ) ) {
+            throw new SellerDateValidationException();
+        }
     }
 
-    private static void tryParseDate(
+    private static LocalDate tryParseDate(
         final String possibleDate )
     {
         try {
             final String unmaskedDate = UnmaskUtil.unmaskDate( possibleDate );
-            LocalDate.parse( unmaskedDate, DateTimeFormatter.BASIC_ISO_DATE );
+            return LocalDate.parse( unmaskedDate, DateTimeFormatter.BASIC_ISO_DATE );
         } catch( final DateTimeException dateTimeException ) {
-            throw new SellerInvalidDateFormatValidationException( "csb.date.invalid.format" );
+            throw new SellerInvalidDateFormatValidationException();
+        }
+    }
+
+    private static void validateBranchOffice(
+        final BranchOfficeClient branchOfficeClient,
+        final String branchOfficeDocumentNumber )
+    {
+        final BranchOfficeDTO branchOffice = branchOfficeClient.findByDocumentNumber(
+            UnmaskUtil.unmaskDocumentNumber( branchOfficeDocumentNumber ) );
+        if( ! branchOffice.active() ) {
+            throw new SellerBranchOfficeNotActiveValidationException( branchOfficeDocumentNumber );
         }
     }
 }

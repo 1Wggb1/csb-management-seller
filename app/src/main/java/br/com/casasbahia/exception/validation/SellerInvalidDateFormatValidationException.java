@@ -6,10 +6,11 @@ public class SellerInvalidDateFormatValidationException
     extends
         SellerValidationException
 {
+    private static final String MESSAGE = "csb.date.invalid.format";
+
     public SellerInvalidDateFormatValidationException(
-        final String message,
         final String... messageArgs )
     {
-        super( message, messageArgs );
+        super( MESSAGE, messageArgs );
     }
 }
