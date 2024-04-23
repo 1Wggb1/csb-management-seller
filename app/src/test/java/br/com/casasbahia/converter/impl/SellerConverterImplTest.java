@@ -35,7 +35,7 @@ import br.com.casasbahia.dto.SellerFilterDTO;
 import br.com.casasbahia.dto.SellerPageableDTO;
 import br.com.casasbahia.dto.SellerRequestDTO;
 import br.com.casasbahia.dto.SellerResponseDTO;
-import br.com.casasbahia.exception.application.SellerApplicationException;
+import br.com.casasbahia.exception.application.SellerGenericApplicationException;
 import br.com.casasbahia.model.ContractType;
 import br.com.casasbahia.model.PersistentSeller;
 import br.com.casasbahia.repository.SellerRepository;
@@ -99,7 +99,7 @@ class SellerConverterImplTest
     @DisplayName( "Deve lançar exceção quando filtro tem string com json inválido." )
     void shouldThrownExceptionWhenFilterHasInvalidJsonFormat()
     {
-        assertThrows( SellerApplicationException.class, () -> subject.toFilterDTO( "{s}" ) );
+        assertThrows( SellerGenericApplicationException.class, () -> subject.toFilterDTO( "{s}" ) );
     }
 
     @ParameterizedTest

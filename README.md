@@ -2,16 +2,20 @@
 
 Componente responsável pelo CRUD de vendedores.
 Internamente possui um servidor mock para simular serviço de filiais onde os vendedores são.
+A cada request de criação ou atualização é verificado no serviço mock se a filial existe.
 
-## Informações da aplicação
+## Informações da aplicação principal (vendedores)
 
 > Aplicação foi feita utilizando gradle 8, Java 17, Spring 3, Junit-Jupiter e Postgresql como banco de dados.
-
 > Segue a arquitetura em camadas controller/service/repository.
-
 > Foi utilizado um script SQL para criar a tabelas e sequências utilizadas ao iniciar o projeto.
+> Aplicação roda na porta 8080 - http://localhost:8080
 
-> Aplicação roda na porta 8080
+> Para observabilidade da api foi utilizado:
+> - Spring Actuator (monitoramento, healthchek e métricas)
+> - Micrometer (métricas e para trace nos logs)
+> - Prometheus (para guardar métricas temporais) - http://localhost:9090
+> - Zipkin (para log distribuído entre cliente e servidor) - http://localhost:9411/zipkin/
 
 ### Comando úteis
 
@@ -23,11 +27,18 @@ Rodar Testes:
 
 ## Informações sobre aplicação mock
 
-> Aplicação foi feita utilizando gradle 8, Java 17, Spring 3, Junit-Jupiter.
+> Aplicação foi feita utilizando gradle 8, Java 17, Spring 3, Junit-Jupiter
 
 > Tem por finalidade ser uma aplicação que retorna dados prefinidos sobre filiais.
 
+> Para observabilidade da api foi utilizado:
+> - Spring Actuator
+> - Micrometer
+> - Zipkin (recebe o traceId da request do cliente)
+
 > Aplicação roda na porta 8081
+
+### Comando úteis
 
 Buildar:
 `gradlew :mock-branchoffice-api:clean :mock-branchoffice-api:build`

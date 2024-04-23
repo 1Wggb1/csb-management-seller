@@ -1,6 +1,6 @@
 global:
   #time to collect data
-  scrape_interval: 3s
+  scrape_interval: 60s
 
 scrape_configs:
   - job_name: "csb-management-seller"

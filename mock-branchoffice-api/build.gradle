@@ -10,6 +10,7 @@ dependencies {
     implementation libs.micrometer.brave
     implementation libs.spring.actuator
     implementation libs.spring.boot.web
+    implementation libs.zipkin
 
     testImplementation libs.spring.test
 }

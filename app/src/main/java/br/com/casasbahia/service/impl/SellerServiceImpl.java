@@ -19,8 +19,10 @@ import br.com.casasbahia.repository.SellerRepository;
 import br.com.casasbahia.repository.specification.SellerSpecification;
 import br.com.casasbahia.service.SellerService;
 import br.com.casasbahia.service.validator.SellerValidator;
+import io.micrometer.observation.annotation.Observed;
 
 @Service
+@Observed
 @Transactional( readOnly = true )
 public class SellerServiceImpl
     implements

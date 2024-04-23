@@ -14,6 +14,7 @@ dependencies {
     implementation libs.spring.boot.web
     implementation libs.spring.jpa
     implementation libs.spring.validation
+    implementation libs.zipkin
 
     testImplementation libs.h2
     testImplementation libs.spring.test

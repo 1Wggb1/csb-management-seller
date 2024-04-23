@@ -3,11 +3,11 @@ package br.com.casasbahia.exception.application;
 import org.springframework.http.HttpStatus;
 import br.com.casasbahia.exception.BaseSellerException;
 
-public class SellerApplicationException
+public class SellerGenericApplicationException
     extends
         BaseSellerException
 {
-    public SellerApplicationException(
+    public SellerGenericApplicationException(
         final String message,
         final String... messageArgs )
     {

@@ -4,6 +4,7 @@ micrometer-brave = "1.2.5"
 postgresql = "42.7.3"
 prometheus = "1.12.5"
 spring-boot = "3.2.4"
+zipkin = "2.17.2"
 
 [libraries]
 h2 = { module = "com.h2database:h2", version.ref = "h2" }
@@ -15,5 +16,6 @@ spring-boot-web = { module = "org.springframework.boot:spring-boot-starter-web",
 spring-jpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa", version.ref = "spring-boot" }
 spring-test = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "spring-boot" }
 spring-validation = { module = "org.springframework.boot:spring-boot-starter-validation", version.ref = "spring-boot" }
+zipkin = { module = "io.zipkin.reporter2:zipkin-reporter-brave", version.ref = "zipkin" }
 
 

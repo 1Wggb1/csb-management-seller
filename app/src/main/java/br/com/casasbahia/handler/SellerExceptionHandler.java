@@ -20,7 +20,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 import br.com.casasbahia.dto.ErrorDTO;
 import br.com.casasbahia.exception.BaseSellerException;
+import br.com.casasbahia.exception.SellerValidationException;
+import io.micrometer.observation.annotation.Observed;
 
+@Observed
 @ControllerAdvice
 public class SellerExceptionHandler
 {
@@ -29,11 +32,21 @@ public class SellerExceptionHandler
     @Autowired
     private MessageSource messageSource;
 
-    @ExceptionHandler( BaseSellerException.class )
+    @ExceptionHandler( SellerValidationException.class )
     public ResponseEntity<ErrorDTO> handleSellerValidationException(
+        final SellerValidationException sellerValidationException )
+    {
+        LOGGER.warn( "Seller Validation Exception {}", sellerValidationException.getMessage() );
+        final String message = messageSource.getMessage( sellerValidationException.getMessage(),
+            sellerValidationException.getMessageArgs(), Locale.getDefault() );
+        return createErrorResponse( sellerValidationException.getStatus(), List.of( message ) );
+    }
+
+    @ExceptionHandler( BaseSellerException.class )
+    public ResponseEntity<ErrorDTO> handleBaseSellerException(
         final BaseSellerException baseSellerException )
     {
-        LOGGER.error( "Error", baseSellerException );
+        LOGGER.warn( "Seller Error Exception", baseSellerException );
         final String message = messageSource.getMessage( baseSellerException.getMessage(),
             baseSellerException.getMessageArgs(), Locale.getDefault() );
         return createErrorResponse( baseSellerException.getStatus(), List.of( message ) );
@@ -52,7 +65,7 @@ public class SellerExceptionHandler
     public ResponseEntity<ErrorDTO> handleMethodArgumentInvalid(
         final MethodArgumentNotValidException argumentNotValidException )
     {
-        LOGGER.error( "Argument invalid error", argumentNotValidException );
+        LOGGER.warn( "Argument invalid error {}", argumentNotValidException.getMessage() );
         final List<FieldError> fieldErrors = argumentNotValidException.getFieldErrors();
         final List<String> errorMessages = new ArrayList<>();
         for( final FieldError fieldError : fieldErrors ) {
@@ -67,7 +80,7 @@ public class SellerExceptionHandler
     public ResponseEntity<ErrorDTO> handleNoResourceException(
         final NoResourceFoundException noResourceFoundException )
     {
-        LOGGER.error( "Not found path", noResourceFoundException );
+        LOGGER.warn( "Path Not found {}", noResourceFoundException.getMessage() );
         final String message = messageSource.getMessage( "csb.no.resource.found", null, Locale.getDefault() );
         return createErrorResponse( HttpStatus.NOT_FOUND, List.of( message ) );
     }
@@ -76,7 +89,7 @@ public class SellerExceptionHandler
     public ResponseEntity<ErrorDTO> handleInternalErrorException(
         final HttpMessageNotReadableException messageNotReadableException )
     {
-        LOGGER.error( "Not readable", messageNotReadableException );
+        LOGGER.warn( "Not readable {}", messageNotReadableException.getMessage() );
         final String message = messageSource.getMessage( "csb.no.readable.error", null, Locale.getDefault() );
         return createErrorResponse( HttpStatus.BAD_REQUEST, List.of( message ) );
     }

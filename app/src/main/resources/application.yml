@@ -1,6 +1,5 @@
 #Actuator infos
 info.app:
-  name: csb-management-seller
   description: Sellers CRUD project
 
 server.port: 8080
@@ -8,6 +7,8 @@ server.port: 8080
 app.branchoffice.client.url: "http://localhost:8081/v1/mock-branch-office"
 
 spring:
+  application:
+    name: csb-management-seller
   jpa:
     defer-datasource-initialization: true
     hibernate:
@@ -22,7 +23,7 @@ spring:
 #Add traceId micrometer brave
 logging:
   pattern:
-    level: "%5p [${info.app.name:} - %X{traceId:-}]"
+    level: "%5p [${spring.application.name:} - %X{traceId:-}]"
 
 #actuator configs
 management:
@@ -54,3 +55,10 @@ management:
       enabled: true
     java:
       enabled: true
+  tracing:
+    enabled: true
+    sampling:
+      probability: 1.0
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9411/api/v2/spans
