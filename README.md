@@ -61,3 +61,16 @@ Para iniciar o banco executar o comando na raiz do projeto:
 
 Para iniciar a aplicação há a possibilidade de executar pelo próprio INTELLIJ
 ou pelo comando `gradlew :app:run` e `gradlew :mock-branchoffice-api:run` para aplicação mock.
+
+
+### Payload de exemplo para criação
+`
+    {
+    "name": "Mari",
+    "email": "som@protomail.rus",
+    "birthDay": "2003-02-17",
+    "documentNumber": "81767428057",
+    "contractType": "CLT",
+    "branchOfficeDocumentNumber": "32826650000187"
+    }
+`
