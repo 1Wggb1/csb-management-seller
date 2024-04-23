@@ -9,7 +9,10 @@ A cada request de criação ou atualização é verificado no serviço mock se a
 > Aplicação foi feita utilizando gradle 8, Java 17, Spring 3, Junit-Jupiter e Postgresql como banco de dados.
 > Segue a arquitetura em camadas controller/service/repository.
 > Foi utilizado um script SQL para criar a tabelas e sequências utilizadas ao iniciar o projeto.
+
 > Aplicação roda na porta 8080 - http://localhost:8080
+
+> **Para facilitar o uso para testes da aplicação foi adicionado o swagger** - http://localhost:8080/swagger-ui/index.html
 
 > Para observabilidade da api foi utilizado:
 > - Spring Actuator (monitoramento, healthchek e métricas)
@@ -36,7 +39,9 @@ Rodar Testes:
 > - Micrometer
 > - Zipkin (recebe o traceId da request do cliente)
 
-> Aplicação roda na porta 8081
+> Aplicação roda na porta 8081 - http://localhost:8081
+
+> **Para facilitar o uso para testes da aplicação foi adicionado o swagger** - http://localhost:8081/swagger-ui/index.html
 
 ### Comando úteis
 

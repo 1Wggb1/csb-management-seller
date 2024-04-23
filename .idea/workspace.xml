@@ -5,25 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4bde5a1e-6221-4759-91dc-0e43645edea1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/configuration/RestTemplateConfiguration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/client/BranchOfficeClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/client/BranchOfficeClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/configuration/RestClientConfiguration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/converter/impl/SellerConverterImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/converter/impl/SellerConverterImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/exception/application/SellerApplicationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/exception/application/SellerGenericApplicationException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/exception/application/SellerNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/exception/application/SellerNotFoundException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/handler/SellerExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/handler/SellerExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/service/impl/SellerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/service/impl/SellerServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/br/com/casasbahia/client/BranchOfficeClientTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/br/com/casasbahia/client/BranchOfficeClientTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/br/com/casasbahia/converter/impl/SellerConverterImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/br/com/casasbahia/converter/impl/SellerConverterImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mock-branchoffice-api/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/mock-branchoffice-api/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mock-branchoffice-api/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/mock-branchoffice-api/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prometheus/prometheus.yml" beforeDir="false" afterPath="$PROJECT_DIR$/prometheus/prometheus.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,7 +166,7 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "File.Encoding"
+    "settings.editor.selected.configurable": "EclipseFormatter"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -194,7 +180,7 @@
       <recent name="br.csb.mock.branchoffice.dto" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ApplicationMainManagementSeller">
+  <component name="RunManager" selected="Application.ApplicationMainMockBranchOffice">
     <configuration name="csb-management-seller [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -295,11 +281,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.csb-management-seller [build]" />
+        <item itemvalue="Gradle.csb-management-seller [clean]" />
         <item itemvalue="JUnit.br.com.casasbahia in csb-management-seller.app.test" />
         <item itemvalue="JUnit.BranchOfficeClientTest" />
         <item itemvalue="JUnit.BranchOfficeClientTest.shouldRetry3TimesWhenRequestFail" />
-        <item itemvalue="Gradle.csb-management-seller [clean]" />
-        <item itemvalue="Gradle.csb-management-seller [build]" />
       </list>
     </recent_temporary>
   </component>

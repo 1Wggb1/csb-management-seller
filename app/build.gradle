@@ -13,6 +13,7 @@ dependencies {
     implementation libs.spring.actuator
     implementation libs.spring.boot.web
     implementation libs.spring.jpa
+    implementation libs.spring.swagger
     implementation libs.spring.validation
     implementation libs.zipkin
 
