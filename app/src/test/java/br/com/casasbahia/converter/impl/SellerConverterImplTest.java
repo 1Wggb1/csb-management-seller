@@ -1,5 +1,6 @@
 package br.com.casasbahia.converter.impl;
 
+import static br.com.casasbahia.CommonTestData.PERSISTENT_SELLER_CLT;
 import static br.com.casasbahia.CommonTestData.VALID_BIRTHDATE;
 import static br.com.casasbahia.CommonTestData.VALID_CNPJ;
 import static br.com.casasbahia.CommonTestData.VALID_CNPJ_UNMASKED;
@@ -35,6 +36,7 @@ import br.com.casasbahia.dto.SellerFilterDTO;
 import br.com.casasbahia.dto.SellerPageableDTO;
 import br.com.casasbahia.dto.SellerRequestDTO;
 import br.com.casasbahia.dto.SellerResponseDTO;
+import br.com.casasbahia.dto.SellerUpdateRequestDTO;
 import br.com.casasbahia.exception.application.SellerGenericApplicationException;
 import br.com.casasbahia.model.ContractType;
 import br.com.casasbahia.model.PersistentSeller;
@@ -43,15 +45,6 @@ import br.com.casasbahia.repository.SellerRepository;
 @ExtendWith( MockitoExtension.class )
 class SellerConverterImplTest
 {
-    private static final PersistentSeller PERSISTENT_SELLER = new PersistentSeller(
-        "name",
-        "00000001-CLT",
-        "19990417",
-        "78596589657",
-        VALID_EMAIL,
-        ContractType.CLT,
-        "14555896574563" );
-
     @InjectMocks
     private SellerConverterImpl subject;
     @Mock
@@ -91,8 +84,8 @@ class SellerConverterImplTest
     @DisplayName( "Deve retornar DTO a partir de persistente." )
     void shouldReturnDTOFromPersistent()
     {
-        final SellerResponseDTO responseDTO = subject.toDTO( PERSISTENT_SELLER );
-        assertEquals( PERSISTENT_SELLER.getEnrollment(), responseDTO.enrollment() );
+        final SellerResponseDTO responseDTO = subject.toDTO( PERSISTENT_SELLER_CLT );
+        assertEquals( PERSISTENT_SELLER_CLT.getEnrollment(), responseDTO.enrollment() );
     }
 
     @Test
@@ -126,15 +119,15 @@ class SellerConverterImplTest
     @DisplayName( "Deve converter persistente para DTO." )
     void shouldConvertToSellerDTO()
     {
-        final SellerDTO sellerDTO = subject.toSellerDTO( PERSISTENT_SELLER );
+        final SellerDTO sellerDTO = subject.toSellerDTO( PERSISTENT_SELLER_CLT );
 
-        assertEquals( PERSISTENT_SELLER.getName(), sellerDTO.name() );
-        assertEquals( PERSISTENT_SELLER.getBirthDay(), sellerDTO.birthDay() );
-        assertEquals( PERSISTENT_SELLER.getEmail(), sellerDTO.email() );
-        assertEquals( PERSISTENT_SELLER.getEnrollment(), sellerDTO.enrollment() );
-        assertEquals( PERSISTENT_SELLER.getContractType().name(), sellerDTO.contractType() );
-        assertEquals( PERSISTENT_SELLER.getDocumentNumber(), sellerDTO.documentNumber() );
-        assertEquals( PERSISTENT_SELLER.getBranchOfficeDocumentNumber(), sellerDTO.branchOfficeDocumentNumber() );
+        assertEquals( PERSISTENT_SELLER_CLT.getName(), sellerDTO.name() );
+        assertEquals( PERSISTENT_SELLER_CLT.getBirthDay(), sellerDTO.birthDay() );
+        assertEquals( PERSISTENT_SELLER_CLT.getEmail(), sellerDTO.email() );
+        assertEquals( PERSISTENT_SELLER_CLT.getEnrollment(), sellerDTO.enrollment() );
+        assertEquals( PERSISTENT_SELLER_CLT.getContractType().name(), sellerDTO.contractType() );
+        assertEquals( PERSISTENT_SELLER_CLT.getDocumentNumber(), sellerDTO.documentNumber() );
+        assertEquals( PERSISTENT_SELLER_CLT.getBranchOfficeDocumentNumber(), sellerDTO.branchOfficeDocumentNumber() );
     }
 
     @Test
@@ -144,7 +137,7 @@ class SellerConverterImplTest
         final PageRequest pageRequest = PageRequest.of( 0, 4 );
         final int totalElements = 5;
         final Page<PersistentSeller> sellers = new PageImpl<>(
-            List.of( PERSISTENT_SELLER, PERSISTENT_SELLER ), pageRequest, totalElements );
+            List.of( PERSISTENT_SELLER_CLT, PERSISTENT_SELLER_CLT ), pageRequest, totalElements );
 
         final SellerPageableDTO sellerPageableDTO = subject.toPageableDTO( sellers );
 
@@ -169,12 +162,10 @@ class SellerConverterImplTest
             VALID_EMAIL,
             ContractType.CLT,
             "14555896574563" );
-        final ContractType contractType = ContractType.OUTSOURCING;
-        final SellerRequestDTO sellerRequestDTO = new SellerRequestDTO( "Will Garbo",
+        final SellerUpdateRequestDTO sellerRequestDTO = new SellerUpdateRequestDTO( "Will Garbo",
             "email@email.org",
             "1999-04-18",
             VALID_CPF,
-            contractType.name(),
             VALID_CNPJ );
 
         final PersistentSeller updated = subject.toModelUpdate( seller, sellerRequestDTO );
@@ -187,7 +178,6 @@ class SellerConverterImplTest
         assertEquals( sellerRequestDTO.email(), updated.getEmail() );
         assertEquals( sellerRequestDTO.documentNumber().replaceAll( "[.-]", "" ),
             updated.getDocumentNumber() );
-        assertEquals( sellerRequestDTO.contractType(), updated.getContractType().name() );
         assertEquals( sellerRequestDTO.branchOfficeDocumentNumber().replaceAll( "[./-]",
             "" ), updated.getBranchOfficeDocumentNumber() );
     }

@@ -130,12 +130,6 @@ public class PersistentSeller
         return contractType;
     }
 
-    public void setContractType(
-        final ContractType contractType )
-    {
-        this.contractType = contractType;
-    }
-
     public String getBranchOfficeDocumentNumber()
     {
         return branchOfficeDocumentNumber;

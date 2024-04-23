@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import br.com.casasbahia.client.BranchOfficeClient;
 import br.com.casasbahia.dto.BranchOfficeDTO;
 import br.com.casasbahia.dto.SellerRequestDTO;
+import br.com.casasbahia.dto.SellerUpdateRequestDTO;
 import br.com.casasbahia.exception.validation.SellerBranchOfficeNotActiveValidationException;
 import br.com.casasbahia.exception.validation.SellerDateValidationException;
 import br.com.casasbahia.exception.validation.SellerInvalidContractTypeValidationException;
@@ -16,6 +17,7 @@ import br.com.casasbahia.exception.validation.SellerInvalidDateFormatValidationE
 import br.com.casasbahia.exception.validation.SellerInvalidDocumentValidationException;
 import br.com.casasbahia.model.ContractType;
 import br.com.casasbahia.model.Document;
+import br.com.casasbahia.model.PersistentSeller;
 import br.com.casasbahia.util.UnmaskUtil;
 
 public final class SellerValidator
@@ -40,14 +42,14 @@ public final class SellerValidator
         }
         final ContractType contractType = ContractType.valueOf( possibleContractType.toUpperCase() );
         final Document document = contractType.getRequiredDocument();
-        validateDocument( document, sellerRequestDTO );
+        validateDocument( document, sellerRequestDTO.documentNumber() );
     }
 
     private static void validateDocument(
         final Document document,
-        final SellerRequestDTO sellerRequestDTO )
+        final String documentNumber )
     {
-        final boolean isValidDocument = document.isValidDocument( sellerRequestDTO.documentNumber() );
+        final boolean isValidDocument = document.isValidDocument( documentNumber );
         if( ! isValidDocument ) {
             throw new SellerInvalidDocumentValidationException();
         }
@@ -87,6 +89,21 @@ public final class SellerValidator
             UnmaskUtil.unmaskDocumentNumber( branchOfficeDocumentNumber ) );
         if( ! branchOffice.active() ) {
             throw new SellerBranchOfficeNotActiveValidationException( branchOfficeDocumentNumber );
+        }
+    }
+
+    public static void validate(
+        final PersistentSeller persistentSeller,
+        final BranchOfficeClient branchOfficeClient,
+        final SellerUpdateRequestDTO sellerRequestDTO )
+    {
+        final ContractType contractType = persistentSeller.getContractType();
+        final Document document = contractType.getRequiredDocument();
+        validateDocument( document, sellerRequestDTO.documentNumber() );
+        validateDate( sellerRequestDTO.birthDay() );
+        final String persistentBranchOffice = persistentSeller.getBranchOfficeDocumentNumber();
+        if( ! persistentBranchOffice.equals( UnmaskUtil.unmaskDocumentNumber( sellerRequestDTO.branchOfficeDocumentNumber() ) ) ) {
+            validateBranchOffice( branchOfficeClient, sellerRequestDTO.branchOfficeDocumentNumber() );
         }
     }
 }

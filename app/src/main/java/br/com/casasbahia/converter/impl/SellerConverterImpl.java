@@ -12,6 +12,7 @@ import br.com.casasbahia.dto.SellerFilterDTO;
 import br.com.casasbahia.dto.SellerPageableDTO;
 import br.com.casasbahia.dto.SellerRequestDTO;
 import br.com.casasbahia.dto.SellerResponseDTO;
+import br.com.casasbahia.dto.SellerUpdateRequestDTO;
 import br.com.casasbahia.exception.application.SellerGenericApplicationException;
 import br.com.casasbahia.model.ContractType;
 import br.com.casasbahia.model.PersistentSeller;
@@ -47,14 +48,12 @@ public class SellerConverterImpl
     @Override
     public PersistentSeller toModelUpdate(
         final PersistentSeller persistentSeller,
-        final SellerRequestDTO sellerRequestDTO )
+        final SellerUpdateRequestDTO sellerRequestDTO )
     {
         persistentSeller.setName( sellerRequestDTO.name() );
         persistentSeller.setEmail( sellerRequestDTO.email() );
         persistentSeller.setBirthDay( sellerRequestDTO.birthDay() );
         persistentSeller.setDocumentNumber( sellerRequestDTO.documentNumber() );
-        final ContractType contractType = ContractType.valueOf( sellerRequestDTO.contractType() );
-        persistentSeller.setContractType( contractType );
         persistentSeller.setBranchOfficeDocumentNumber( sellerRequestDTO.branchOfficeDocumentNumber() );
         return persistentSeller;
     }

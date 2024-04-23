@@ -2,13 +2,20 @@ package br.com.casasbahia.service.validator;
 
 import static br.com.casasbahia.CommonTestData.BRANCH_OFFICE_DTO;
 import static br.com.casasbahia.CommonTestData.INACTIVE_BRANCH_OFFICE_DTO;
+import static br.com.casasbahia.CommonTestData.PERSISTENT_SELLER_CLT;
 import static br.com.casasbahia.CommonTestData.VALID_BIRTHDATE;
 import static br.com.casasbahia.CommonTestData.VALID_CNPJ;
+import static br.com.casasbahia.CommonTestData.VALID_CNPJ_2;
 import static br.com.casasbahia.CommonTestData.VALID_CPF;
+import static br.com.casasbahia.CommonTestData.VALID_CPF_2;
 import static br.com.casasbahia.CommonTestData.VALID_EMAIL;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
@@ -22,10 +29,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import br.com.casasbahia.client.BranchOfficeClient;
 import br.com.casasbahia.dto.SellerRequestDTO;
+import br.com.casasbahia.dto.SellerUpdateRequestDTO;
 import br.com.casasbahia.exception.validation.SellerBranchOfficeNotActiveValidationException;
 import br.com.casasbahia.exception.validation.SellerDateValidationException;
 import br.com.casasbahia.exception.validation.SellerInvalidContractTypeValidationException;
@@ -48,11 +54,6 @@ class SellerValidatorTest
             VALID_CPF,
             "NOT_FOUND",
             VALID_CNPJ );
-        try {
-            System.out.println( new ObjectMapper().writeValueAsString( sellerRequestDTO ) );
-        } catch( final JsonProcessingException e ) {
-            throw new RuntimeException( e );
-        }
         assertThrows( SellerInvalidContractTypeValidationException.class,
             () -> SellerValidator.validate( branchOfficeClient, sellerRequestDTO ) );
     }
@@ -178,5 +179,58 @@ class SellerValidatorTest
     private static Stream<String> dateGreaterThanNowOeEquals()
     {
         return Stream.of( "9999-12-10", LocalDate.now().format( DateTimeFormatter.ISO_DATE ) );
+    }
+
+    @Test
+    @DisplayName( "Deve lançar exceção quando documento é modificado para tipo não aceito." )
+    void shouldThrownExceptionWhenContractTypeIsCltOrOutsourcingAndDocumentChangedToCnpjOnUpdate()
+    {
+        final SellerUpdateRequestDTO sellerRequestDTO = new SellerUpdateRequestDTO( "Will", VALID_EMAIL,
+            VALID_BIRTHDATE,
+            VALID_CNPJ,
+            VALID_CNPJ );
+
+        assertThrows( SellerInvalidDocumentValidationException.class,
+            () -> SellerValidator.validate( PERSISTENT_SELLER_CLT, branchOfficeClient, sellerRequestDTO ) );
+    }
+
+    @Test
+    @DisplayName( "Não deve lançar exceção quando documento é modificado para o mesmo tipo." )
+    void shouldNotThrownExceptionWhenDocumentNumberIsChangedToSameType()
+    {
+        final SellerUpdateRequestDTO sellerRequestDTO = new SellerUpdateRequestDTO( "Will", VALID_EMAIL,
+            VALID_BIRTHDATE,
+            VALID_CPF_2,
+            VALID_CNPJ );
+
+        assertDoesNotThrow( () -> SellerValidator.validate( PERSISTENT_SELLER_CLT, branchOfficeClient, sellerRequestDTO ) );
+    }
+
+    @Test
+    @DisplayName( "Não deve chamar quando serviço de filial quando não modificada." )
+    void shouldNotCallBranchOfficeServiceWhenBranchOfficeNotChanged()
+    {
+        final SellerUpdateRequestDTO sellerRequestDTO = new SellerUpdateRequestDTO( "Will", VALID_EMAIL,
+            VALID_BIRTHDATE,
+            VALID_CPF,
+            VALID_CNPJ );
+
+        assertDoesNotThrow( () -> SellerValidator.validate( PERSISTENT_SELLER_CLT, branchOfficeClient, sellerRequestDTO ) );
+        verify( branchOfficeClient, never() ).findByDocumentNumber( any() );
+    }
+
+    @Test
+    @DisplayName( "Deve chamar quando serviço de filial quando modificado." )
+    void shouldCallBranchOfficeServiceWhenBranchOfficeChanged()
+    {
+        mockBranchOffice();
+        final SellerUpdateRequestDTO sellerRequestDTO = new SellerUpdateRequestDTO( "Will",
+            VALID_EMAIL,
+            VALID_BIRTHDATE,
+            VALID_CPF,
+            VALID_CNPJ_2 );
+
+        assertDoesNotThrow( () -> SellerValidator.validate( PERSISTENT_SELLER_CLT, branchOfficeClient, sellerRequestDTO ) );
+        verify( branchOfficeClient, times( 1 ) ).findByDocumentNumber( any() );
     }
 }

@@ -5,6 +5,7 @@ import br.com.casasbahia.dto.SellerDTO;
 import br.com.casasbahia.dto.SellerPageableDTO;
 import br.com.casasbahia.dto.SellerRequestDTO;
 import br.com.casasbahia.dto.SellerResponseDTO;
+import br.com.casasbahia.dto.SellerUpdateRequestDTO;
 
 public interface SellerService
 {
@@ -13,7 +14,7 @@ public interface SellerService
 
     void update(
         String enrollment,
-        SellerRequestDTO sellerRequestDTO );
+        SellerUpdateRequestDTO sellerRequestDTO );
 
     SellerPageableDTO findAll(
         String filter,

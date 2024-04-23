@@ -19,6 +19,7 @@ import br.com.casasbahia.dto.SellerDTO;
 import br.com.casasbahia.dto.SellerPageableDTO;
 import br.com.casasbahia.dto.SellerRequestDTO;
 import br.com.casasbahia.dto.SellerResponseDTO;
+import br.com.casasbahia.dto.SellerUpdateRequestDTO;
 import br.com.casasbahia.service.SellerService;
 import io.micrometer.observation.annotation.Observed;
 import jakarta.validation.Valid;
@@ -65,7 +66,7 @@ public class SellerController
     @PutMapping( "/{enrollment}" )
     public ResponseEntity<SellerResponseDTO> update(
         @PathVariable( "enrollment" ) final String enrollment,
-        @Valid @RequestBody final SellerRequestDTO sellerRequestDTO )
+        @Valid @RequestBody final SellerUpdateRequestDTO sellerRequestDTO )
     {
         service.update( enrollment, sellerRequestDTO );
         return ResponseEntity.noContent().build();

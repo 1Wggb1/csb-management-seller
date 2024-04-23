@@ -8,6 +8,7 @@ import br.com.casasbahia.dto.SellerFilterDTO;
 import br.com.casasbahia.dto.SellerPageableDTO;
 import br.com.casasbahia.dto.SellerRequestDTO;
 import br.com.casasbahia.dto.SellerResponseDTO;
+import br.com.casasbahia.dto.SellerUpdateRequestDTO;
 import br.com.casasbahia.model.PersistentSeller;
 
 public interface SellerConverter
@@ -17,7 +18,7 @@ public interface SellerConverter
 
     PersistentSeller toModelUpdate(
         PersistentSeller persistentSeller,
-        SellerRequestDTO sellerRequestDTO );
+        SellerUpdateRequestDTO sellerRequestDTO );
 
     SellerResponseDTO toDTO(
         PersistentSeller persistentSeller );

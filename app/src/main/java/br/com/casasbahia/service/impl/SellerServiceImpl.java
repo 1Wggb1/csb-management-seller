@@ -13,6 +13,7 @@ import br.com.casasbahia.dto.SellerDTO;
 import br.com.casasbahia.dto.SellerPageableDTO;
 import br.com.casasbahia.dto.SellerRequestDTO;
 import br.com.casasbahia.dto.SellerResponseDTO;
+import br.com.casasbahia.dto.SellerUpdateRequestDTO;
 import br.com.casasbahia.exception.application.SellerNotFoundException;
 import br.com.casasbahia.model.PersistentSeller;
 import br.com.casasbahia.repository.SellerRepository;
@@ -55,11 +56,11 @@ public class SellerServiceImpl
     @Transactional
     public void update(
         final String enrollment,
-        final SellerRequestDTO sellerRequestDTO )
+        final SellerUpdateRequestDTO sellerRequestDTO )
     {
         LOGGER.info( "Validating seller update payload..." );
         final PersistentSeller persistentSeller = findOrThrowNotFoundException( enrollment );
-        SellerValidator.validate( branchOfficeClient, sellerRequestDTO );
+        SellerValidator.validate( persistentSeller, branchOfficeClient, sellerRequestDTO );
         LOGGER.info( "Updating seller..." );
         final PersistentSeller updatedSeller = repository.save( converter.toModelUpdate( persistentSeller, sellerRequestDTO ) );
         LOGGER.info( String.format( "Seller with id = %d and enrollment = %s updated successfully!",

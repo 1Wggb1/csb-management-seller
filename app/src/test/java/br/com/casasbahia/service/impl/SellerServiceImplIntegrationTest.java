@@ -3,8 +3,10 @@ package br.com.casasbahia.service.impl;
 import static br.com.casasbahia.CommonTestData.BRANCH_OFFICE_DTO;
 import static br.com.casasbahia.CommonTestData.VALID_BIRTHDATE;
 import static br.com.casasbahia.CommonTestData.VALID_CNPJ;
+import static br.com.casasbahia.CommonTestData.VALID_CNPJ_2;
 import static br.com.casasbahia.CommonTestData.VALID_CNPJ_UNMASKED;
 import static br.com.casasbahia.CommonTestData.VALID_CPF;
+import static br.com.casasbahia.CommonTestData.VALID_CPF_2;
 import static br.com.casasbahia.CommonTestData.VALID_EMAIL;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -42,6 +44,7 @@ import br.com.casasbahia.dto.PageableDTO;
 import br.com.casasbahia.dto.SellerFilterDTO;
 import br.com.casasbahia.dto.SellerRequestDTO;
 import br.com.casasbahia.dto.SellerResponseDTO;
+import br.com.casasbahia.dto.SellerUpdateRequestDTO;
 import br.com.casasbahia.model.ContractType;
 import br.com.casasbahia.model.PersistentSeller;
 import br.com.casasbahia.repository.SellerRepository;
@@ -411,11 +414,10 @@ class SellerServiceImplIntegrationTest
             enrollment,
             ContractType.OUTSOURCING,
             VALID_CNPJ );
-        final SellerRequestDTO sellerRequestDTO = new SellerRequestDTO( "Will Garbo",
+        final SellerUpdateRequestDTO sellerRequestDTO = new SellerUpdateRequestDTO( "Will Garbo",
             "ru@ru.gov",
             "2000-08-12",
-            VALID_CNPJ_UNMASKED,
-            ContractType.PJ.name(),
+            VALID_CPF_2,
             VALID_CNPJ );
 
         final MockHttpServletRequestBuilder request = MockMvcRequestBuilders.put( "/v1/sellers/{enrollment}", enrollment )
@@ -436,7 +438,6 @@ class SellerServiceImplIntegrationTest
             createdSeller.getBranchOfficeDocumentNumber() );
         assertEquals( sellerRequestDTO.birthDay().replaceAll( "-", "" ),
             createdSeller.getBirthDay() );
-        assertEquals( sellerRequestDTO.contractType(), createdSeller.getContractType().name() );
     }
 
     @Test
@@ -444,11 +445,10 @@ class SellerServiceImplIntegrationTest
     void shouldReturn400ErrorMessageWhenInvalidPayloadOnUpdate()
         throws Exception
     {
-        final SellerRequestDTO sellerRequestDTO = new SellerRequestDTO( "", null,
+        final SellerUpdateRequestDTO sellerRequestDTO = new SellerUpdateRequestDTO( "", null,
             null,
             "",
-            "",
-            null );
+            "" );
 
         final MockHttpServletRequestBuilder request = MockMvcRequestBuilders.put( "/v1/sellers/{enrollment}", "10000001-OUT" )
             .contentType( MediaType.APPLICATION_JSON )
@@ -457,6 +457,32 @@ class SellerServiceImplIntegrationTest
 
         result
             .andExpect( MockMvcResultMatchers.status().isBadRequest() )
-            .andExpect( MockMvcResultMatchers.jsonPath( "$.errorMessages.length()", IsEqual.equalTo( 5 ) ) );
+            .andExpect( MockMvcResultMatchers.jsonPath( "$.errorMessages.length()", IsEqual.equalTo( 4 ) ) );
+    }
+
+    @Test
+    @DisplayName( "Deve retornar 400 e mensagem de erro quando documento modificado na atualização para cpf -> cnpj." )
+    void shouldReturn400ErrorMessageWhenDocumentChangedOfCpfToCnpjOnUpdate()
+        throws Exception
+    {
+        final String enrollment = "10000001-OUT";
+        createSeller( "Will",
+            enrollment,
+            ContractType.OUTSOURCING,
+            VALID_CNPJ );
+        final SellerUpdateRequestDTO sellerRequestDTO = new SellerUpdateRequestDTO( "Will Garbo",
+            "ru@ru.gov",
+            "2000-08-12",
+            VALID_CNPJ_2,
+            VALID_CNPJ );
+
+        final MockHttpServletRequestBuilder request = MockMvcRequestBuilders.put( "/v1/sellers/{enrollment}", "10000001-OUT" )
+            .contentType( MediaType.APPLICATION_JSON )
+            .content( writeAsJson( sellerRequestDTO ) );
+        final ResultActions result = mvc.perform( request );
+
+        result
+            .andExpect( MockMvcResultMatchers.status().isBadRequest() )
+            .andExpect( MockMvcResultMatchers.jsonPath( "$.errorMessages.length()", IsEqual.equalTo( 1 ) ) );
     }
 }
