@@ -5,10 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4bde5a1e-6221-4759-91dc-0e43645edea1" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/converter/SellerConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/converter/SellerConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/converter/impl/SellerConverterImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/converter/impl/SellerConverterImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/dto/SellerDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/dto/SellerDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/model/PersistentSeller.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/model/PersistentSeller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/repository/specification/SellerSpecification.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/repository/specification/SellerSpecification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/service/impl/SellerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/service/impl/SellerServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/service/validator/SellerValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/casasbahia/service/validator/SellerValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/db/tables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/db/tables.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/br/com/casasbahia/CommonTestData.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/br/com/casasbahia/CommonTestData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/br/com/casasbahia/client/BranchOfficeClientTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/br/com/casasbahia/client/BranchOfficeClientTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/br/com/casasbahia/converter/impl/SellerConverterImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/br/com/casasbahia/converter/impl/SellerConverterImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/br/com/casasbahia/model/ContractTypeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/br/com/casasbahia/model/ContractTypeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/br/com/casasbahia/service/impl/SellerServiceImplIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/br/com/casasbahia/service/impl/SellerServiceImplIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/br/com/casasbahia/service/validator/SellerValidatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/br/com/casasbahia/service/validator/SellerValidatorTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mock-branchoffice-api/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/mock-branchoffice-api/build.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -44,12 +58,6 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="csb-management-seller" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="csb-management-seller" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="build" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -87,10 +95,12 @@
     "Application.ApplicationMainManagementSeller.executor": "Debug",
     "Application.ApplicationMainMockBranchOffice.executor": "Debug",
     "Application.EnrollmentGenerator.executor": "Debug",
+    "Application.EnrollmentService.executor": "Debug",
     "Application.SellerController.executor": "Debug",
     "Application.SellerValidator.executor": "Debug",
     "Gradle.Build csb-management-seller.executor": "Run",
     "Gradle.Download Sources.executor": "Run",
+    "Gradle.csb-management-seller [:app:run].executor": "Run",
     "Gradle.csb-management-seller [:mock-branchoffice-api:run].executor": "Run",
     "Gradle.csb-management-seller [build].executor": "Run",
     "Gradle.csb-management-seller [clean build].executor": "Run",
@@ -105,6 +115,10 @@
     "Gradle.csb-management-seller:app [test].executor": "Run",
     "Gradle.csb-management-seller:mock-branchoffice-api [build].executor": "Run",
     "Gradle.csb-management-seller:mock-branchoffice-api [clean].executor": "Run",
+    "JUnit.BranchOfficeCacheServiceTest.executor": "Debug",
+    "JUnit.BranchOfficeCacheServiceTest.shouldReturnCachedBranchOfficeWhenFoundOnRepository.executor": "Debug",
+    "JUnit.BranchOfficeCacheServiceTest.shouldReturnCallClientWhenBranchOfficeNotFoundOnRepository.executor": "Debug",
+    "JUnit.BranchOfficeCacheServiceTest.shouldThrownExceptionWhenBranchOfficeNotFoundRepositoryAndNotActive.executor": "Debug",
     "JUnit.BranchOfficeClientTest.executor": "Debug",
     "JUnit.BranchOfficeClientTest.shouldRetry1TimeWhenAndReturnBranchOffice.executor": "Debug",
     "JUnit.BranchOfficeClientTest.shouldRetry1TimeWhenNotFoundBranchOffice.executor": "Debug",
@@ -117,8 +131,9 @@
     "JUnit.DocumentTest.shouldReturnFalseWhenDocumentValidButInvalidMask.executor": "Debug",
     "JUnit.DocumentTest.shouldReturnTrueWhenDocumentIsValid.executor": "Debug",
     "JUnit.DocumentTest.shouldReturnTrueWhenDocumentValidAndUnMasked.executor": "Debug",
+    "JUnit.EnrollmentServiceImplTest.executor": "Debug",
     "JUnit.MockBranchOfficeControllerTest.executor": "Debug",
-    "JUnit.SellerConverterImplTest.executor": "Coverage",
+    "JUnit.SellerConverterImplTest.executor": "Debug",
     "JUnit.SellerConverterImplTest.shouldConvertToSellerDTO.executor": "Debug",
     "JUnit.SellerConverterImplTest.shouldConvertToSellerOnUpdate.executor": "Debug",
     "JUnit.SellerConverterImplTest.shouldConvertToSellerPageableDTO.executor": "Debug",
@@ -132,6 +147,12 @@
     "JUnit.SellerRepositoryTest.shouldReturnSequentialEnrollmentValue2.executor": "Debug",
     "JUnit.SellerRepositoryTest.shouldThrownExceptionWhenSequenceOutRange (1).executor": "Debug",
     "JUnit.SellerRepositoryTest.shouldThrownExceptionWhenSequenceOutRange.executor": "Debug",
+    "JUnit.SellerServiceImplIntegrationTest.executor": "Debug",
+    "JUnit.SellerServiceImplIntegrationTest.shouldReturn201WhenCreateSellerSuccessfully.executor": "Debug",
+    "JUnit.SellerServiceImplIntegrationTest.shouldReturn204WhenSellerUpdatedSuccessfully.executor": "Debug",
+    "JUnit.SellerServiceImplIntegrationTest.shouldReturn400ErrorMessageWhenDocumentChangedOfCpfToCnpjOnUpdate.executor": "Debug",
+    "JUnit.SellerServiceImplIntegrationTest.shouldReturnSellerWhenFoundByEnrollment.executor": "Debug",
+    "JUnit.SellerServiceImplIntegrationTest.shouldReturnSellersByPageableAndNameAndBranchDocumentNumberFilter.executor": "Debug",
     "JUnit.SellerServiceImplTest.executor": "Debug",
     "JUnit.SellerServiceImplTest.shouldCreateSeller.executor": "Debug",
     "JUnit.SellerServiceImplTest.shouldReturn204WhenSellerDeletedSuccessfully.executor": "Debug",
@@ -155,9 +176,14 @@
     "JUnit.SellerValidatorServiceTest.shouldThrownExceptionWhenContractTypeIsOutOrCltAndDocumentIsCnpj.executor": "Debug",
     "JUnit.SellerValidatorServiceTest.shouldThrownExceptionWhenContractTypeIsPjAndDocumentIsCpf.executor": "Debug",
     "JUnit.SellerValidatorTest.executor": "Debug",
+    "JUnit.SellerValidatorTest.shouldCallBranchOfficeServiceWhenBranchOfficeChanged.executor": "Debug",
+    "JUnit.SellerValidatorTest.shouldCallBranchOfficeServiceWhenBranchOfficeNotChanged.executor": "Debug",
+    "JUnit.SellerValidatorTest.shouldNotCallBranchOfficeServiceWhenBranchOfficeNotChanged.executor": "Debug",
+    "JUnit.SellerValidatorTest.shouldNotThrownExceptionWhenDocumentNumberIsChangedToSameType.executor": "Debug",
     "JUnit.SellerValidatorTest.shouldThrownExceptionWhenBirthdayDateInvalid.executor": "Debug",
     "JUnit.SellerValidatorTest.shouldThrownExceptionWhenBranchOfficeInactive.executor": "Debug",
-    "JUnit.br.com.casasbahia in csb-management-seller.app.test.executor": "Debug",
+    "JUnit.SellerValidatorTest.shouldThrownExceptionWhenContractTypeIsCltOrOutsourcingAndDocumentChangedToCnpjOnUpdate.executor": "Coverage",
+    "JUnit.br.com.casasbahia in csb-management-seller.app.test.executor": "Coverage",
     "JUnit.br.com.casasbahia.service in csb-management-seller.app.test.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "jdk.selected.JAVA_MODULE": "17",
@@ -180,19 +206,19 @@
       <recent name="br.csb.mock.branchoffice.dto" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ApplicationMainMockBranchOffice">
-    <configuration name="csb-management-seller [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.csb-management-seller [:mock-branchoffice-api:run]">
+    <configuration name="csb-management-seller [:app:run]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
+        <option name="scriptParameters" value="" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
           <list>
-            <option value="build" />
+            <option value=":app:run" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -203,18 +229,18 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="csb-management-seller [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="csb-management-seller [:mock-branchoffice-api:run]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
+        <option name="scriptParameters" value="" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
           <list>
-            <option value="clean" />
+            <option value=":mock-branchoffice-api:run" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -225,32 +251,32 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="BranchOfficeClientTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SellerServiceImplIntegrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="csb-management-seller.app.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="br.com.casasbahia.client.*" />
+          <option name="PATTERN" value="br.com.casasbahia.service.impl.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="br.com.casasbahia.client" />
-      <option name="MAIN_CLASS_NAME" value="br.com.casasbahia.client.BranchOfficeClientTest" />
+      <option name="PACKAGE_NAME" value="br.com.casasbahia.service.impl" />
+      <option name="MAIN_CLASS_NAME" value="br.com.casasbahia.service.impl.SellerServiceImplIntegrationTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BranchOfficeClientTest.shouldRetry3TimesWhenRequestFail" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SellerServiceImplIntegrationTest.shouldReturnSellersByPageableAndNameAndBranchDocumentNumberFilter" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="csb-management-seller.app.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="br.com.casasbahia.client.*" />
+          <option name="PATTERN" value="br.com.casasbahia.service.impl.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="br.com.casasbahia.client" />
-      <option name="MAIN_CLASS_NAME" value="br.com.casasbahia.client.BranchOfficeClientTest" />
-      <option name="METHOD_NAME" value="shouldRetry3TimesWhenRequestFail" />
+      <option name="PACKAGE_NAME" value="br.com.casasbahia.service.impl" />
+      <option name="MAIN_CLASS_NAME" value="br.com.casasbahia.service.impl.SellerServiceImplIntegrationTest" />
+      <option name="METHOD_NAME" value="shouldReturnSellersByPageableAndNameAndBranchDocumentNumberFilter" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -273,19 +299,19 @@
     <list>
       <item itemvalue="Application.ApplicationMainManagementSeller" />
       <item itemvalue="Application.ApplicationMainMockBranchOffice" />
-      <item itemvalue="Gradle.csb-management-seller [build]" />
-      <item itemvalue="Gradle.csb-management-seller [clean]" />
-      <item itemvalue="JUnit.BranchOfficeClientTest" />
-      <item itemvalue="JUnit.BranchOfficeClientTest.shouldRetry3TimesWhenRequestFail" />
+      <item itemvalue="Gradle.csb-management-seller [:app:run]" />
+      <item itemvalue="Gradle.csb-management-seller [:mock-branchoffice-api:run]" />
+      <item itemvalue="JUnit.SellerServiceImplIntegrationTest.shouldReturnSellersByPageableAndNameAndBranchDocumentNumberFilter" />
+      <item itemvalue="JUnit.SellerServiceImplIntegrationTest" />
       <item itemvalue="JUnit.br.com.casasbahia in csb-management-seller.app.test" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.csb-management-seller [build]" />
-        <item itemvalue="Gradle.csb-management-seller [clean]" />
+        <item itemvalue="Gradle.csb-management-seller [:app:run]" />
+        <item itemvalue="Gradle.csb-management-seller [:mock-branchoffice-api:run]" />
         <item itemvalue="JUnit.br.com.casasbahia in csb-management-seller.app.test" />
-        <item itemvalue="JUnit.BranchOfficeClientTest" />
-        <item itemvalue="JUnit.BranchOfficeClientTest.shouldRetry3TimesWhenRequestFail" />
+        <item itemvalue="JUnit.SellerServiceImplIntegrationTest" />
+        <item itemvalue="JUnit.SellerServiceImplIntegrationTest.shouldReturnSellersByPageableAndNameAndBranchDocumentNumberFilter" />
       </list>
     </recent_temporary>
   </component>
@@ -304,6 +330,9 @@
     <SUITE FILE_PATH="coverage/csb_management_seller$SellerValidatorServiceTest.ic" NAME="SellerValidatorServiceTest Coverage Results" MODIFIED="1713570363943" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>br.com.casasbahia.service.validator.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/csb_management_seller$BranchOfficeCacheServiceTest.ic" NAME="BranchOfficeCacheServiceTest Coverage Results" MODIFIED="1713918145137" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>br.com.casasbahia.service.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/csb_management_seller$ContractTypeTest.ic" NAME="ContractTypeTest Coverage Results" MODIFIED="1713627158767" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>br.com.casasbahia.model.*</FILTER>
     </SUITE>
@@ -313,8 +342,11 @@
     <SUITE FILE_PATH="coverage/csb_management_seller$SellerServiceImplTest.ic" NAME="SellerServiceImplTest Coverage Results" MODIFIED="1713732073364" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>br.com.casasbahia.service.impl.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/csb_management_seller$br_com_casasbahia_in_csb_management_seller_app_test.ic" NAME="br.com.casasbahia in csb-management-seller.app.test Coverage Results" MODIFIED="1713824166384" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+    <SUITE FILE_PATH="coverage/csb_management_seller$br_com_casasbahia_in_csb_management_seller_app_test.ic" NAME="br.com.casasbahia in csb-management-seller.app.test Coverage Results" MODIFIED="1713924563321" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>br.com.casasbahia.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/csb_management_seller$SellerValidatorTest_shouldThrownExceptionWhenContractTypeIsCltOrOutsourcingAndDocumentChangedToCnpjOnUpdate.ic" NAME="SellerValidatorTest.shouldThrownExceptionWhenContractTypeIsCltOrOutsourcingAndDocumentChangedToCnpjOnUpdate Coverage Results" MODIFIED="1713901943444" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>br.com.casasbahia.service.validator.*</FILTER>
     </SUITE>
   </component>
 </project>

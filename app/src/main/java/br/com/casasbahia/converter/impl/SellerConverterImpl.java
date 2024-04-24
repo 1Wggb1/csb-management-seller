@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import br.com.casasbahia.converter.SellerConverter;
+import br.com.casasbahia.dto.BranchOfficeDTO;
 import br.com.casasbahia.dto.PageableDTO;
 import br.com.casasbahia.dto.SellerDTO;
 import br.com.casasbahia.dto.SellerFilterDTO;
@@ -15,6 +16,7 @@ import br.com.casasbahia.dto.SellerResponseDTO;
 import br.com.casasbahia.dto.SellerUpdateRequestDTO;
 import br.com.casasbahia.exception.application.SellerGenericApplicationException;
 import br.com.casasbahia.model.ContractType;
+import br.com.casasbahia.model.PersistentBranchOffice;
 import br.com.casasbahia.model.PersistentSeller;
 import br.com.casasbahia.repository.SellerRepository;
 import io.micrometer.observation.annotation.Observed;
@@ -32,6 +34,7 @@ public class SellerConverterImpl
 
     @Override
     public PersistentSeller toModelCreation(
+        final PersistentBranchOffice branchOfficeCache,
         final SellerRequestDTO sellerRequestDTO )
     {
         final ContractType contractType = ContractType.valueOf( sellerRequestDTO.contractType() );
@@ -42,11 +45,12 @@ public class SellerConverterImpl
             sellerRequestDTO.documentNumber(),
             sellerRequestDTO.email(),
             contractType,
-            sellerRequestDTO.branchOfficeDocumentNumber() );
+            branchOfficeCache );
     }
 
     @Override
     public PersistentSeller toModelUpdate(
+        final PersistentBranchOffice branchOfficeCache,
         final PersistentSeller persistentSeller,
         final SellerUpdateRequestDTO sellerRequestDTO )
     {
@@ -54,7 +58,7 @@ public class SellerConverterImpl
         persistentSeller.setEmail( sellerRequestDTO.email() );
         persistentSeller.setBirthDay( sellerRequestDTO.birthDay() );
         persistentSeller.setDocumentNumber( sellerRequestDTO.documentNumber() );
-        persistentSeller.setBranchOfficeDocumentNumber( sellerRequestDTO.branchOfficeDocumentNumber() );
+        persistentSeller.setBranchOffice( branchOfficeCache );
         return persistentSeller;
     }
 
@@ -88,7 +92,19 @@ public class SellerConverterImpl
             persistentSeller.getDocumentNumber(),
             persistentSeller.getEmail(),
             persistentSeller.getContractType().name(),
-            persistentSeller.getBranchOfficeDocumentNumber() );
+            toBranchOfficeDTO( persistentSeller ) );
+    }
+
+    private static BranchOfficeDTO toBranchOfficeDTO(
+        final PersistentSeller persistentSeller )
+    {
+        final PersistentBranchOffice branchOffice = persistentSeller.getBranchOffice();
+        return new BranchOfficeDTO(
+            branchOffice.getId(),
+            branchOffice.getName(), branchOffice.getDocumentNumber(),
+            branchOffice.getCity(), branchOffice.getState(),
+            branchOffice.getType(), branchOffice.isActive(),
+            null, null );
     }
 
     @Override

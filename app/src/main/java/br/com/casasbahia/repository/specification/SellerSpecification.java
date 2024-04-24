@@ -8,8 +8,8 @@ import br.com.casasbahia.dto.SellerFilterDTO;
 import br.com.casasbahia.model.PersistentSeller;
 import br.com.casasbahia.util.UnmaskUtil;
 import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.Path;
 import jakarta.persistence.criteria.Predicate;
-import jakarta.persistence.criteria.Root;
 
 public final class SellerSpecification
 {
@@ -32,15 +32,15 @@ public final class SellerSpecification
             final List<Predicate> predicates = new ArrayList<>();
             final String name = filterDTO.name();
             if( ! isNullOrEmpty( name ) ) {
-                predicates.add( likeIgnoreCasePredicate( root, builder, "name", name ) );
+                predicates.add( likeIgnoreCasePredicate( root.get( "name" ), builder, name ) );
             }
             final String contractType = filterDTO.contractType();
             if( ! isNullOrEmpty( contractType ) ) {
-                predicates.add( likeIgnoreCasePredicate( root, builder, "contractType", contractType ) );
+                predicates.add( likeIgnoreCasePredicate( root.get( "contractType" ), builder, contractType ) );
             }
             final String branchOfficeDocumentNumber = filterDTO.branchOfficeDocumentNumber();
             if( ! isNullOrEmpty( branchOfficeDocumentNumber ) ) {
-                predicates.add( likeIgnoreCasePredicate( root, builder, "branchOfficeDocumentNumber",
+                predicates.add( likeIgnoreCasePredicate( root.get( "branchOffice" ).get( "documentNumber" ), builder,
                     UnmaskUtil.unmaskDocumentNumber( branchOfficeDocumentNumber ) ) );
             }
             return builder.and( predicates.toArray( new Predicate[ 0 ] ) );
@@ -54,11 +54,10 @@ public final class SellerSpecification
     }
 
     private static Predicate likeIgnoreCasePredicate(
-        final Root<PersistentSeller> root,
+        final Path<String> path,
         final CriteriaBuilder builder,
-        final String field,
         final String value )
     {
-        return builder.like( builder.upper( root.get( field ) ), "%" + value.toUpperCase() + "%" );
+        return builder.like( builder.upper( path ), "%" + value.toUpperCase() + "%" );
     }
 }

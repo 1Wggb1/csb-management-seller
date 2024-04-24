@@ -7,6 +7,6 @@ public record SellerDTO(
     String documentNumber,
     String email,
     String contractType,
-    String branchOfficeDocumentNumber )
+    BranchOfficeDTO branchOffice )
 {
 }

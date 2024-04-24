@@ -1,10 +1,9 @@
 package br.com.casasbahia.service.impl;
 
-import static br.com.casasbahia.CommonTestData.BRANCH_OFFICE_DTO;
+import static br.com.casasbahia.CommonTestData.BRANCH_OFFICE_DTO_2;
 import static br.com.casasbahia.CommonTestData.VALID_BIRTHDATE;
 import static br.com.casasbahia.CommonTestData.VALID_CNPJ;
 import static br.com.casasbahia.CommonTestData.VALID_CNPJ_2;
-import static br.com.casasbahia.CommonTestData.VALID_CNPJ_UNMASKED;
 import static br.com.casasbahia.CommonTestData.VALID_CPF;
 import static br.com.casasbahia.CommonTestData.VALID_CPF_2;
 import static br.com.casasbahia.CommonTestData.VALID_EMAIL;
@@ -13,6 +12,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
+
+import java.time.LocalDate;
 
 import org.hamcrest.Matcher;
 import org.hamcrest.core.Is;
@@ -40,13 +41,16 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import br.com.casasbahia.client.BranchOfficeClient;
+import br.com.casasbahia.dto.BranchOfficeDTO;
 import br.com.casasbahia.dto.PageableDTO;
 import br.com.casasbahia.dto.SellerFilterDTO;
 import br.com.casasbahia.dto.SellerRequestDTO;
 import br.com.casasbahia.dto.SellerResponseDTO;
 import br.com.casasbahia.dto.SellerUpdateRequestDTO;
 import br.com.casasbahia.model.ContractType;
+import br.com.casasbahia.model.PersistentBranchOffice;
 import br.com.casasbahia.model.PersistentSeller;
+import br.com.casasbahia.repository.BranchOfficeCacheRepository;
 import br.com.casasbahia.repository.SellerRepository;
 import br.com.casasbahia.util.UnmaskUtil;
 
@@ -69,18 +73,42 @@ class SellerServiceImplIntegrationTest
     private SellerRepository sellerRepository;
     @MockBean
     private BranchOfficeClient branchOfficeClient;
+    @Autowired
+    private BranchOfficeCacheRepository cacheRepository;
 
     @BeforeEach
     void setUp()
     {
+        createBranchOffice( 1L, "Extra.com", VALID_CNPJ );
+        createBranchOffice( 2L, "Ponto", VALID_CNPJ_2 );
+
         when( branchOfficeClient.findByDocumentNumber( anyString() ) )
-            .thenReturn( BRANCH_OFFICE_DTO );
+            .thenReturn( BRANCH_OFFICE_DTO_2 );
+    }
+
+    private void createBranchOffice(
+        final Long id,
+        final String name,
+        final String cnpj )
+    {
+        final BranchOfficeDTO branchOfficeDTO = new BranchOfficeDTO(
+            id,
+            name,
+            cnpj,
+            "São Paulo ",
+            "SP",
+            "N",
+            true,
+            LocalDate.now().minusDays( 100 ).toString(),
+            LocalDate.now().minusDays( 90 ).toString() );
+        cacheRepository.save( PersistentBranchOffice.from( branchOfficeDTO ) );
     }
 
     @AfterEach
     void tearDown()
     {
         sellerRepository.deleteAll();
+        cacheRepository.deleteAll();
     }
 
     @Test
@@ -109,7 +137,7 @@ class SellerServiceImplIntegrationTest
         assertEquals( SELLER_REQUEST_DTO.documentNumber().replaceAll( "[.-]", "" ),
             createdSeller.getDocumentNumber() );
         assertEquals( SELLER_REQUEST_DTO.branchOfficeDocumentNumber().replaceAll( "[./-]", "" ),
-            createdSeller.getBranchOfficeDocumentNumber() );
+            createdSeller.getBranchOffice().getDocumentNumber() );
         assertEquals( SELLER_REQUEST_DTO.birthDay().replaceAll( "-", "" ),
             createdSeller.getBirthDay() );
         assertEquals( SELLER_REQUEST_DTO.contractType(), createdSeller.getContractType().name() );
@@ -192,7 +220,8 @@ class SellerServiceImplIntegrationTest
         throws Exception
     {
         final PersistentSeller saved = createSeller( "Will",
-            "00000099-OUT", ContractType.OUTSOURCING, VALID_CNPJ_UNMASKED );
+            "00000099-OUT", ContractType.OUTSOURCING,
+            VALID_CNPJ );
 
         final MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get( "/v1/sellers/" + saved.getEnrollment() );
         final ResultActions result = mvc.perform( request );
@@ -204,8 +233,8 @@ class SellerServiceImplIntegrationTest
             .andExpect( MockMvcResultMatchers.jsonPath( "$.documentNumber", IsEqual.equalTo( saved.getDocumentNumber() ) ) )
             .andExpect( MockMvcResultMatchers.jsonPath( "$.birthDay", IsEqual.equalTo( saved.getBirthDay() ) ) )
             .andExpect( MockMvcResultMatchers.jsonPath( "$.enrollment", IsEqual.equalTo( saved.getEnrollment() ) ) )
-            .andExpect( MockMvcResultMatchers.jsonPath( "$.branchOfficeDocumentNumber", IsEqual.equalTo( saved
-                .getBranchOfficeDocumentNumber() ) ) )
+            .andExpect( MockMvcResultMatchers.jsonPath( "$.branchOffice.documentNumber", IsEqual.equalTo( saved
+                .getBranchOffice().getDocumentNumber() ) ) )
             .andExpect( MockMvcResultMatchers.jsonPath( "$.contractType", IsEqual.equalTo( saved.getContractType().name() ) ) );
     }
 
@@ -230,11 +259,17 @@ class SellerServiceImplIntegrationTest
     private void create3DefaultsSellers()
     {
         createSeller( "Joan", "00000097-OUT",
-            ContractType.OUTSOURCING, VALID_CNPJ_UNMASKED );
+            ContractType.OUTSOURCING, VALID_CNPJ );
         createSeller( "Mari", "00000898-OUT",
             ContractType.OUTSOURCING, VALID_CNPJ );
         createSeller( "Garbo", "00000191-CLT",
-            ContractType.CLT, VALID_CNPJ );
+            ContractType.CLT, VALID_CNPJ_2 );
+    }
+
+    private PersistentBranchOffice findBranchOffice(
+        final String documentNumber )
+    {
+        return cacheRepository.findByDocumentNumber( UnmaskUtil.unmaskDocumentNumber( documentNumber ) ).get();
     }
 
     private PersistentSeller createSeller(
@@ -250,7 +285,7 @@ class SellerServiceImplIntegrationTest
             VALID_CPF,
             VALID_EMAIL,
             contractType,
-            branchOfficeDocumentNumber );
+            findBranchOffice( VALID_CNPJ ) );
         return sellerRepository.save( seller );
     }
 
@@ -353,7 +388,7 @@ class SellerServiceImplIntegrationTest
 
         final PageableDTO expectedPageable = new PageableDTO( 0, 1, 1, 3, 3 );
         validatePageableResult( result, expectedPageable );
-        validateResultFilter( expectedPageable.numberOfElements(), "branchOfficeDocumentNumber",
+        validateResultFilter( expectedPageable.numberOfElements(), "branchOffice.documentNumber",
             result, IsEqual.equalTo( UnmaskUtil.unmaskDocumentNumber( filterDTO.branchOfficeDocumentNumber() ) ) );
         validateResultFilter( expectedPageable.numberOfElements(), "name", result,
             StringContains.containsStringIgnoringCase( filterDTO.name() ) );
@@ -410,15 +445,12 @@ class SellerServiceImplIntegrationTest
         throws Exception
     {
         final String enrollment = "10000001-OUT";
-        createSeller( "Will",
-            enrollment,
-            ContractType.OUTSOURCING,
-            VALID_CNPJ );
+        createSeller( "Will", enrollment, ContractType.OUTSOURCING, VALID_CNPJ );
         final SellerUpdateRequestDTO sellerRequestDTO = new SellerUpdateRequestDTO( "Will Garbo",
             "ru@ru.gov",
             "2000-08-12",
             VALID_CPF_2,
-            VALID_CNPJ );
+            VALID_CNPJ_2 );
 
         final MockHttpServletRequestBuilder request = MockMvcRequestBuilders.put( "/v1/sellers/{enrollment}", enrollment )
             .contentType( MediaType.APPLICATION_JSON )
@@ -435,7 +467,7 @@ class SellerServiceImplIntegrationTest
         assertEquals( sellerRequestDTO.documentNumber().replaceAll( "[.-]", "" ),
             createdSeller.getDocumentNumber() );
         assertEquals( sellerRequestDTO.branchOfficeDocumentNumber().replaceAll( "[./-]", "" ),
-            createdSeller.getBranchOfficeDocumentNumber() );
+            createdSeller.getBranchOffice().getDocumentNumber() );
         assertEquals( sellerRequestDTO.birthDay().replaceAll( "-", "" ),
             createdSeller.getBirthDay() );
     }

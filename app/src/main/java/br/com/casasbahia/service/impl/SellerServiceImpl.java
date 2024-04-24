@@ -7,7 +7,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import br.com.casasbahia.client.BranchOfficeClient;
 import br.com.casasbahia.converter.SellerConverter;
 import br.com.casasbahia.dto.SellerDTO;
 import br.com.casasbahia.dto.SellerPageableDTO;
@@ -15,9 +14,11 @@ import br.com.casasbahia.dto.SellerRequestDTO;
 import br.com.casasbahia.dto.SellerResponseDTO;
 import br.com.casasbahia.dto.SellerUpdateRequestDTO;
 import br.com.casasbahia.exception.application.SellerNotFoundException;
+import br.com.casasbahia.model.PersistentBranchOffice;
 import br.com.casasbahia.model.PersistentSeller;
 import br.com.casasbahia.repository.SellerRepository;
 import br.com.casasbahia.repository.specification.SellerSpecification;
+import br.com.casasbahia.service.BranchOfficeCacheService;
 import br.com.casasbahia.service.SellerService;
 import br.com.casasbahia.service.validator.SellerValidator;
 import io.micrometer.observation.annotation.Observed;
@@ -36,7 +37,7 @@ public class SellerServiceImpl
     @Autowired
     private SellerConverter converter;
     @Autowired
-    private BranchOfficeClient branchOfficeClient;
+    private BranchOfficeCacheService branchOfficeCacheService;
 
     @Override
     @Transactional
@@ -44,9 +45,11 @@ public class SellerServiceImpl
         final SellerRequestDTO sellerRequestDTO )
     {
         LOGGER.info( "Validating seller payload..." );
-        SellerValidator.validate( branchOfficeClient, sellerRequestDTO );
+        SellerValidator.validate( sellerRequestDTO );
+        final PersistentBranchOffice branchOfficeCache = branchOfficeCacheService.find(
+            sellerRequestDTO.branchOfficeDocumentNumber() );
         LOGGER.info( "Creating seller..." );
-        final PersistentSeller createdSeller = repository.save( converter.toModelCreation( sellerRequestDTO ) );
+        final PersistentSeller createdSeller = repository.save( converter.toModelCreation( branchOfficeCache, sellerRequestDTO ) );
         LOGGER.info( String.format( "Seller with id = %d and enrollment = %s created successfully!",
             createdSeller.getId(), createdSeller.getEnrollment() ) );
         return converter.toDTO( createdSeller );
@@ -60,9 +63,12 @@ public class SellerServiceImpl
     {
         LOGGER.info( "Validating seller update payload..." );
         final PersistentSeller persistentSeller = findOrThrowNotFoundException( enrollment );
-        SellerValidator.validate( persistentSeller, branchOfficeClient, sellerRequestDTO );
+        SellerValidator.validate( persistentSeller, sellerRequestDTO );
+        final PersistentBranchOffice branchOfficeCache = branchOfficeCacheService
+            .find( sellerRequestDTO.branchOfficeDocumentNumber() );
         LOGGER.info( "Updating seller..." );
-        final PersistentSeller updatedSeller = repository.save( converter.toModelUpdate( persistentSeller, sellerRequestDTO ) );
+        final PersistentSeller updatedSeller = repository.save(
+            converter.toModelUpdate( branchOfficeCache, persistentSeller, sellerRequestDTO ) );
         LOGGER.info( String.format( "Seller with id = %d and enrollment = %s updated successfully!",
             updatedSeller.getId(),
             updatedSeller.getEnrollment() ) );

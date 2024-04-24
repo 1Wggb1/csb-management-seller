@@ -1,5 +1,7 @@
 package br.com.casasbahia.converter.impl;
 
+import static br.com.casasbahia.CommonTestData.PERSISTENT_BRANCH_OFFICE_CACHE_CNPJ;
+import static br.com.casasbahia.CommonTestData.PERSISTENT_BRANCH_OFFICE_CACHE_CNPJ_2;
 import static br.com.casasbahia.CommonTestData.PERSISTENT_SELLER_CLT;
 import static br.com.casasbahia.CommonTestData.VALID_BIRTHDATE;
 import static br.com.casasbahia.CommonTestData.VALID_CNPJ;
@@ -65,7 +67,7 @@ class SellerConverterImplTest
         doCallRealMethod().when( sellerRepository ).generateEnrollment( contractType );
         when( sellerRepository.nextEnrollmentValue() ).thenReturn( 107L );
 
-        final PersistentSeller persistentSeller = subject.toModelCreation( sellerRequestDTO );
+        final PersistentSeller persistentSeller = subject.toModelCreation( PERSISTENT_BRANCH_OFFICE_CACHE_CNPJ, sellerRequestDTO );
         assertEquals( sellerRequestDTO.name(), persistentSeller.getName() );
         assertEquals( sellerRequestDTO.birthDay().replaceAll( "-", "" ),
             persistentSeller.getBirthDay() );
@@ -74,7 +76,7 @@ class SellerConverterImplTest
             persistentSeller.getDocumentNumber() );
         assertEquals( sellerRequestDTO.contractType(), persistentSeller.getContractType().name() );
         assertEquals( sellerRequestDTO.branchOfficeDocumentNumber().replaceAll( "[./-]",
-            "" ), persistentSeller.getBranchOfficeDocumentNumber() );
+            "" ), persistentSeller.getBranchOffice().getDocumentNumber() );
         final String enrollment = persistentSeller.getEnrollment();
         assertNotNull( enrollment );
         assertTrue( enrollment.contains( "-" + contractType.getAcronym() ) );
@@ -127,7 +129,7 @@ class SellerConverterImplTest
         assertEquals( PERSISTENT_SELLER_CLT.getEnrollment(), sellerDTO.enrollment() );
         assertEquals( PERSISTENT_SELLER_CLT.getContractType().name(), sellerDTO.contractType() );
         assertEquals( PERSISTENT_SELLER_CLT.getDocumentNumber(), sellerDTO.documentNumber() );
-        assertEquals( PERSISTENT_SELLER_CLT.getBranchOfficeDocumentNumber(), sellerDTO.branchOfficeDocumentNumber() );
+        assertEquals( PERSISTENT_SELLER_CLT.getBranchOffice().getId(), sellerDTO.branchOffice().id() );
     }
 
     @Test
@@ -161,14 +163,14 @@ class SellerConverterImplTest
             "78596589657",
             VALID_EMAIL,
             ContractType.CLT,
-            "14555896574563" );
+            PERSISTENT_BRANCH_OFFICE_CACHE_CNPJ_2 );
         final SellerUpdateRequestDTO sellerRequestDTO = new SellerUpdateRequestDTO( "Will Garbo",
             "email@email.org",
             "1999-04-18",
             VALID_CPF,
             VALID_CNPJ );
 
-        final PersistentSeller updated = subject.toModelUpdate( seller, sellerRequestDTO );
+        final PersistentSeller updated = subject.toModelUpdate( PERSISTENT_BRANCH_OFFICE_CACHE_CNPJ, seller, sellerRequestDTO );
 
         assertEquals( seller.getId(), updated.getId() );
         assertEquals( seller.getEnrollment(), updated.getEnrollment() );
@@ -179,6 +181,6 @@ class SellerConverterImplTest
         assertEquals( sellerRequestDTO.documentNumber().replaceAll( "[.-]", "" ),
             updated.getDocumentNumber() );
         assertEquals( sellerRequestDTO.branchOfficeDocumentNumber().replaceAll( "[./-]",
-            "" ), updated.getBranchOfficeDocumentNumber() );
+            "" ), updated.getBranchOffice().getDocumentNumber() );
     }
 }

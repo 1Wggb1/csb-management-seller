@@ -4,6 +4,7 @@
     <writeAnnotations>
       <writeAnnotation name="jakarta.persistence.Column" />
       <writeAnnotation name="jakarta.persistence.Column" />
+      <writeAnnotation name="jakarta.persistence.Id" />
     </writeAnnotations>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />

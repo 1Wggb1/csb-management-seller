@@ -4,13 +4,11 @@ Componente responsável pelo CRUD de vendedores.
 Internamente possui um servidor mock para simular serviço de filiais onde os vendedores são.
 A cada request de criação ou atualização é verificado no serviço mock se a filial existe.
 
-## Informações da aplicação principal (vendedores)
+## Informações da aplicação principal (vendedores - pasta app)
 
 > Aplicação foi feita utilizando gradle 8, Java 17, Spring 3, Junit-Jupiter e Postgresql como banco de dados.
 > Segue a arquitetura em camadas controller/service/repository.
-> Foi utilizado um script SQL para criar a tabelas e sequências utilizadas ao iniciar o projeto.
-
-> Aplicação roda na porta 8080 - http://localhost:8080
+> Foi utilizado um script SQL para criar as tabelas e sequências utilizadas para o projeto (é iniciado a criação junto com o início da aplicação).
 
 > **Para facilitar o uso para testes da aplicação foi adicionado o swagger** - http://localhost:8080/swagger-ui/index.html
 
@@ -28,7 +26,7 @@ Buildar:
 Rodar Testes:
 `gradlew :app:test`
 
-## Informações sobre aplicação mock
+## Informações sobre aplicação mock (pasta mock-branchoffice-api)
 
 > Aplicação foi feita utilizando gradle 8, Java 17, Spring 3, Junit-Jupiter
 
@@ -38,8 +36,6 @@ Rodar Testes:
 > - Spring Actuator
 > - Micrometer
 > - Zipkin (recebe o traceId da request do cliente)
-
-> Aplicação roda na porta 8081 - http://localhost:8081
 
 > **Para facilitar o uso para testes da aplicação foi adicionado o swagger** - http://localhost:8081/swagger-ui/index.html
 
@@ -53,9 +49,10 @@ Rodar Testes:
 
 ## Iniciando a aplicação
 
-Existe um docker-compose responsável por criar o banco de dados da aplicação.
+Existe um docker-compose responsável por subir o banco de dados, 
+e ferramentas de observabilidade (prometheus e zipkin) da aplicação.
 
-Para iniciar o banco executar o comando na raiz do projeto:
+Para iniciar executar o comando na raiz do projeto:
 
 `docker-compose up --build -d`
 
@@ -66,11 +63,11 @@ ou pelo comando `gradlew :app:run` e `gradlew :mock-branchoffice-api:run` para a
 ### Payload de exemplo para criação
 `
     {
-    "name": "Mari",
-    "email": "som@protomail.rus",
-    "birthDay": "2003-02-17",
-    "documentNumber": "81767428057",
-    "contractType": "CLT",
-    "branchOfficeDocumentNumber": "32826650000187"
+        "name": "Mari",
+        "email": "som@protomail.rus",
+        "birthDay": "2003-02-17",
+        "documentNumber": "81767428057",
+        "contractType": "CLT",
+        "branchOfficeDocumentNumber": "32826650000187"
     }
 `

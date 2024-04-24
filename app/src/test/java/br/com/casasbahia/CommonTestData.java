@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import br.com.casasbahia.dto.BranchOfficeDTO;
 import br.com.casasbahia.model.ContractType;
+import br.com.casasbahia.model.PersistentBranchOffice;
 import br.com.casasbahia.model.PersistentSeller;
 
 public interface CommonTestData
@@ -17,16 +18,29 @@ public interface CommonTestData
     String VALID_BIRTHDATE = "1999-04-17";
     String VALID_EMAIL = "som@protomail.rus";
 
-    BranchOfficeDTO BRANCH_OFFICE_DTO = new BranchOfficeDTO(
+    BranchOfficeDTO BRANCH_OFFICE_DTO_2 = new BranchOfficeDTO(
         3L,
         "Bartira",
-        "05804725000156",
+        VALID_CNPJ_2,
         "São Paulo ",
         "SP",
         "N",
         true,
         LocalDate.now().minusDays( 100 ).toString(),
         LocalDate.now().minusDays( 90 ).toString() );
+    PersistentBranchOffice PERSISTENT_BRANCH_OFFICE_CACHE_CNPJ_2 = PersistentBranchOffice.from( BRANCH_OFFICE_DTO_2 );
+
+    BranchOfficeDTO BRANCH_OFFICE_DTO = new BranchOfficeDTO(
+        1L,
+        "Extra.com",
+        VALID_CNPJ,
+        "São Paulo ",
+        "SP",
+        "N",
+        true,
+        LocalDate.now().minusDays( 100 ).toString(),
+        LocalDate.now().minusDays( 90 ).toString() );
+    PersistentBranchOffice PERSISTENT_BRANCH_OFFICE_CACHE_CNPJ = PersistentBranchOffice.from( BRANCH_OFFICE_DTO );
 
     BranchOfficeDTO INACTIVE_BRANCH_OFFICE_DTO = new BranchOfficeDTO(
         3L,
@@ -46,5 +60,5 @@ public interface CommonTestData
         VALID_CPF,
         VALID_EMAIL,
         ContractType.CLT,
-        VALID_CNPJ );
+        PERSISTENT_BRANCH_OFFICE_CACHE_CNPJ_2 );
 }

@@ -9,14 +9,17 @@ import br.com.casasbahia.dto.SellerPageableDTO;
 import br.com.casasbahia.dto.SellerRequestDTO;
 import br.com.casasbahia.dto.SellerResponseDTO;
 import br.com.casasbahia.dto.SellerUpdateRequestDTO;
+import br.com.casasbahia.model.PersistentBranchOffice;
 import br.com.casasbahia.model.PersistentSeller;
 
 public interface SellerConverter
 {
     PersistentSeller toModelCreation(
+        PersistentBranchOffice branchOfficeCache,
         SellerRequestDTO sellerRequestDTO );
 
     PersistentSeller toModelUpdate(
+        PersistentBranchOffice branchOfficeCache,
         PersistentSeller persistentSeller,
         SellerUpdateRequestDTO sellerRequestDTO );
 

@@ -6,11 +6,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.regex.Pattern;
 
-import br.com.casasbahia.client.BranchOfficeClient;
-import br.com.casasbahia.dto.BranchOfficeDTO;
 import br.com.casasbahia.dto.SellerRequestDTO;
 import br.com.casasbahia.dto.SellerUpdateRequestDTO;
-import br.com.casasbahia.exception.validation.SellerBranchOfficeNotActiveValidationException;
 import br.com.casasbahia.exception.validation.SellerDateValidationException;
 import br.com.casasbahia.exception.validation.SellerInvalidContractTypeValidationException;
 import br.com.casasbahia.exception.validation.SellerInvalidDateFormatValidationException;
@@ -25,12 +22,10 @@ public final class SellerValidator
     private static final Pattern DATE_FORMAT_PATTERN = Pattern.compile( "[0-9]{4}-[0-9]{2}-[0-9]{2}" );
 
     public static void validate(
-        final BranchOfficeClient branchOfficeClient,
         final SellerRequestDTO sellerRequestDTO )
     {
         validateContractType( sellerRequestDTO );
         validateDate( sellerRequestDTO.birthDay() );
-        validateBranchOffice( branchOfficeClient, sellerRequestDTO.branchOfficeDocumentNumber() );
     }
 
     private static void validateContractType(
@@ -81,29 +76,13 @@ public final class SellerValidator
         }
     }
 
-    private static void validateBranchOffice(
-        final BranchOfficeClient branchOfficeClient,
-        final String branchOfficeDocumentNumber )
-    {
-        final BranchOfficeDTO branchOffice = branchOfficeClient.findByDocumentNumber(
-            UnmaskUtil.unmaskDocumentNumber( branchOfficeDocumentNumber ) );
-        if( ! branchOffice.active() ) {
-            throw new SellerBranchOfficeNotActiveValidationException( branchOfficeDocumentNumber );
-        }
-    }
-
     public static void validate(
         final PersistentSeller persistentSeller,
-        final BranchOfficeClient branchOfficeClient,
         final SellerUpdateRequestDTO sellerRequestDTO )
     {
         final ContractType contractType = persistentSeller.getContractType();
         final Document document = contractType.getRequiredDocument();
         validateDocument( document, sellerRequestDTO.documentNumber() );
         validateDate( sellerRequestDTO.birthDay() );
-        final String persistentBranchOffice = persistentSeller.getBranchOfficeDocumentNumber();
-        if( ! persistentBranchOffice.equals( UnmaskUtil.unmaskDocumentNumber( sellerRequestDTO.branchOfficeDocumentNumber() ) ) ) {
-            validateBranchOffice( branchOfficeClient, sellerRequestDTO.branchOfficeDocumentNumber() );
-        }
     }
 }

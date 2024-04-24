@@ -1,6 +1,6 @@
 package br.com.casasbahia.client;
 
-import static br.com.casasbahia.CommonTestData.BRANCH_OFFICE_DTO;
+import static br.com.casasbahia.CommonTestData.BRANCH_OFFICE_DTO_2;
 import static br.com.casasbahia.client.BranchOfficeClient.MAX_REQUEST_RETRY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -71,11 +71,11 @@ class BranchOfficeClientTest
     {
         mockRetry();
         when( restTemplate.getForEntity( anyString(), eq( BranchOfficeDTO.class ) ) )
-            .thenThrow( new RuntimeException() ).thenReturn( ResponseEntity.ok( BRANCH_OFFICE_DTO ) );
+            .thenThrow( new RuntimeException() ).thenReturn( ResponseEntity.ok( BRANCH_OFFICE_DTO_2 ) );
 
         final BranchOfficeDTO result = subject.findByDocumentNumber( "88999" );
 
         verify( restTemplate, times( 2 ) ).getForEntity( anyString(), eq( BranchOfficeDTO.class ) );
-        assertEquals( BRANCH_OFFICE_DTO, result );
+        assertEquals( BRANCH_OFFICE_DTO_2, result );
     }
 }

@@ -8,6 +8,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
@@ -43,9 +45,9 @@ public class PersistentSeller
     @Enumerated( EnumType.STRING )
     private ContractType contractType;
 
-    @NotNull
-    @Column( name = "branch_office_document_number", nullable = false )
-    private String branchOfficeDocumentNumber;
+    @JoinColumn( name = "branch_office_id", nullable = false )
+    @ManyToOne
+    private PersistentBranchOffice branchOffice;
 
     protected PersistentSeller()
     {
@@ -58,7 +60,7 @@ public class PersistentSeller
         final String documentNumber,
         final String email,
         final ContractType contractType,
-        final String branchOfficeDocumentNumber )
+        final PersistentBranchOffice branchOffice )
     {
         this.name = name;
         this.enrollment = enrollment;
@@ -66,7 +68,7 @@ public class PersistentSeller
         setDocumentNumber( documentNumber );
         this.email = email;
         this.contractType = contractType;
-        setBranchOfficeDocumentNumber( branchOfficeDocumentNumber );
+        this.branchOffice = branchOffice;
     }
 
     public Long getId()
@@ -130,14 +132,14 @@ public class PersistentSeller
         return contractType;
     }
 
-    public String getBranchOfficeDocumentNumber()
+    public PersistentBranchOffice getBranchOffice()
     {
-        return branchOfficeDocumentNumber;
+        return branchOffice;
     }
 
-    public void setBranchOfficeDocumentNumber(
-        final String branchOfficeDocumentNumber )
+    public void setBranchOffice(
+        final PersistentBranchOffice branchOffice )
     {
-        this.branchOfficeDocumentNumber = UnmaskUtil.unmaskDocumentNumber( branchOfficeDocumentNumber );
+        this.branchOffice = branchOffice;
     }
 }
